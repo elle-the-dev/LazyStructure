@@ -1,0 +1,219 @@
+#menu { background-color: #FFAA60; }
+#sidebar, #mainBg { background-color: #60AAFF; }
+#mainContent { background-color: #AA60FF; }
+
+/* ------ Structure ------*/
+html, body
+{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1, h2
+{
+    margin:0px;
+}
+
+a
+{
+    color: #0000FF;
+    text-decoration: none;
+}
+
+#header
+{
+    border-bottom: 1px solid #000000;
+    padding: 15px 0px;
+    padding-left: 50px;
+}
+
+#content
+{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#main, #mainBg
+{
+    overflow: hidden;
+}
+
+#mainContent
+{
+    margin-left: 200px;
+    padding: 15px;
+}
+
+/* ------ Tabs ------ */
+#tabs ul
+{
+    list-style: none;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px;
+}
+
+#tabs ul li
+{
+    display: block;
+    float: left;
+    margin-right: 1px;
+    padding: 7px 0px;
+    width: 7em;
+}
+
+#tabs ul li a
+{
+    background-color: #EEEEEE;
+    display: block;
+    padding: 7px 0px;
+    text-align: center;
+    width: 7em;
+    height: 23px;
+}
+
+#tabs ul li a:hover
+{
+    background-color: #CCCCCC;
+}
+
+/* ------ Submenu ------ */
+/*
+    Internet Explorer 6 does not allow the :hover
+    pseudo-element class on anything other than a,
+    therefore pure CSS menus are impossible.
+*/
+
+#tabs ul li ul
+{
+    display: none;
+}
+
+#tabs ul li ul li
+{
+    float: none;
+    padding: 0px;
+}
+
+#tabs ul li ul li a
+{
+    background-color: #E0E0E0;
+    display: block;
+    font-size: 0.9em;
+    height: 20px;
+    *margin-bottom: -1px;
+    padding-left: 10px;
+    text-align: left;
+    width: 120px;
+}
+
+#tabs ul li:hover ul
+{
+    display: block;
+    overflow: visible;
+    position: absolute;
+}
+
+/* ------ Sub-submenu ------ */
+#tabs ul li:hover ul li ul
+{
+    display: none;
+}
+
+#tabs ul li:hover ul li:hover ul
+{
+    display: block;
+    position: absolute;
+    left: 130px;
+    margin-top: -34px;
+    *margin-top: 0px;
+}
+
+#tabs ul li:hover ul li:hover ul a
+{
+    background-color: #EEEEEE;
+}
+
+#tabs ul li:hover ul li:hover ul a:hover
+{
+    background-color: #CCCCCC;
+}
+
+/* ------ Sidebar ------ */
+#sidebar
+{
+    clear: left;
+    float: left;
+    padding-left: 15px;
+    padding-top: 15px;
+    width: 185px;
+    _width: 200px;
+}
+
+/* ------ Footer ------- */
+#footer
+{
+    clear: both;
+    margin-top: 7px;
+}
+
+#footer ul
+{
+    list-style: none;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px;
+}
+
+#footer ul li
+{
+    display: inline;
+}
+
+#footer ul li a
+{
+    background-color: #EEEEEE;
+    float: left;
+    margin-right: 1px;
+    padding: 7px 15px;
+}
+
+#footer ul li a:hover
+{
+    background-color: #CCCCCC;
+}
+
+/* ------ Messages ------ */
+.error, .success
+{
+    display: none;
+    font-weight: bold;
+    font-family: verdana, 'DejaVu Sans', sans-serif;
+    font-size: 1em;
+    margin: 0.5em 0em;
+    padding: 0.5em 0em;
+}
+
+.error
+{
+    background-color: #A00000;
+    border: 1px solid #FF0000;
+    color: #FFCCCC;
+}
+
+.success
+{
+    background-color: #005000;
+    border: 1px solid #00FF00;
+    color: #CCFFCC;
+}
+
+/* ------ Loading ------ */
+.loading
+{
+    background-image: url('img/loading.gif');
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 300px;
+}
