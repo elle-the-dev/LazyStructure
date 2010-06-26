@@ -16,7 +16,14 @@ class Database
 
     public function connect()
     {
-        $this->db = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+        try
+        {
+            $this->db = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+        }
+        catch(Exception $err)
+        {
+            trigger_error("Database class is unable to connect", E_USER_WARNING);
+        }
     }
 
     public function query($query)
