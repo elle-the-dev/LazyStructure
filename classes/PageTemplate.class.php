@@ -141,10 +141,10 @@ TEMPLATE;
 
         $this->body .= <<<TEMPLATE
                             </div>
-                        </div>
-                    </div>
 TEMPLATE;
         $this->bodyBottom .= <<<TEMPLATE
+                        </div>
+                    </div>
                     <div id="footer">
                         <ul id="{$this->tab}Footer">
                             <li><a href="#" onclick="return loadPage(this);">About</a></li>

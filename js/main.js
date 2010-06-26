@@ -9,12 +9,11 @@ function loadPage(obj)
     // Clears everything out so all the user sees is the loading animation
     main.html("");
 
-    $.get(obj, function(data)
+    $.getJSON(obj, function(data)
     {
-        var jsonObj = eval("("+data+")");
-        main.html(jsonObj['markup']);
+        main.html(data['markup']);
         main.removeClass('loading');
-        $('title').html(jsonObj['title']);
+        $('title').html(data['title']);
     });
     return false;
 }
@@ -25,7 +24,7 @@ function formSubmit(obj)
     $.post(obj.action, form.serialize(), function(data)
     {
         // Return data is JSON object string, so eval to get object
-        var message = eval("("+data+")");
+        var message = $.parseJSON(data);
         showAll(message);
     });
     return false;
