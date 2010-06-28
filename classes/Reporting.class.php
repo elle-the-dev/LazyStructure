@@ -8,7 +8,7 @@ class Reporting
 
     public static function endDo()
     {
-        if(DBConnect::isAjax())
+        if(Database::isAjax())
         {
             if(self::hasErrors() || self::hasSuccesses() || self::hasMarkup())
                 echo self::getJsonAll();
