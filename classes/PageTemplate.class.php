@@ -25,7 +25,7 @@ class PageTemplate extends Template
 
         $styles = "";    
         foreach($this->styles as $style)
-            $styles .= "<link rel='stylesheet' type='text/css' href='$style' />";
+            $styles .= "<link rel='stylesheet' type='text/css' href='$style' class='pageStyle' />";
 
         $this->head .= <<<TEMPLATE
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
