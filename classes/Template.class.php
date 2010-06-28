@@ -31,7 +31,7 @@ class Template
             Some browsers *cough IE* server up XHTML content as a file-download
         */
         $bXHTML = strpos($_SERVER['HTTP_ACCEPT'], "application/xhtml+xml"); 
-        if (false && $bXHTML) 
+        if($bXHTML) 
             header('content-type: application/xhtml+xml; charset=utf-8'); 
         else 
             header('content-type: text/html; charset=utf-8');
