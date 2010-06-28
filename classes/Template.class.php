@@ -26,16 +26,6 @@ class Template
 
     public function render()
     {
-        /* 
-            Serve as XHTML if the browser accepts it
-            Some browsers *cough IE* server up XHTML content as a file-download
-        */
-        $bXHTML = strpos($_SERVER['HTTP_ACCEPT'], "application/xhtml+xml"); 
-        if($bXHTML) 
-            header('content-type: application/xhtml+xml; charset=utf-8'); 
-        else 
-            header('content-type: text/html; charset=utf-8');
-
         /* Turn off IE8's "XSS Protection" that actually makes sites vulnerable */
         header('X-XSS-Protection: 0');
 
