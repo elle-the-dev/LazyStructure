@@ -6,6 +6,7 @@ $out = new PageTemplate();
 $out->title = "Alpha";
 $out->tab = "alpha";
 $out->addSidebarItem("Add New", "alphaAdd.php");
+$out->addStyle("css/alpha.css");
 
 $out->body .= <<<TEMPLATE
 <h2>Alpha</h2>

@@ -11,9 +11,12 @@ function loadPage(obj)
 
     $.getJSON(obj, function(data)
     {
-        main.html(data['markup']);
+        $('.pageStyle').remove();
+        $('head').append(getStyles(data['styles']));
+        $('head').css('width', 'auto');
+        main.html(data['markup'].toString());
         main.removeClass('loading');
-        $('title').html(data['title']);
+        $('title').html(data['title'].toString());
     });
     return false;
 }
@@ -68,6 +71,14 @@ function showSuccesses(messages)
         success.html(getMessageList(messages));
         success.fadeIn(MESSAGE_SPEED);
     }
+}
+
+function getStyles(styles)
+{
+    var output = '';
+    for(i in styles)
+        output += '<link rel="stylesheet" type"text/css" href="'+styles[i]+'" class="pageStyle" />';
+    return output;
 }
 
 function getMessageList(messages)

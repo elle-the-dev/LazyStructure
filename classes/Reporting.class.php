@@ -8,15 +8,13 @@ class Reporting
 
     public static function endDo()
     {
-        if(Database::isAjax())
+        if(DBConnect::isAjax())
         {
-            if(self::hasErrors())
-                echo self::getJsonErrors();
-            else if(self::hasSuccesses())
-                echo self::getJsonSuccesses();
+            if(self::hasErrors() || self::hasSuccesses() || self::hasMarkup())
+                echo self::getJsonAll();
         }
         else
-            header('Location: '.$_SESSION['page']);
+            header('Location: '.$_SESSION['lastPage']);
     }
 
     public static function hasErrors()
@@ -28,6 +26,11 @@ class Reporting
     {
         return isset($_SESSION['successes'][0]);
     }
+    
+    public static function hasMarkup()
+    {
+        return isset($_SESSION['markup'][0]);
+    }
 
     public static function setError($message)
     {
@@ -38,6 +41,11 @@ class Reporting
     {
         $_SESSION['successes'][] = $message;
     }
+
+    public static function setMarkup($message)
+    {
+        $_SESSION['markup'][] = $message;
+    }
     
     public static function getJsonErrors($clear=true)
     {
@@ -47,6 +55,11 @@ class Reporting
     public static function getJsonSuccesses($clear=true)
     {
         return self::getJsonMessages('successes', $clear);
+    }
+
+    public static function getJsonMarkup($clear=true)
+    {
+        return self::getJsonMessages('markup', $clear);
     }
 
     public static function showErrors($clear=true)
@@ -70,6 +83,24 @@ class Reporting
         return $output;
     }
 
+    private static function getJsonAll($clear=true)
+    {
+        $ar = array();
+        if(self::hasErrors())
+            $ar['errors'] = $_SESSION['errors'];
+        if(self::hasSuccesses())
+            $ar['successes'] = $_SESSION['successes'];
+        if(self::hasMarkup())
+            $ar['markup'] = $_SESSION['markup'];
+        if($clear)
+        {
+            unset($_SESSION['errors']);
+            unset($_SESSION['successes']);
+            unset($_SESSION['markup']);
+        }
+        return json_encode($ar);
+    }
+
     private static function getJsonMessages($type, $clear)
     {
         $output = json_encode(array($type => $_SESSION[$type]));
@@ -78,3 +109,5 @@ class Reporting
         return $output;
     }
 }
+?>
+

@@ -9,6 +9,7 @@
 class Template
 {
     public $top;
+    public $styles = array();
     public $closeTop;
     public $title = "";
     public $head = "";
@@ -46,7 +47,7 @@ class Template
                 The page title is passed separate from the overall page markup so that even though
                 We technically remain on the same page, the browser can change the window title.
             */
-            echo json_encode(array('title' => $this->title, 'markup' => $this->body));
+            echo json_encode(array('title' => $this->title, 'markup' => $this->body, 'styles' => $this->styles));
         }
         else
         {

@@ -14,9 +14,18 @@ class PageTemplate extends Template
         $this->sidebarItems[] = array('text' => $text, 'url' => $url);
     }
 
+    function addStyle($style)
+    {
+        $this->styles[] = $style;
+    }
+
     function render()
     {
         $this->title .= " - LazyStructure";
+
+        $styles = "";    
+        foreach($this->styles as $style)
+            $styles .= "<link rel='stylesheet' type='text/css' href='$style' />";
 
         $this->head .= <<<TEMPLATE
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
@@ -27,6 +36,7 @@ class PageTemplate extends Template
         <meta http-equiv="X-UA-Compatible" content="chrome=1"></meta>
 
         <link rel="stylesheet" href="css/main.css" />
+        {$styles}
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
