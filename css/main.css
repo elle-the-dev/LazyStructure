@@ -192,7 +192,7 @@ a
 }
 
 /* ------ Messages ------ */
-.error, .success
+.errors, .successes
 {
     display: none;
     font-weight: bold;
@@ -202,7 +202,7 @@ a
     padding: 0.5em 0em;
 }
 
-.error
+.errors, .fieldError
 {
     background-color: #A00000;
     border: 1px solid #FF0000;
@@ -214,6 +214,12 @@ a
     background-color: #005000;
     border: 1px solid #00FF00;
     color: #CCFFCC;
+}
+
+.fieldError
+{
+    margin-left: 1em;
+    padding: 0em 0.5em;
 }
 
 /* ------ Loading ------ */

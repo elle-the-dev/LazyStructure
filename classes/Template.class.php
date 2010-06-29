@@ -61,7 +61,34 @@ TEMPLATE;
 </html>
 TEMPLATE;
 
-            echo $this->top, $this->head, $this->closeTop, $this->bodyTop, $this->body, $this->bodyBottom, $this->bottom;
+            /*
+                I've heard conflicting reports on string performance in PHP.  However, benchmarking
+                showed clearly that multiple echo statements by far had the worst performance.
+                All others --  concatenation, heredoc, and interpol variables -- were effectively equal.
+                And so, depite conventional wisdom of performance advantages of "not having to concatenate"
+                I am not echoing this statement using parameters.
+
+                $ time php5 -qC test.echo.php > /dev/null
+                real    0m11.351s
+                user    0m7.290s
+                sys 0m4.020s
+
+                $ time php5 -qC test.concat.php > /dev/null
+                real    0m4.786s
+                user    0m3.970s
+                sys 0m0.800s
+
+                $ time php5 -qC test.interpol.php > /dev/null
+                real    0m4.248s
+                user    0m3.370s
+                sys 0m0.870s
+
+                $ time php5 -qC test.heredoc.php > /dev/null
+                real    0m4.291s
+                user    0m3.630s
+                sys 0m0.660s
+            */
+            echo "{$this->top}{$this->head}{$this->closeTop}{$this->bodyTop}{$this->body}{$this->bodyBottom}{$this->bottom}";
         }
     }
 }

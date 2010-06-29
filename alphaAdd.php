@@ -16,6 +16,8 @@ $out->render();
 
 function drawFormTable($action, $items)
 {
+    isset($fieldErrors) ? $fieldErrors = $_SESSION['fieldErrors'] : $fieldErrors = array();
+    unset($_SESSION['fieldErrors']);
     $output = <<<TEMPLATE
     <form method="post" action="{$action}" onsubmit="return formSubmit(this);">
         <table class="formTable">
@@ -28,7 +30,7 @@ TEMPLATE;
             <tr>
                 <td>{$label}:</td>
                 <td>
-                    <input type="text" id="{$item}" name="{$item}" />
+                    <input type="text" id="{$item}" name="{$item}" />{$fieldErrors[$item]}
                 </td>
             </tr>
 TEMPLATE;
@@ -36,7 +38,7 @@ TEMPLATE;
     $output .= <<<TEMPLATE
             <tr>
                 <td colspan="2">
-                    <input type="submit" id="submit" name="submit" />
+                    <input type="submit" id="submit" name="submit" value="Submit" />
                 </td>
             </tr>
         </table>

@@ -6,7 +6,7 @@ class PageTemplate extends Template
 
     public function __construct()
     {
-        $_SESSION['page'] = $_SERVER['PHP_SELF'];
+        $_SESSION['lastPage'] = $_SERVER['PHP_SELF'];
     }
 
     function addSidebarItem($text, $url)
@@ -133,14 +133,14 @@ TEMPLATE;
         */
         $messages = "";
         if(isset($_SESSION['errors'][0]))
-            $messages .= '<div id="error" class="error" style="display: block">'.Reporting::showErrors().'</div>';
+            $messages .= '<div id="errors" class="errors" style="display: block">'.Reporting::showErrors().'</div>';
         else
-            $messages .= '<div id="error" class="error"></div>';
+            $messages .= '<div id="errors" class="errors"></div>';
 
         if(isset($_SESSION['successes'][0]))
-            $messages .= '<div id="success" class="success" style="display: block">'.Reporting::showSuccesses().'</div>';
+            $messages .= '<div id="successes" class="successes" style="display: block">'.Reporting::showSuccesses().'</div>';
         else
-            $messages .= '<div id="success" class="success"></div>';
+            $messages .= '<div id="successes" class="successes"></div>';
 
         $this->body = <<<TEMPLATE
             <div id="mainContent">

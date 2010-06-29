@@ -26,6 +26,11 @@ class Reporting
     {
         return isset($_SESSION['successes'][0]);
     }
+
+    public static function hasFieldErrors()
+    {
+        return isset($_SESSION['fieldErrors']);
+    }
     
     public static function hasMarkup()
     {
@@ -42,6 +47,11 @@ class Reporting
         $_SESSION['successes'][] = $message;
     }
 
+    public static function setFieldError($name, $message)
+    {
+        $_SESSION['fieldErrors'][$name] = '<span class="fieldError">'.$message.'</span>';
+    }
+
     public static function setMarkup($message)
     {
         $_SESSION['markup'][] = $message;
@@ -55,6 +65,11 @@ class Reporting
     public static function getJsonSuccesses($clear=true)
     {
         return self::getJsonMessages('successes', $clear);
+    }
+
+    public static function getJsonFieldErrors($clear=true)
+    {
+        return self::getJsonMessages('fieldErrors', $clear);
     }
 
     public static function getJsonMarkup($clear=true)
@@ -90,12 +105,15 @@ class Reporting
             $ar['errors'] = $_SESSION['errors'];
         if(self::hasSuccesses())
             $ar['successes'] = $_SESSION['successes'];
+        if(self::hasFieldErrors())
+            $ar['fieldErrors'] = $_SESSION['fieldErrors'];
         if(self::hasMarkup())
             $ar['markup'] = $_SESSION['markup'];
         if($clear)
         {
             unset($_SESSION['errors']);
             unset($_SESSION['successes']);
+            unset($_SESSION['fieldErrors']);
             unset($_SESSION['markup']);
         }
         return json_encode($ar);

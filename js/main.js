@@ -47,6 +47,7 @@ function showAll(message)
 {
     showErrors(message['errors']);
     showSuccesses(message['successes']);
+    showFieldErrors(message['fieldErrors']);
 }
 
 function showErrors(messages)
@@ -54,10 +55,10 @@ function showErrors(messages)
     if(typeof messages != "undefined")
     {
         $('#success').css('display', 'none');
-        var error = $('#error');
-        error.css('display', 'none');
-        error.html(getMessageList(messages));
-        error.fadeIn(MESSAGE_SPEED);
+        var errors = $('#errors');
+        errors.css('display', 'none');
+        errors.html(getMessageList(messages));
+        errors.fadeIn(MESSAGE_SPEED);
     }
 }
 
@@ -66,10 +67,23 @@ function showSuccesses(messages)
     if(typeof messages != "undefined")
     {
         $('#error').css('display', 'none');
-        var success = $('#success');
-        success.css('display', 'none');
-        success.html(getMessageList(messages));
-        success.fadeIn(MESSAGE_SPEED);
+        var successes = $('#successes');
+        successes.css('display', 'none');
+        successes.html(getMessageList(messages));
+        successes.fadeIn(MESSAGE_SPEED);
+    }
+}
+
+function showFieldErrors(messages)
+{
+    $('.fieldError').remove();
+    if(typeof messages != "undefined")
+    {
+        for(i in messages)
+        {
+            var error = $('#'+i);
+            error.after(messages[i]);
+        }
     }
 }
 
