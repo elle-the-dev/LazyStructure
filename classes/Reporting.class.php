@@ -10,7 +10,7 @@ class Reporting
     {
         if(Database::isAjax())
         {
-            if(self::hasErrors() || self::hasSuccesses() || self::hasMarkup())
+            if(self::hasErrors() || self::hasSuccesses() || self::hasFieldErrors() || self::hasMarkup())
                 echo self::getJsonAll();
         }
         else
@@ -77,6 +77,14 @@ class Reporting
         return self::getJsonMessages('markup', $clear);
     }
 
+    public static function getFieldErrors($clear=true)
+    {
+        $fieldErrors = $_SESSION['fieldErrors'];
+        if($clear)
+            unset($_SESSION['fieldErrors']);
+        return $fieldErrors;
+    }
+
     public static function showErrors($clear=true)
     {
         return self::showMessages('errors', $clear);
@@ -128,4 +136,3 @@ class Reporting
     }
 }
 ?>
-
