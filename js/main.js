@@ -91,7 +91,7 @@ function getStyles(styles)
 {
     var output = '';
     for(i in styles)
-        output += '<link rel="stylesheet" type"text/css" href="'+styles[i]+'" class="pageStyle" />';
+        output += '<link rel="stylesheet" href="'+styles[i]+'" class="pageStyle" />';
     return output;
 }
 

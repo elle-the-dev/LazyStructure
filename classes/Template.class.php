@@ -26,6 +26,7 @@ class Template
 
     public function render()
     {
+
         /* Turn off IE8's "XSS Protection" that actually makes sites vulnerable */
         header('X-XSS-Protection: 0');
 
@@ -37,10 +38,21 @@ class Template
                 The page title is passed separate from the overall page markup so that even though
                 We technically remain on the same page, the browser can change the window title.
             */
+            header('content-type: application/json; charset=utf-8'); 
             echo json_encode(array('title' => $this->title, 'markup' => $this->body, 'styles' => $this->styles));
         }
         else
         {
+            /*
+                Given this whole thing is XHTML standards compliant, it would be nice to actually serve it as such
+                However, some browsers *cough*IE*cough* can't handle that, so we have to check.
+            */
+            if (strpos($_SERVER['HTTP_ACCEPT'], "application/xhtml+xml") !== false) 
+                header('content-type: application/xhtml+xml; charset=utf-8'); 
+            else 
+                header('content-type: text/html; charset=utf-8');
+
+
             $this->top = <<<TEMPLATE
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html
