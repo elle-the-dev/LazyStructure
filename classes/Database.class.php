@@ -9,6 +9,8 @@ class Database
     private $dbPassword = "";
     private $database = "";
 
+    private $tokenSeed = "";
+
     private function __construct()
     {
         $this->connect();
@@ -55,7 +57,8 @@ class Database
             -SELECT returns results as a single string;
              meant for use in retrieving a single column value
         */
-        return implode($this->queryRow($query));
+        $ar = func_get_args();
+        return implode(call_user_func_array(array(&$this,'queryRow'), $ar));
     }
 
     public function getPdoResult($args)
@@ -101,6 +104,11 @@ class Database
     public function getHash($text)
     {
         return hash('sha512', $text);
+    }
+
+    public function getRandomToken()
+    {
+        $this->getHash($this->tokenSeen.mt_rand());
     }
     
     public static function isAjax()
