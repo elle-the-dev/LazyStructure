@@ -1,9 +1,10 @@
 LazyStructure is created under the LGPL.
 
-JavaScript functionality makes use of jQuery
+JavaScript functionality makes use of jQuery and the jQuery address plugin
 
 jQuery: http://jquery.com/
+Address: http://www.asual.com/jquery/address/
 
 See the included example files for usage.
 
-Version: 1.0.13
+Version: 1.1.0

@@ -5,9 +5,6 @@ $out = new PageTemplate();
 
 $out->title = "Home";
 
-$out->head .= <<<TEMPLATE
-
-TEMPLATE;
 $out->body .= <<<TEMPLATE
 <h2>Welcome</h2>
 <p class="info">

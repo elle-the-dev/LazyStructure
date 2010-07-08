@@ -1,8 +1,16 @@
 var MESSAGE_SPEED = 500;
 var messages = { errors: {}, successes: {} };
 
-function loadPage(obj)
+function loadPage(obj, inline)
 {
+    
+    /*
+        The jQuery address plugin does not work if the link is
+        in the AJAX content area (main). This fixes that.
+    */
+    if(!inline)
+        window.location='#/'+obj.rel.substring(8);
+
     var main = $('#main');
     main.addClass('loading');
 
@@ -13,7 +21,6 @@ function loadPage(obj)
     {
         $('.pageStyle').remove();
         $('head').append(getStyles(data['styles']));
-        $('head').css('width', 'auto');
         main.html(data['markup'].toString());
         main.removeClass('loading');
         $('title').html(data['title'].toString());
@@ -106,3 +113,11 @@ function getMessageList(messages)
     output += '</ul>';
     return output;
 }
+
+$.address.externalChange(function(event)
+{
+    var url = event.value.substring(1);
+    if(url == "")
+        url = 'index.php';
+    loadPage(url, true);
+});

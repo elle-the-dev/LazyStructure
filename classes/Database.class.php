@@ -66,6 +66,8 @@ class Database
         $query = $args[0];
         array_shift($args);
         $statement = $this->db->prepare($query);
+        if(is_array($args[0]))
+            $args = $args[0];
         $statement->execute($args);
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return array($result, $statement);

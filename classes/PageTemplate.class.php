@@ -39,6 +39,7 @@ class PageTemplate extends Template
         {$styles}
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.address.min.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
 TEMPLATE;
         $this->bodyTop .= <<<TEMPLATE
@@ -51,7 +52,7 @@ TEMPLATE;
                     <div id="tabs">
                         <ul id="{$this->tab}Header">
                             <li class="home">
-                                <a href="index.php" onclick="return loadPage(this);">Home</a>
+                                <a href="index.php" rel="address:index.php" onclick="return loadPage(this);">Home</a>
                                 <ul>
                                     <li><a href="#">Lorem</a></li>
                                     <li><a href="#">Ipsum</a></li>
@@ -60,7 +61,7 @@ TEMPLATE;
                                 </ul>
                             </li>
                             <li class="browse">
-                                <a href="alpha.php" onclick="return loadPage(this);">Alpha</a>
+                                <a href="alpha.php" rel="address:alpha.php" onclick="return loadPage(this);">Alpha</a>
                                 <ul>
                                     <li>
                                         <a href="#">Lorem</a>
@@ -85,7 +86,7 @@ TEMPLATE;
                                 </ul>
                             </li>
                             <li class="stats">
-                                <a href="beta.php" onclick="return loadPage(this);">Beta</a>
+                                <a href="beta.php" rel="address:beta.php" onclick="return loadPage(this);">Beta</a>
                                  <ul>
                                     <li><a href="#">Lorem</a></li>
                                     <li>
@@ -119,7 +120,7 @@ TEMPLATE;
             foreach($this->sidebarItems AS $item)
             {
                 $this->sidebar .= <<<TEMPLATE
-                    <li><a href="{$item['url']}" onclick="return loadPage(this);">{$item['text']}</a></li>
+                    <li><a href="{$item['url']}" rel="address:{$item['url']}" onclick="return loadPage(this);">{$item['text']}</a></li>
 TEMPLATE;
             }
             $this->sidebar .= '</ul>';
