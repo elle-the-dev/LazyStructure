@@ -15,10 +15,11 @@ function loadPage(obj, inline)
     main.addClass('loading');
 
     // Clears everything out so all the user sees is the loading animation
-    main.html("");
+    $('#mainContent').css('opacity', '0.3');
 
     $.getJSON(obj, function(data)
     {
+        $('#mainContent').css('opacity', '1');
         $('.pageStyle').remove();
         $('head').append(getStyles(data['styles']));
         main.html(data['markup'].toString());
