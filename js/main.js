@@ -22,8 +22,8 @@ function loadPage(obj, inline)
         $('#mainContent').css('opacity', '1');
         $('.pageStyle').remove();
         $('head').append(getStyles(data['styles']));
-        main.html(data['markup'].toString());
         main.removeClass('loading');
+        main.html(data['markup'].toString());
         $('title').html(data['title'].toString());
     });
     return false;
@@ -62,7 +62,7 @@ function showErrors(messages)
 {
     if(typeof messages != "undefined")
     {
-        $('#success').css('display', 'none');
+        $('#successes').css('display', 'none');
         var errors = $('#errors');
         errors.css('display', 'none');
         errors.html(getMessageList(messages));
@@ -74,7 +74,7 @@ function showSuccesses(messages)
 {
     if(typeof messages != "undefined")
     {
-        $('#error').css('display', 'none');
+        $('#errors').css('display', 'none');
         var successes = $('#successes');
         successes.css('display', 'none');
         successes.html(getMessageList(messages));
