@@ -24,7 +24,7 @@ function loadPage(obj, inline)
         $('head').append(getStyles(data['styles']));
         main.removeClass('loading');
         main.html(data['markup'].toString());
-        $('title').html(data['title'].toString());
+        $(document).attr('title', data['title'].toString());
         bindClick();
     });
     return false;
