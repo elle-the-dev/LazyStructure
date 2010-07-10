@@ -52,7 +52,7 @@ TEMPLATE;
                     <div id="tabs">
                         <ul id="{$this->tab}Header">
                             <li class="home">
-                                <a href="index.php" rel="address:index.php" onclick="return loadPage(this);">Home</a>
+                                <a href="index.php" rel="address:index.php">Home</a>
                                 <ul>
                                     <li><a href="#">Lorem</a></li>
                                     <li><a href="#">Ipsum</a></li>
@@ -61,7 +61,7 @@ TEMPLATE;
                                 </ul>
                             </li>
                             <li class="browse">
-                                <a href="alpha.php" rel="address:alpha.php" onclick="return loadPage(this);">Alpha</a>
+                                <a href="alpha.php" rel="address:alpha.php">Alpha</a>
                                 <ul>
                                     <li>
                                         <a href="#">Lorem</a>
@@ -86,7 +86,7 @@ TEMPLATE;
                                 </ul>
                             </li>
                             <li class="stats">
-                                <a href="beta.php" rel="address:beta.php" onclick="return loadPage(this);">Beta</a>
+                                <a href="beta.php" rel="address:beta.php">Beta</a>
                                  <ul>
                                     <li><a href="#">Lorem</a></li>
                                     <li>
@@ -120,7 +120,7 @@ TEMPLATE;
             foreach($this->sidebarItems AS $item)
             {
                 $this->sidebar .= <<<TEMPLATE
-                    <li><a href="{$item['url']}" rel="address:{$item['url']}" onclick="return loadPage(this);">{$item['text']}</a></li>
+                    <li><a href="{$item['url']}" rel="address:{$item['url']}">{$item['text']}</a></li>
 TEMPLATE;
             }
             $this->sidebar .= '</ul>';
@@ -158,8 +158,8 @@ TEMPLATE;
                     </div>
                     <div id="footer">
                         <ul id="{$this->tab}Footer">
-                            <li><a href="#" onclick="return loadPage(this);">About</a></li>
-                            <li><a href="#" onclick="return loadPage(this);">Contact</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
                         </ul>
                     </div>
                 </div>

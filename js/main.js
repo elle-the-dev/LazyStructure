@@ -25,6 +25,7 @@ function loadPage(obj, inline)
         main.removeClass('loading');
         main.html(data['markup'].toString());
         $('title').html(data['title'].toString());
+        bindClick();
     });
     return false;
 }
@@ -113,6 +114,14 @@ function getMessageList(messages)
         output += '<li>'+messages[i]+'</li>';
     output += '</ul>';
     return output;
+}
+
+function bindClick()
+{
+    $('#content a[rel]').unbind('click').click(function()
+    {
+        return loadPage(this);
+    });
 }
 
 $.address.externalChange(function(event)

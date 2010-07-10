@@ -77,7 +77,7 @@ TEMPLATE;
                 I've heard conflicting reports on string performance in PHP.  However, benchmarking
                 showed clearly that multiple echo statements by far had the worst performance.
                 All others --  concatenation, heredoc, and interpol variables -- were effectively equal.
-                And so, depite conventional wisdom of performance advantages of "not having to concatenate"
+                And so, despite conventional wisdom of performance advantages of "not having to concatenate"
                 I am not echoing this statement using parameters.
 
                 $ time php5 -qC test.echo.php > /dev/null

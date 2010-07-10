@@ -35,6 +35,11 @@ class Database
             -INSERT returns lastInsertId
             -SELECT returns a multi-dimensional array of resulting records (0 if none)
             -UPDATE returns true if successful, false otherwise
+            
+            Example usage:
+            query("SELECT * FROM table WHERE id = ?", $id);
+            query("SELECT * FROM table WHERE username = ? AND password = ?", $username, $password);
+            query("SELECT * FROM table WHERE username = ? AND password = ?", array($username, $password));
         */
         $return = $this->getPdoResult(func_get_args());
         return $this->getPdoReturn($return[0], $return[1]);

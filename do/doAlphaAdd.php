@@ -2,7 +2,7 @@
 require_once('../classloader.php');
 $name = $_POST['name'];
 
-if(!isset($name) || $name === "")
+if(empty($name))
     Reporting::setFieldError("name", "Cannot be blank");
 if(Reporting::hasFieldErrors())
     Reporting::setError("Name cannot be blank");
