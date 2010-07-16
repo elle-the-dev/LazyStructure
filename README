@@ -7,4 +7,12 @@ Address: http://www.asual.com/jquery/address/
 
 See the included example files for usage.
 
-Version: 1.1.4
+Version: 1.1.5
+
+
+INSTRUCTIONS:
+
+See the file classes/Database.class.php
+-Set $dbDriver for database bindings for MySQL or PostgreSQL
+-Set $dbHost, $dbUsername, $dbPassword, $database for MySQL settings
+

@@ -10,23 +10,25 @@ function loadPage(obj, inline)
     */
     if(!inline)
         window.location='#/'+obj.rel.substring(8);
-
-    var main = $('#main');
-    main.addClass('loading');
-
-    // Clears everything out so all the user sees is the loading animation
-    $('#mainContent').css('opacity', '0.3');
-
-    $.getJSON(obj, function(data)
+    else
     {
-        $('#mainContent').css('opacity', '1');
-        $('.pageStyle').remove();
-        $('head').append(getStyles(data['styles']));
-        main.removeClass('loading');
-        main.html(data['markup'].toString());
-        $(document).attr('title', data['title'].toString());
-        bindClick();
-    });
+        var main = $('#main');
+        main.addClass('loading');
+
+        // Clears everything out so all the user sees is the loading animation
+        $('#mainContent').css('opacity', '0.3');
+
+        $.getJSON(obj, function(data)
+        {
+            $('#mainContent').css('opacity', '1');
+            $('.pageStyle').remove();
+            $('head').append(getStyles(data['styles']));
+            main.removeClass('loading');
+            main.html(data['markup'].toString());
+            $(document).attr('title', data['title'].toString());
+            bindClick();
+        });
+    }
     return false;
 }
 

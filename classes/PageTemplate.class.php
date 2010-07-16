@@ -28,90 +28,93 @@ class PageTemplate extends Template
             $styles .= "<link rel='stylesheet' type='text/css' href='$style' class='pageStyle' />";
 
         $this->head .= <<<TEMPLATE
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
-        <meta name="Keywords" content="generic, structure, reusable"></meta>
-        <meta name="Description" content="Your name in generic"></meta>
 
-        <!-- Enable Chrome Frame in IE when installed -->
-        <meta http-equiv="X-UA-Compatible" content="chrome=1"></meta>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="Keywords" content="generic, structure, reusable"></meta>
+    <meta name="Description" content="Your name in generic"></meta>
 
-        <link rel="stylesheet" href="css/main.css" />
-        {$styles}
+    <!-- Enable Chrome Frame in IE when installed -->
+    <meta http-equiv="X-UA-Compatible" content="chrome=1"></meta>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquery.address.min.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+    {$styles}
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.address.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 TEMPLATE;
         $this->bodyTop .= <<<TEMPLATE
-            <div id="containerBg">
-                <div id="container">
-                    <div id="header">
-                        <h1 id="h1"><a href="index.php">LazyStructure</a></h1>
-                    </div>
-                    <div id="content">
-                    <div id="tabs">
-                        <ul id="{$this->tab}Header">
-                            <li class="home">
-                                <a href="index.php" rel="address:index.php">Home</a>
-                                <ul>
-                                    <li><a href="#">Lorem</a></li>
-                                    <li><a href="#">Ipsum</a></li>
-                                    <li><a href="#">Dolor</a></li>
-                                    <li><a href="#">Sit Amet</a></li>
-                                </ul>
-                            </li>
-                            <li class="browse">
-                                <a href="alpha.php" rel="address:alpha.php">Alpha</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Lorem</a>
-                                        <ul>
-                                            <li><a href="#">Lorem</a></li>
-                                            <li><a href="#">Ipsum</a></li>
-                                            <li><a href="#">Dolor</a></li>
-                                            <li><a href="#">Sit Amet</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Ipsum</a></li>
-                                    <li>
-                                        <a href="#">Dolor</a>
-                                        <ul>
-                                            <li><a href="#">Lorem</a></li>
-                                            <li><a href="#">Ipsum</a></li>
-                                            <li><a href="#">Dolor</a></li>
-                                            <li><a href="#">Sit Amet</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Sit Amet</a></li>
-                                </ul>
-                            </li>
-                            <li class="stats">
-                                <a href="beta.php" rel="address:beta.php">Beta</a>
-                                 <ul>
-                                    <li><a href="#">Lorem</a></li>
-                                    <li>
-                                        <a href="#">Ipsum</a>
-                                        <ul>
-                                            <li><a href="#">Lorem</a></li>
-                                            <li><a href="#">Ipsum</a></li>
-                                            <li><a href="#">Dolor</a></li>
-                                            <li><a href="#">Sit Amet</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Dolor</a></li>
-                                    <li><a href="#">Sit Amet</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div id="mainBg">
-                        <div id="main" class="main">
+    <div id="containerBg">
+        <div id="container">
+            <div id="header">
+                <h1 id="h1"><a href="index.php">LazyStructure</a></h1>
+            </div>
+            <div id="content">
+            <div id="tabs">
+                <ul id="{$this->tab}Header">
+                    <li class="home">
+                        <a href="index.php" rel="address:index.php">Home</a>
+                        <ul>
+                            <li><a href="#">Lorem</a></li>
+                            <li><a href="#">Ipsum</a></li>
+                            <li><a href="#">Dolor</a></li>
+                            <li><a href="#">Sit Amet</a></li>
+                        </ul>
+                    </li>
+                    <li class="browse">
+                        <a href="alpha.php" rel="address:alpha.php">Alpha</a>
+                        <ul>
+                            <li>
+                                <a href="#">Lorem</a>
+                                <ul>
+                                    <li><a href="#">Lorem</a></li>
+                                    <li><a href="#">Ipsum</a></li>
+                                    <li><a href="#">Dolor</a></li>
+                                    <li><a href="#">Sit Amet</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Ipsum</a></li>
+                            <li>
+                                <a href="#">Dolor</a>
+                                <ul>
+                                    <li><a href="#">Lorem</a></li>
+                                    <li><a href="#">Ipsum</a></li>
+                                    <li><a href="#">Dolor</a></li>
+                                    <li><a href="#">Sit Amet</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Sit Amet</a></li>
+                        </ul>
+                    </li>
+                    <li class="stats">
+                        <a href="beta.php" rel="address:beta.php">Beta</a>
+                         <ul>
+                            <li><a href="#">Lorem</a></li>
+                            <li>
+                                <a href="#">Ipsum</a>
+                                <ul>
+                                    <li><a href="#">Lorem</a></li>
+                                    <li><a href="#">Ipsum</a></li>
+                                    <li><a href="#">Dolor</a></li>
+                                    <li><a href="#">Sit Amet</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dolor</a></li>
+                            <li><a href="#">Sit Amet</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="mainBg">
+                <div id="main" class="main">
 TEMPLATE;
 
         $this->sidebar .= <<<TEMPLATE
-                            <div id="sidebar" class="sidebar">
-                                <div id="sidebarTitle">Menu</div>
+
+                    <div id="sidebar" class="sidebar">
+                        <div id="sidebarTitle">Menu</div>
 TEMPLATE;
 
         if(isset($this->sidebarItems[0]))
@@ -120,12 +123,16 @@ TEMPLATE;
             foreach($this->sidebarItems AS $item)
             {
                 $this->sidebar .= <<<TEMPLATE
-                    <li><a href="{$item['url']}" rel="address:{$item['url']}">{$item['text']}</a></li>
+
+                <li><a href="{$item['url']}" rel="address:{$item['url']}">{$item['text']}</a></li>
 TEMPLATE;
             }
             $this->sidebar .= '</ul>';
         }
-        $this->sidebar .= '</div>';
+        $this->sidebar .= <<<TEMPLATE
+        
+                    </div>
+TEMPLATE;
 
         /*
             If possible, user notification messages are displayed via AJAX calls.
@@ -144,27 +151,38 @@ TEMPLATE;
             $messages .= '<div id="successes" class="successes"></div>';
 
         $this->body = <<<TEMPLATE
-            <div id="mainContent">
-                {$messages}
-                {$this->body}
+
+                    <div id="mainContent">
+                        {$messages}
+
+
+<!-- ******************************************* MAIN CONTENT START ******************************************************* -->
+
+{$this->body}
 TEMPLATE;
         $this->body = $this->sidebar.$this->body;
 
         $this->body .= <<<TEMPLATE
-                            </div>
+
+
+<!-- ******************************************** MAIN CONTENT END ******************************************************* -->
+
+
+                    </div>
 TEMPLATE;
         $this->bodyBottom .= <<<TEMPLATE
-                        </div>
-                    </div>
-                    <div id="footer">
-                        <ul id="{$this->tab}Footer">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
+            <div id="footer">
+                <ul id="{$this->tab}Footer">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
         </div>
+    </div>
+</div>
 TEMPLATE;
         parent::render();
     }

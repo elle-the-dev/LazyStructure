@@ -4,6 +4,7 @@ class Database
     static $instance;
     
     private $db;
+    private $dbDriver = "mysql" // "pgsql" for Postgres
     private $dbHost = "localhost";
     private $dbUsername = "";
     private $dbPassword = "";
@@ -16,13 +17,18 @@ class Database
         $this->connect();
     }
 
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
+
     public function connect()
     {
         try
         {
-            $this->db = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+            $this->db = new PDO($this->dbDriver.':host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
         }
-        catch(Exception $err)
+        catch(PDOException $err)
         {
             trigger_error("Database class is unable to connect", E_USER_WARNING);
         }
