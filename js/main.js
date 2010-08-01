@@ -11,11 +11,11 @@ function loadPage(obj, inline)
     */
     if(!inline)
     {
-        var url = (""+window.location).replace(/([^\#])\/[0-9]+\/[a-zA-Z-_\.\|']+\/?/, "\$1");
+        var url = (""+window.location).replace(/([^\#!])\/[0-9]+\/[a-zA-Z-_\.\|']+\/?/, "\$1");
         if(url != window.location)
-            window.location = url+'#/'+obj.rel.substring(8);
+            window.location = url+'#!/'+obj.rel.substring(8);
         else
-            window.location='#/'+obj.rel.substring(8);
+            window.location='#!/'+obj.rel.substring(8);
     }
     else
     {
