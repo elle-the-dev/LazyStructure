@@ -5,14 +5,27 @@ JavaScript functionality makes use of jQuery and the jQuery address plugin
 jQuery: http://jquery.com/
 Address: http://www.asual.com/jquery/address/
 
+Inline editor uses nicEdit
+http://nicedit.com
+
 See the included example files for usage.
 
-Version: 1.1.5
+Version: 2.0.0
+
+Overview:
+LazyStructure provides a jumping-off point for a new PHP project.  Built-in MySQL usage is with regard to login and page editing.  This is seen in index.php.  For pages not using MySQL for page loads, see alpha.php and beta.php.
 
 
-INSTRUCTIONS:
+Instructions:
+See the file ./lazystructure.sql
+-Create a database named lazystructure
+-Import the database from the file
+    -mysql -uroot -p -hlocalhost lazystructure < ./lazystructure.sql
 
 See the file classes/Database.class.php
 -Set $dbDriver for database bindings for MySQL or PostgreSQL
 -Set $dbHost, $dbUsername, $dbPassword, $database for MySQL settings
+-Set $passwordSalt and $tokenSeed for password and token salts
 
+See the file classes/Globals.class.php
+-Set PATH for the document root of the site

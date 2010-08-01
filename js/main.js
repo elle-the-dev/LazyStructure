@@ -1,5 +1,6 @@
 var MESSAGE_SPEED = 500;
-var messages = { errors: {}, successes: {} };
+var messages = { errors: Array(), successes: Array() };
+var myNicEditor;
 
 function loadPage(obj, inline)
 {
@@ -9,7 +10,13 @@ function loadPage(obj, inline)
         in the AJAX content area (main). This fixes that.
     */
     if(!inline)
-        window.location='#/'+obj.rel.substring(8);
+    {
+        var url = (""+window.location).replace(/([^\#])\/[0-9]+\/[a-zA-Z-_\.\|']+\/?/, "\$1");
+        if(url != window.location)
+            window.location = url+'#/'+obj.rel.substring(8);
+        else
+            window.location='#/'+obj.rel.substring(8);
+    }
     else
     {
         var main = $('#main');
@@ -27,6 +34,19 @@ function loadPage(obj, inline)
             main.html(data['markup'].toString());
             $(document).attr('title', data['title'].toString());
             bindClick();
+
+            if(typeof $('#userContent').val() != "undefined")
+            {
+                myNicEditor = new nicEditor(
+                {
+                    onSave: function(content, id, instance)
+                    {
+                        nicEditSubmit(content);
+                    }
+                });
+                myNicEditor.setPanel('userContentPanel');
+                myNicEditor.addInstance('userContent');
+            }
         });
     }
     return false;
@@ -35,11 +55,39 @@ function loadPage(obj, inline)
 function formSubmit(obj)
 {
     var form = $(obj);
+    var submit = form.find('input[type="submit"]');
+    submit.attr('disabled', 'disabled');
+    submit.after('<span class="waitingNotice">Please wait...</span>');
     $.post(obj.action, form.serialize(), function(data)
+    {
+        try
+        {
+        // Return data is JSON object string, so eval to get object
+        var message = $.parseJSON(data);
+        form.find('.waitingNotice').remove();
+        submit.removeAttr('disabled');
+        showAll(message);
+        }
+        catch(err)
+        {
+            setError(data);
+            showErrors(messages['errors']);
+        }
+    });
+    return false;
+}
+
+function nicEditSubmit(content)
+{
+    var pageId = $('#pageId').val();
+    var xsrfToken = $('#xsrfToken').val();
+    var url = $('#path').val()+'do/doUpdatePage.php';
+
+    $.post(url, {pageId: pageId, content: content, xsrfToken: xsrfToken}, function(data)
     {
         // Return data is JSON object string, so eval to get object
         var message = $.parseJSON(data);
-        showAll(message);
+        showAll(message, 'adminErrors', 'adminSuccesses');
     });
     return false;
 }
@@ -54,34 +102,52 @@ function setSuccess(message)
     messages['successes'][messages['successes'].length] = message;
 }
 
-function showAll(message)
+function showAll(message, errorsId, successesId)
 {
-    showErrors(message['errors']);
-    showSuccesses(message['successes']);
+    if(typeof errorsId == "undefined")
+        errorsId = "errors";
+    if(typeof successesId == "undefined")
+        successesId = "successes";
+
+    showErrors(message['errors'], errorsId, successesId);
+    showSuccesses(message['successes'], errorsId, successesId);
     showFieldErrors(message['fieldErrors']);
 }
 
-function showErrors(messages)
+function showErrors(messages, errorsId, successesId)
 {
     if(typeof messages != "undefined")
     {
-        $('#successes').css('display', 'none');
-        var errors = $('#errors');
+        if(typeof errorsId == "undefined")
+            errorsId = "errors";
+        if(typeof successesId == "undefined")
+            successesId = "successes";
+
+        $('#'+successesId).css('display', 'none');
+        var errors = $('#'+errorsId);
         errors.css('display', 'none');
         errors.html(getMessageList(messages));
         errors.fadeIn(MESSAGE_SPEED);
+        errors.css('display', 'block');
     }
 }
 
-function showSuccesses(messages)
+function showSuccesses(messages, errorsId, successesId)
 {
     if(typeof messages != "undefined")
     {
-        $('#errors').css('display', 'none');
-        var successes = $('#successes');
+        if(typeof errorsId == "undefined")
+            errorsId = "errors";
+        if(typeof successesId == "undefined")
+            successesId = "successes";
+
+        $('#'+errorsId).css('display', 'none');
+        var successes = $('#'+successesId);
         successes.css('display', 'none');
         successes.html(getMessageList(messages));
         successes.fadeIn(MESSAGE_SPEED);
+        successes.css('display', 'block');
+        successes.delay(2000).fadeOut(MESSAGE_SPEED);
     }
 }
 

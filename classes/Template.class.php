@@ -46,11 +46,16 @@ class Template
             /*
                 Given this whole thing is XHTML standards compliant, it would be nice to actually serve it as such
                 However, some browsers *cough*IE*cough* can't handle that, so we have to check.
+
+                -- Slight problem: This doesn't work with nicEdit, so it's disabled for now.
+
+                if (strpos($_SERVER['HTTP_ACCEPT'], "application/xhtml+xml") !== false) 
+                    header('content-type: application/xhtml+xml; charset=utf-8'); 
+                else 
+                    header('content-type: text/html; charset=utf-8');
             */
-            if (strpos($_SERVER['HTTP_ACCEPT'], "application/xhtml+xml") !== false) 
-                header('content-type: application/xhtml+xml; charset=utf-8'); 
-            else 
-                header('content-type: text/html; charset=utf-8');
+
+            header('content-type: text/html; charset=utf-8');
 
 
             $this->top = <<<TEMPLATE
@@ -64,13 +69,11 @@ class Template
 TEMPLATE;
 
             $this->closeTop = <<<TEMPLATE
-
 </head>
 <body>
 TEMPLATE;
 
             $this->bottom = <<<TEMPLATE
-
 </body>
 </html>
 TEMPLATE;

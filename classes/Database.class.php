@@ -4,12 +4,12 @@ class Database
     static $instance;
     
     private $db;
-    private $dbDriver = "mysql" // "pgsql" for Postgres
     private $dbHost = "localhost";
     private $dbUsername = "";
     private $dbPassword = "";
-    private $database = "";
+    private $database = "lazystructure";
 
+    private $passwordSalt = ""; 
     private $tokenSeed = "";
 
     private function __construct()
@@ -17,18 +17,13 @@ class Database
         $this->connect();
     }
 
-    public function __set($name, $value)
-    {
-        $this->$name = $value;
-    }
-
     public function connect()
     {
         try
         {
-            $this->db = new PDO($this->dbDriver.':host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+            $this->db = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
         }
-        catch(PDOException $err)
+        catch(Exception $err)
         {
             trigger_error("Database class is unable to connect", E_USER_WARNING);
         }
@@ -43,9 +38,9 @@ class Database
             -UPDATE returns true if successful, false otherwise
             
             Example usage:
-            query("SELECT * FROM table WHERE id = ?", $id);
-            query("SELECT * FROM table WHERE username = ? AND password = ?", $username, $password);
-            query("SELECT * FROM table WHERE username = ? AND password = ?", array($username, $password));
+            $this->query("SELECT * FROM table WHERE id = ?", $id);
+            $this->query("SELECT * FROM table WHERE username = ? AND password = ?", $username, $password);
+            $this->query("SELECT * FROM table WHERE username = ? AND password = ?", array($username, $password));
         */
         $return = $this->getPdoResult(func_get_args());
         return $this->getPdoReturn($return[0], $return[1]);
@@ -68,11 +63,11 @@ class Database
             -SELECT returns results as a single string;
              meant for use in retrieving a single column value
         */
-        $ar = func_get_args();
-        return implode(call_user_func_array(array(&$this,'queryRow'), $ar));
+        $return = $this->getPdoResult(func_get_args(), false);
+        return $this->getPdoReturn($return[0], $return[1], false);
     }
 
-    public function getPdoResult($args)
+    public function getPdoResult($args, $allColumns=true)
     {
         $query = $args[0];
         array_shift($args);
@@ -80,7 +75,10 @@ class Database
         if(is_array($args[0]))
             $args = $args[0];
         $statement->execute($args);
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if($allColumns)
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+        else
+            $result = $statement->fetchColumn();
         return array($result, $statement);
     }
 
@@ -109,19 +107,19 @@ class Database
             return self::$instance = new Database();
     }
 
-    public function authenticate()
+    public function authenticate($xsrfToken)
     {    
-        return (isset($_SESSION['login']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']);
+        return (isset($_SESSION['user']) && !empty($xsrfToken) && unserialize($_SESSION['user'])->xsrfToken == $xsrfToken);
     }
     
     public function getHash($text)
     {
-        return hash('sha512', $text);
+        return hash('sha512', $this->passwordSalt.$text);
     }
 
     public function getRandomToken()
     {
-        $this->getHash($this->tokenSeen.mt_rand());
+        return $this->getHash($this->tokenSeed.mt_rand());
     }
     
     public static function isAjax()

@@ -21,6 +21,10 @@ MySQL connections are not created, so this is not a performance issue
 */
 $db = Database::getDatabase();
 
+new Globals();
+$path = PATH;
+
+isset($_SESSION['user']) ? $user = unserialize($_SESSION['user']) : $user = false;
 
 function __autoload($classname)
 {
