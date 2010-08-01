@@ -1,3 +1,4 @@
 RewriteEngine on
 
-RewriteRule ^([0-9]+)/.*$ index.php?pageId=$1
+RewriteRule ^_escaped_fragment_=/?([0-9]+)/.*$ index.php?pageId=$1
+RewriteRule ^[\#!]?/?([0-9]+)/.*$ index.php?pageId=$1
