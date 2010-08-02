@@ -39,6 +39,7 @@ function loadPage(obj, inline)
             {
                 myNicEditor = new nicEditor(
                 {
+                    xhtml: true,
                     onSave: function(content, id, instance)
                     {
                         nicEditSubmit(content);

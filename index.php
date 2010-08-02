@@ -5,8 +5,9 @@ isset($_GET['pageId']) ? $pageId = (int) $_GET['pageId'] : $pageId = 1;
 $page = $db->queryRow("SELECT title, heading, content, editable FROM pages WHERE id = ?", $pageId);
 
 $out = new PageTemplate();
-$out->title = $page['title'];
-$out->heading = $page['heading'];
+$out->title = Filter::filterHtml($page['title']);
+$out->heading = Filter::filterHtml($page['heading']);
+$content = Filter::toXhtml($page['content']);
 
 $user ? $xsrfToken = $user->xsrfToken : $xsrfToken = "";
 if($db->authenticate($xsrfToken))
@@ -22,7 +23,7 @@ $out->body .= <<<OUT
     <div id="adminSuccesses" class="successes"></div>
 </div>
 <div id="{$divId}">
-    {$page['content']}
+    {$content}
 </div>
 <input type="hidden" id="pageId" value="{$pageId}" />
 <input type="hidden" id="xsrfToken" value="{$xsrfToken}" />

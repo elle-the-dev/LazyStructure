@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 Sets php.ini settings to temporarily display errors
 Set to 0 to hide errors (do this before publishing live)
 */
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 
 session_start();
 

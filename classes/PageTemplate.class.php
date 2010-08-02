@@ -34,7 +34,6 @@ class PageTemplate extends Template
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
         <meta name="Keywords" content="generic, structure, reusable"></meta>
         <meta name="Description" content="Your name in generic"></meta>
-        <meta name="fragment" content="!"></meta>
 
         <!-- Enable Chrome Frame in IE when installed -->
         <meta http-equiv="X-UA-Compatible" content="chrome=1"></meta>
