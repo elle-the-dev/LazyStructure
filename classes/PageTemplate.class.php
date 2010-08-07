@@ -145,7 +145,7 @@ TEMPLATE;
 
         $this->body = <<<TEMPLATE
             <div id="mainContent">
-                <h2>{$this->heading}</h2>
+                <h2 id="pageHeading">{$this->heading}</h2>
                 {$messages}
                 {$this->body}
 TEMPLATE;

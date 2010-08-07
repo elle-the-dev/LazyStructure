@@ -1,6 +1,7 @@
 var MESSAGE_SPEED = 500;
 var messages = { errors: Array(), successes: Array() };
-var myNicEditor;
+var userContentEditor;
+var pageHeadingEditor;
 
 function loadPage(obj, inline)
 {
@@ -37,16 +38,17 @@ function loadPage(obj, inline)
 
             if(typeof $('#userContent').val() != "undefined")
             {
-                myNicEditor = new nicEditor(
+                userContentEditor = new nicEditor(
                 {
                     xhtml: true,
                     onSave: function(content, id, instance)
                     {
-                        nicEditSubmit(content);
+                        nicEditSubmit(content, id);
                     }
                 });
-                myNicEditor.setPanel('userContentPanel');
-                myNicEditor.addInstance('userContent');
+                userContentEditor.setPanel('userContentPanel');
+                userContentEditor.addInstance('userContent');
+                userContentEditor.addInstance('pageHeading');
             }
         });
     }
@@ -78,13 +80,20 @@ function formSubmit(obj)
     return false;
 }
 
-function nicEditSubmit(content)
+function nicEditSubmit(content, id)
 {
+    if(id == "userContent")
+        var pageHeading = $('#pageHeading').html();
+    else
+    {
+        var pageHeading = content;
+        content = $('#userContent').html();
+    }
     var pageId = $('#pageId').val();
     var xsrfToken = $('#xsrfToken').val();
     var url = $('#path').val()+'do/doUpdatePage.php';
 
-    $.post(url, {pageId: pageId, content: content, xsrfToken: xsrfToken}, function(data)
+    $.post(url, {pageId: pageId, pageHeading: pageHeading, content: content, xsrfToken: xsrfToken}, function(data)
     {
         // Return data is JSON object string, so eval to get object
         var message = $.parseJSON(data);

@@ -5,8 +5,9 @@ isset($_GET['pageId']) ? $pageId = (int) $_GET['pageId'] : $pageId = 1;
 $page = $db->queryRow("SELECT title, heading, content, editable FROM pages WHERE id = ?", $pageId);
 
 $out = new PageTemplate();
-$out->title = Filter::filterHtml($page['title']);
-$out->heading = Filter::filterHtml($page['heading']);
+
+$out->title = $page['title'];
+$out->heading = Filter::toXhtml($page['heading']);
 $content = Filter::toXhtml($page['content']);
 
 $user ? $xsrfToken = $user->xsrfToken : $xsrfToken = "";
