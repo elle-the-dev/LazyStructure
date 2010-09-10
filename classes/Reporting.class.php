@@ -17,6 +17,15 @@ class Reporting
             header('Location: '.$_SESSION['lastPage']);
     }
 
+    public static function debugArray($ar)
+    {
+        ob_start();
+        echo '<pre>';
+        print_r($ar);
+        echo '</pre>';
+        return ob_get_clean();
+    }
+
     public static function hasErrors()
     {
         return isset($_SESSION['errors'][0]);

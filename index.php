@@ -12,14 +12,19 @@ $content = Filter::toXhtml($page['content']);
 
 $user ? $xsrfToken = $user->xsrfToken : $xsrfToken = "";
 if($db->authenticate($xsrfToken))
+{
+    $out->addStyle("{$path}css/admin.css");
     $page['editable'] ? $divId = "userContent" : $divId = "staticContent";
+}
 else
     $divId = "staticContent";
 
 $out->body .= <<<OUT
 <script type="text/javascript" src="{$path}nicedit/nicEdit.php"></script>
 <div id="adminPanel">
-    <div id="userContentPanel"></div>
+    <div id="userContentPanelBg">
+        <div id="userContentPanel"></div>
+    </div>
     <div id="adminErrors" class="errors"></div>
     <div id="adminSuccesses" class="successes"></div>
 </div>

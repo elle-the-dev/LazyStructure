@@ -55,7 +55,7 @@ function loadPage(obj, inline)
     return false;
 }
 
-function formSubmit(obj)
+function formSubmit(obj, callback, postCallBack)
 {
     var form = $(obj);
     var submit = form.find('input[type="submit"]');
@@ -63,19 +63,25 @@ function formSubmit(obj)
     submit.after('<span class="waitingNotice">Please wait...</span>');
     $.post(obj.action, form.serialize(), function(data)
     {
-        try
+        if(typeof callBack == "undefined" || callBack(data))
         {
-        // Return data is JSON object string, so eval to get object
-        var message = $.parseJSON(data);
+            try
+            {
+                // Return data is JSON object string, so eval to get object
+                var message = $.parseJSON(data);
+                if(message != "undefined")
+                    showAll(message);
+            }
+            catch(err)
+            {
+                setError(data);
+                showErrors(messages['errors']);
+            }
+        }
         form.find('.waitingNotice').remove();
         submit.removeAttr('disabled');
-        showAll(message);
-        }
-        catch(err)
-        {
-            setError(data);
-            showErrors(messages['errors']);
-        }
+        if(typeof postCallBack != "undefined")
+            postCallBack(data);
     });
     return false;
 }

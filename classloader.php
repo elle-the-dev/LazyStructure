@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 Sets php.ini settings to temporarily display errors
 Set to 0 to hide errors (do this before publishing live)
 */
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 
 session_start();
 
@@ -23,8 +23,7 @@ $db = Database::getDatabase();
 
 new Globals();
 $path = PATH;
-
-isset($_SESSION['user']) ? $user = unserialize($_SESSION['user']) : $user = false;
+$user = isset($_SESSION['user']) ? unserialize($_SESSION['user']) : false;
 
 function __autoload($classname)
 {

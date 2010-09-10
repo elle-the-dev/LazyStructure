@@ -4,6 +4,7 @@ class Database
     static $instance;
     
     private $db;
+    private $dbDriver = "mysql"; // "pgsql" for Postgres
     private $dbHost = "localhost";
     private $dbUsername = "";
     private $dbPassword = "";
@@ -21,7 +22,7 @@ class Database
     {
         try
         {
-            $this->db = new PDO('mysql:host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+            $this->db = new PDO($this->dbDriver.':host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
         }
         catch(Exception $err)
         {
@@ -67,12 +68,25 @@ class Database
         return $this->getPdoReturn($return[0], $return[1], false);
     }
 
+    public function queryKey($key, $query)
+    {
+        /*
+            Executes an SQL query
+            -SELECT returns results in associative array
+             keyed on the column provided
+        */
+        $args = func_get_args();
+        array_shift($args);
+        $return = $this->getPdoResult($args);
+        return $this->getPdoReturn($return[0], $return[1], true, $key);
+    }
+
     public function getPdoResult($args, $allColumns=true)
     {
         $query = $args[0];
         array_shift($args);
         $statement = $this->db->prepare($query);
-        if(is_array($args[0]))
+        if(isset($args[0]) && is_array($args[0]))
             $args = $args[0];
         $statement->execute($args);
         if($allColumns)
@@ -82,18 +96,27 @@ class Database
         return array($result, $statement);
     }
 
-    public function getPdoReturn($result, $statement, $allRows=true)
+    public function getPdoReturn($result, $statement, $allRows=true, $key=false)
     {
-        $rows = array($result);
+        $rows = array();
+        $key ? $rows[$result[$key]] = $result : $rows = array($result);
         if($allRows)
         {
-            while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
-                $rows[] = $row;
+            if($key)
+            {
+                while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
+                    $rows[$row[$key]] = $row;
+            }
+            else
+            {
+                while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
+                    $rows[] = $row;
+            }
         }
         else if(!empty($result))
             return $result;
 
-        if(is_array($rows[0]))
+        if(($key && count($rows > 0)) || is_array($rows[0]))
             return $rows;
         else
             return $this->db->lastInsertId();
