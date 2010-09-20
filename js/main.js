@@ -208,10 +208,18 @@ function bindClick()
     });
 }
 
+var first = true;
 $.address.externalChange(function(event)
 {
     var url = event.value.substring(1);
-    if(url == "")
-        url = 'index.php';
-    loadPage(url, true);
+    if(window.location.toString().charAt(window.location.toString().length-1) == '/' || window.location.toString().indexOf('#!') != -1)
+    {
+        if(!(first && url == ''))
+        {
+            first = false;
+            loadPage(url, true);
+        }
+    }
+    bindClick();
 });
+
