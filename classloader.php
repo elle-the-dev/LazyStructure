@@ -25,6 +25,12 @@ new Globals();
 $path = PATH;
 $user = isset($_SESSION['user']) ? unserialize($_SESSION['user']) : false;
 
+set_error_handler(function($errno, $errstr, $errfile, $errline, $errcontext)
+{
+   Reporting::setError("Line $errline: $errstr\n<br />$errfile"); 
+   return true;
+}, E_ALL);
+
 function __autoload($classname)
 {
     /*

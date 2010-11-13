@@ -1,4 +1,4 @@
-LazyStructure is created under the LGPL.
+LazyStructure is created under the BSD License (see LICENSE file).
 
 JavaScript functionality makes use of jQuery and the jQuery address plugin
 
@@ -10,7 +10,7 @@ http://nicedit.com
 
 See the included example files for usage.
 
-Version: 2.1.2
+Version: 2.1.3
 
 Overview:
 LazyStructure provides a jumping-off point for a new PHP project.  Built-in MySQL usage is with regard to login and page editing.  This is seen in index.php.  For pages not using MySQL for page loads, see alpha.php and beta.php.
@@ -20,7 +20,7 @@ Instructions:
 See the file ./lazystructure.sql
 -Create a database named lazystructure
 -Import the database from the file
-    -mysql -uroot -p -hlocalhost lazystructure < ./lazystructure.sql
+    -mysql -uusername -p -hlocalhost dbname < ./lazystructure.sql
 
 See the file classes/Database.class.php
 -Set $dbDriver for database bindings for MySQL or PostgreSQL

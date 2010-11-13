@@ -23,6 +23,7 @@ class Database
         try
         {
             $this->db = new PDO($this->dbDriver.':host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(Exception $err)
         {
@@ -72,8 +73,8 @@ class Database
     {
         /*
             Executes an SQL query
-            -SELECT returns results in associative array
-             keyed on the column provided
+            -SELECT returns results in assocative array
+             based on the key provided
         */
         $args = func_get_args();
         array_shift($args);
@@ -86,44 +87,87 @@ class Database
         $query = $args[0];
         array_shift($args);
         $statement = $this->db->prepare($query);
+
+        // if the statement failed, there's an issue with the query itself
+        // the first element is false as the statement failed (return false)
+        if(!$statement)
+            return array(false, $statement);
+
+        /*
+            checks to see if the first parameter passed is an array
+            if it's an array, use that instead of multiple parameters
+            this allows the query functions to accept the parameters
+            as part of an array rather than passing them individually
+        */
         if(isset($args[0]) && is_array($args[0]))
             $args = $args[0];
-        $statement->execute($args);
-        if($allColumns)
-            $result = $statement->fetch(PDO::FETCH_ASSOC);
-        else
-            $result = $statement->fetchColumn();
+
+        // execute returns false if the query fails (syntax error or other such issue)
+        if($statement->execute($args) === false)
+            return array(false, $statement);
+
+        try
+        {
+            // default, return everything in an associative array
+            if($allColumns)
+                $rows = $statement->fetch(PDO::FETCH_ASSOC);
+            else
+                $rows = $statement->fetchColumn(); // specifically for queryColumn
+        }
+        catch(Exception $err)
+        {
+            $rows = false;
+        }
+
+        $result = $rows ? $rows : true;
         return array($result, $statement);
     }
 
     public function getPdoReturn($result, $statement, $allRows=true, $key=false)
     {
-        $rows = array();
-        $key ? $rows[$result[$key]] = $result : $rows = array($result);
-        if($allRows)
-        {
-            if($key)
-            {
-                while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
-                    $rows[$row[$key]] = $row;
-            }
-            else
-            {
-                while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
-                    $rows[] = $row;
-            }
-        }
-        else if(!empty($result))
-            return $result;
+        // is only false when query fails
+        if($result === false)
+            return false;
 
-        if(($key && count($rows > 0)) || is_array($rows[0]))
+        else if($result === true)
+        {
+            if($this->db->lastInsertId() > 0) // only true for INSERT statements
+                return $this->db->lastInsertId();
+            else // any non-insert query that doesn't return any rows
+                return $result;
+        }
+        else // SELECT statements
+        {
+            $rows = array();
+
+            // if queryKey, index based on the column (key) provided
+            $key ? $rows[$result[$key]] = $result : $rows = array($result);
+
+            if($allRows)
+            {
+                if($key)
+                {
+                    while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
+                        $rows[$row[$key]] = $row;
+                }
+                else
+                {
+                    while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
+                        $rows[] = $row;
+                }
+            }
+            else if(!empty($result))
+                return $result;
+
             return $rows;
-        else
-            return $this->db->lastInsertId();
+        }
     }
 
     public static function getDatabase()
     {
+        /*
+            Singleton pattern as applied to the database connection
+        */
         if(isset($instance))
             return $this->instance;
         else
@@ -131,10 +175,11 @@ class Database
     }
 
     public function authenticate($xsrfToken)
-    {    
+    {
+        // user object exists and xsrfToken matches
         return (isset($_SESSION['user']) && !empty($xsrfToken) && unserialize($_SESSION['user'])->xsrfToken == $xsrfToken);
     }
-    
+
     public function getHash($text)
     {
         return hash('sha512', $this->passwordSalt.$text);

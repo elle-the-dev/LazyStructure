@@ -28,27 +28,32 @@ function loadPage(obj, inline)
 
         $.getJSON(obj, function(data)
         {
-            $('#mainContent').css('opacity', '1');
-            $('.pageStyle').remove();
-            $('head').append(getStyles(data['styles']));
-            main.removeClass('loading');
-            main.html(data['markup'].toString());
-            $(document).attr('title', data['title'].toString());
-            bindClick();
-
-            if(typeof $('#userContent').val() != "undefined")
+            if(typeof data['redirect'] != "undefined" && data['redirect'].toString() != "") 
+                loadPage(data['redirect'], true);
+            else
             {
-                userContentEditor = new nicEditor(
+                $('#mainContent').css('opacity', '1');
+                $('.pageStyle').remove();
+                $('head').append(getStyles(data['styles']));
+                main.removeClass('loading');
+                main.html(data['markup'].toString());
+                $(document).attr('title', data['title'].toString());
+                bindClick();
+
+                if(typeof $('#userContent').val() != "undefined")
                 {
-                    xhtml: true,
-                    onSave: function(content, id, instance)
+                    userContentEditor = new nicEditor(
                     {
-                        nicEditSubmit(content, id);
-                    }
-                });
-                userContentEditor.setPanel('userContentPanel');
-                userContentEditor.addInstance('userContent');
-                userContentEditor.addInstance('pageHeading');
+                        xhtml: true,
+                        onSave: function(content, id, instance)
+                        {
+                            nicEditSubmit(content, id);
+                        }
+                    });
+                    userContentEditor.setPanel('userContentPanel');
+                    userContentEditor.addInstance('userContent');
+                    userContentEditor.addInstance('pageHeading');
+                }
             }
         });
     }
@@ -70,7 +75,12 @@ function formSubmit(obj, callback, postCallBack)
                 // Return data is JSON object string, so eval to get object
                 var message = $.parseJSON(data);
                 if(message != "undefined")
-                    showAll(message);
+                {
+                    if(typeof message['redirect'] != "undefined" && message['redirect'].toString() != "") 
+                        loadPage(message['redirect'], true);
+                    else
+                        showAll(message);
+                }
             }
             catch(err)
             {
@@ -78,8 +88,10 @@ function formSubmit(obj, callback, postCallBack)
                 showErrors(messages['errors']);
             }
         }
+
         form.find('.waitingNotice').remove();
         submit.removeAttr('disabled');
+        $(window).scrollTop(0);
         if(typeof postCallBack != "undefined")
             postCallBack(data);
     });
@@ -208,18 +220,46 @@ function bindClick()
     });
 }
 
+function formatPrice(price)
+{
+    var decimals = price % 100;
+    return '$'+parseFloat((price/100)+'.'+decimals).toFixed(2);
+}
+
 var first = true;
 $.address.externalChange(function(event)
 {
     var url = event.value.substring(1);
     if(window.location.toString().charAt(window.location.toString().length-1) == '/' || window.location.toString().indexOf('#!') != -1)
-    {
+    {   
         if(!(first && url == ''))
-        {
+        {   
             first = false;
             loadPage(url, true);
-        }
-    }
+        }   
+    }   
     bindClick();
 });
 
+
+$(document).ready(function()
+{
+    $.ajaxSetup(
+    {
+        error:function(x,e)
+        {
+            if(x.status==0)
+                alert('You are offline!!\n Please Check Your Network.');
+            else if(x.status==404)
+                loadPage("/errors/404.php", true);
+            else if(x.status==500)
+                alert('Internel Server Error.');
+            else if(e=='parsererror')
+                alert('Error.\nParsing JSON Request failed.');
+            else if(e=='timeout')
+                alert('Request Time out.');
+            else
+                alert('Unknow Error.\n'+x.responseText);
+        }
+    });
+});

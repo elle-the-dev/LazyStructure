@@ -10,7 +10,7 @@ class Reporting
     {
         if(Database::isAjax())
         {
-            if(self::hasErrors() || self::hasSuccesses() || self::hasFieldErrors() || self::hasMarkup())
+            if(self::hasErrors() || self::hasSuccesses() || self::hasFieldErrors() || self::hasMarkup() || self::hasRedirect())
                 echo self::getJsonAll();
         }
         else
@@ -46,6 +46,11 @@ class Reporting
         return isset($_SESSION['markup'][0]);
     }
 
+    public static function hasRedirect()
+    {
+        return isset($_SESSION['redirect']);
+    }
+
     public static function setError($message)
     {
         $_SESSION['errors'][] = $message;
@@ -65,7 +70,12 @@ class Reporting
     {
         $_SESSION['markup'][] = $message;
     }
-    
+
+    public static function setRedirect($link)
+    {   
+        $_SESSION['redirect'] = $link;
+    }  
+
     public static function getJsonErrors($clear=true)
     {
         return self::getJsonMessages('errors', $clear);
@@ -88,6 +98,9 @@ class Reporting
 
     public static function getFieldErrors($clear=true)
     {
+        if(!isset($_SESSION['fieldErrors']))
+            return array();
+
         $fieldErrors = $_SESSION['fieldErrors'];
         if($clear)
             unset($_SESSION['fieldErrors']);
@@ -126,12 +139,15 @@ class Reporting
             $ar['fieldErrors'] = $_SESSION['fieldErrors'];
         if(self::hasMarkup())
             $ar['markup'] = $_SESSION['markup'];
+        if(self::hasRedirect())
+            $ar['redirect'] = $_SESSION['redirect'];
         if($clear)
         {
             unset($_SESSION['errors']);
             unset($_SESSION['successes']);
             unset($_SESSION['fieldErrors']);
             unset($_SESSION['markup']);
+            unset($_SESSION['redirect']);
         }
         return json_encode($ar);
     }

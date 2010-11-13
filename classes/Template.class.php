@@ -69,11 +69,13 @@ class Template
 TEMPLATE;
 
             $this->closeTop = <<<TEMPLATE
+
 </head>
 <body>
 TEMPLATE;
 
             $this->bottom = <<<TEMPLATE
+
 </body>
 </html>
 TEMPLATE;

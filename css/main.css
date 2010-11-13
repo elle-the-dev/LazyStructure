@@ -228,7 +228,7 @@ a
 .loading
 {
     background-image: url('img/loading.gif');
-    background-position: center center;
+    background-position: center 10em;
     background-repeat: no-repeat;
 }
 

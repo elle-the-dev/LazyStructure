@@ -37,7 +37,7 @@ class User
     {
         $db = Database::getDatabase();
         $row = $db->queryRow("SELECT * FROM users WHERE username = ? AND password = ?", $username, $password);
-        if($row)
+        if(is_array($row))
         {
             $loginToken = $db->getRandomToken();
             if($remember == "true")
