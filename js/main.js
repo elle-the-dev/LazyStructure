@@ -60,7 +60,7 @@ function loadPage(obj, inline)
     return false;
 }
 
-function formSubmit(obj, callback, postCallBack)
+function formSubmit(obj, callBack, postCallBack)
 {
     var form = $(obj);
     var submit = form.find('input[type="submit"]');
