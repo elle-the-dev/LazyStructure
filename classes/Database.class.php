@@ -73,7 +73,7 @@ class Database
     {
         /*
             Executes an SQL query
-            -SELECT returns results in assocative array
+            -SELECT returns results in associative array
              based on the key provided
         */
         $args = func_get_args();

@@ -23,7 +23,7 @@ function loadPage(obj, inline)
         var main = $('#main');
         main.addClass('loading');
 
-        // Clears everything out so all the user sees is the loading animation
+        // Fade out content to emphasize loading animation
         $('#mainContent').css('opacity', '0.3');
 
         $.getJSON(obj, function(data)
@@ -40,6 +40,14 @@ function loadPage(obj, inline)
                 $(document).attr('title', data['title'].toString());
                 bindClick();
 
+                /*
+                    Loading of nicEdit for editing page content
+                    Only applicable if the userContent div exists
+                        -By default, only exists when user is logged in
+                         and permitted to edit the given page
+
+                    Note: This is NOT where security is handled
+                */
                 if(typeof $('#userContent').val() != "undefined")
                 {
                     userContentEditor = new nicEditor(
@@ -113,7 +121,6 @@ function nicEditSubmit(content, id)
 
     $.post(url, {pageId: pageId, pageHeading: pageHeading, content: content, xsrfToken: xsrfToken}, function(data)
     {
-        // Return data is JSON object string, so eval to get object
         var message = $.parseJSON(data);
         showAll(message, 'adminErrors', 'adminSuccesses');
     });
@@ -132,6 +139,9 @@ function setSuccess(message)
 
 function showAll(message, errorsId, successesId)
 {
+    /*
+        errorsId and successesId are the IDs for the HTML element to contain the messages
+    */
     if(typeof errorsId == "undefined")
         errorsId = "errors";
     if(typeof successesId == "undefined")
@@ -162,6 +172,9 @@ function showErrors(messages, errorsId, successesId)
 
 function showSuccesses(messages, errorsId, successesId)
 {
+    /*
+        errorsId and successesId are the IDs for the HTML element to contain the messages
+    */
     if(typeof messages != "undefined")
     {
         if(typeof errorsId == "undefined")
@@ -218,12 +231,6 @@ function bindClick()
     {
         return loadPage(this);
     });
-}
-
-function formatPrice(price)
-{
-    var decimals = price % 100;
-    return '$'+parseFloat((price/100)+'.'+decimals).toFixed(2);
 }
 
 var first = true;

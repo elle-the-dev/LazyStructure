@@ -6,12 +6,16 @@ class Reporting
 
     }
 
-    public static function endDo()
+    public static function endDo($clear=true)
     {
+        /*
+            Setting $clear=false when calling endDo maintains error messages in the session
+            This allows for setting an error or success message alongside a redirect
+        */
         if(Database::isAjax())
         {
             if(self::hasErrors() || self::hasSuccesses() || self::hasFieldErrors() || self::hasMarkup() || self::hasRedirect())
-                echo self::getJsonAll();
+                echo self::getJsonAll($clear);
         }
         else
             header('Location: '.$_SESSION['lastPage']);
@@ -147,8 +151,13 @@ class Reporting
             unset($_SESSION['successes']);
             unset($_SESSION['fieldErrors']);
             unset($_SESSION['markup']);
-            unset($_SESSION['redirect']);
         }
+
+        /*
+            Need to unset redirect as it if stays set, PageTemplate will redirect
+            via header after it already redirected via JavaScript on an AJAX post
+        */
+        unset($_SESSION['redirect']);
         return json_encode($ar);
     }
 
