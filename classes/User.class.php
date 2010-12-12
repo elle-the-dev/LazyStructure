@@ -17,8 +17,9 @@ class User
     {
         if(isset($id))
         {
-            $db = Database::getDatabase();
-            $row = $db->queryRow("SELECT * FROM users WHERE id = ?", $id);
+            global $db;
+            $db->init("classes/User");
+            $row = $db->queryRow("init.sql", $id);
             $this->setValues($row);
         }
     }
@@ -35,8 +36,9 @@ class User
 
     public function login($username, $password, $remember)
     {
-        $db = Database::getDatabase();
-        $row = $db->queryRow("SELECT * FROM users WHERE username = ? AND password = ?", $username, $password);
+        global $db;
+        $db->init("classes/User/login");
+        $row = $db->queryRow("select.sql", $username, $password);
         if(is_array($row))
         {
             $loginToken = $db->getRandomToken();
@@ -51,7 +53,7 @@ class User
             $this->ip = $_SERVER['REMOTE_ADDR'];
             $this->xsrfToken = $db->getRandomToken();
             setcookie('xsrfToken', $this->xsrfToken, 0, '/');
-            $db->query("UPDATE users SET loginToken = ? WHERE id = ?", $loginToken, $row['id']);
+            $db->query("update.sql", $loginToken, $row['id']);
 
             $this->setValues($row);
             Reporting::setSuccess("Login successful");
@@ -93,14 +95,18 @@ class User
                 }
                 $query .= " WHERE id = ?";
                 $params[] = $this->id;
-                $db->query($query, $params);
+                $db->sql = $query;
+                $db->query("field.sql", $params);
             }
             else
-                $db->query("UPDATE users SET $fields = ? WHERE id = ?", $this->$fields, $this->id);
+            {
+                $db->fields = $fields;
+                $db->query("fields.sql", $this->$fields, $this->id);
+            }
         }
         else
         {
-            $db->query("UPDATE users SET password = ?, name = ?, surname = ?, email = ?, phone = ?, address1 = ?, address2 = ? WHERE id = ?", $this->password, $this->firstName, $this->lastName, $this->email, $this->phone, $this->address1, $this->address2, $this->id);
+            $db->query("all.sql", $this->password, $this->firstName, $this->lastName, $this->email, $this->phone, $this->address1, $this->address2, $this->id);
         }
         $_SESSION['user'] = serialize($this);
     }

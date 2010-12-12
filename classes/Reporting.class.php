@@ -14,7 +14,7 @@ class Reporting
         */
         if(Database::isAjax())
         {
-            if(self::hasErrors() || self::hasSuccesses() || self::hasFieldErrors() || self::hasMarkup() || self::hasRedirect())
+            if(self::hasAnyErrors() || self::hasSuccesses() || self::hasMarkup() || self::hasRedirect())
                 echo self::getJsonAll($clear);
         }
         else
@@ -43,6 +43,11 @@ class Reporting
     public static function hasFieldErrors()
     {
         return isset($_SESSION['fieldErrors']);
+    }
+
+    public static function hasAnyErrors()
+    {
+        return self::hasErrors() || self::hasFieldErrors();
     }
     
     public static function hasMarkup()
@@ -123,12 +128,16 @@ class Reporting
 
     private static function showMessages($type, $clear)
     {
-        $output = '<ul>';
-        foreach($_SESSION[$type] as $val)
-            $output .= "<li>$val</li>";
-        $output .= '</ul>';
-        if($clear)
-            $_SESSION[$type] = array();
+        $output = "";
+        if(isset($_SESSION[$type]))
+        {
+            $output = '<ul>';
+            foreach($_SESSION[$type] as $val)
+                $output .= "<li>$val</li>";
+            $output .= '</ul>';
+            if($clear)
+                $_SESSION[$type] = array();
+        }
         return $output;
     }
 

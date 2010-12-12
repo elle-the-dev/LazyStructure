@@ -2,3 +2,30 @@ html
 {
     margin-top: 27px;
 }
+
+/* ------ Admin ------ */
+#adminPanel
+{
+    position: fixed;
+    right: 5px;
+    top: 0px;
+    z-index: 101;
+}
+
+#adminErrors, #adminSuccesses
+{
+    font-size: 0.9em;
+}
+
+#userContentPanelBg
+{
+    background-color: #EEEEEE;
+    border-bottom: 1px solid #808080;
+    height: 26px;
+    left: 0px;
+    overflow: hidden;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: -1;
+}

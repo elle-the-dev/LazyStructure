@@ -1,39 +1,25 @@
 <?php
-require_once('classloader.php');
+require_once('global.php');
 
-isset($_GET['pageId']) ? $pageId = (int) $_GET['pageId'] : $pageId = 1;
-$page = $db->queryRow("SELECT title, heading, content, editable FROM pages WHERE id = ?", $pageId);
+$out = new PageTemplate("index");
+$db->init("index");
 
-$out = new PageTemplate();
+$out->body->content->pageId = isset($_GET['pageId']) ? (int) $_GET['pageId'] : 1;
+$page = $db->queryRow("pages.sql", $out->body->content->pageId);
 
 $out->title = $page['title'];
-$out->heading = Filter::toXhtml($page['heading']);
-$content = Filter::toXhtml($page['content']);
+$out->body->heading = Filter::toXhtml($page['heading']);
+$out->body->content->pageContent = Filter::toXhtml($page['content']);
+$out->body->content->xsrfToken = $user ? $user->xsrfToken : "";
 
-$user ? $xsrfToken = $user->xsrfToken : $xsrfToken = "";
-if($db->authenticate($xsrfToken))
+if($db->authenticate($out->body->content->xsrfToken))
 {
-    $out->addStyle("{$path}css/admin.css");
-    $page['editable'] ? $divId = "userContent" : $divId = "staticContent";
+    $out->addStyle(PATH."css/admin.css");
+    $out->body->content->divId = $page['editable'] ? "userContent" : "staticContent";
 }
 else
-    $divId = "staticContent";
+    $out->body->content->divId = "staticContent";
 
-$out->body .= <<<OUT
-<script type="text/javascript" src="{$path}nicedit/nicEdit.php"></script>
-<div id="adminPanel">
-    <div id="userContentPanelBg">
-        <div id="userContentPanel"></div>
-    </div>
-    <div id="adminErrors" class="errors"></div>
-    <div id="adminSuccesses" class="successes"></div>
-</div>
-<div id="{$divId}">
-    {$content}
-</div>
-<input type="hidden" id="pageId" value="{$pageId}" />
-<input type="hidden" id="xsrfToken" value="{$xsrfToken}" />
-<input type="hidden" id="path" value="{$path}" />
-OUT;
+$out->body->content->addTemplate("content.tpl");
 $out->render();
 ?>

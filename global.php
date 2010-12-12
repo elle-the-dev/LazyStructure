@@ -14,17 +14,24 @@ ini_set('display_errors', 1);
 session_start();
 
 /*
-Instantiating the database will make it available
-just by including the classloader file.
-The database uses a singleton pattern such that multiple
-MySQL connections are not created, so this is not a performance issue
+Model extends Database, allowing the query functions instead to accept
+filename parameters for SQL files.  Functions are still otherwise the
+same as Database. Each PHP should call Model->init("page") before
+calling any queries.
 */
-$db = Database::getDatabase();
+$db = Model::getModel();
 
+// Initializes global constants
 new Globals();
-$path = PATH;
+
+// Make the user object immediately available
 $user = isset($_SESSION['user']) ? unserialize($_SESSION['user']) : false;
 
+/*
+    Catches any PHP errors and converts them into LazyStructure errors
+    This prevents syntax errors from preventing AJAX pageloads from completing;
+    Instead, they appear as an error message when the page loads.
+*/
 set_error_handler(function($errno, $errstr, $errfile, $errline, $errcontext)
 {
    Reporting::setError("Line $errline: $errstr\n<br />$errfile"); 

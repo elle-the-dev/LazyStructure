@@ -6,22 +6,17 @@
     class as it should be the one to contain CSS and JavaScript files,
     along with the majority of your page markup.
 */
-class Template
+class Template extends View
 {
-    public $top;
     public $styles = array();
-    public $closeTop;
-    public $title = "";
-    public $head = "";
-    public $bodyTop = "";
-    public $sidebar = "";
-    public $body = "";
-    public $bodyBottom = "";
-    public $bottom;
 
-
-    public function __construct()
+    public function __construct($name, $template=false, $root=false)
     {
+        $this->head         = new View($name, $template, $root);
+        $this->bodyTop      = new View($name, $template, $root);
+        $this->body         = new View($name, $template, $root);
+        $this->bodyBottom   = new View($name, $template, $root);
+        parent::__construct($name, $template, $root);
     }
 
     public function render()
@@ -39,7 +34,10 @@ class Template
                 We technically remain on the same page, the browser can change the window title.
             */
             header('content-type: application/json; charset=utf-8'); 
-            echo json_encode(array('title' => $this->title, 'markup' => $this->body, 'styles' => $this->styles));
+            ob_start();
+            $this->body->render();
+            $markup = ob_get_clean();
+            echo json_encode(array('title' => $this->title, 'markup' => $markup, 'styles' => $this->styles));
         }
         else
         {
@@ -57,57 +55,8 @@ class Template
 
             header('content-type: text/html; charset=utf-8');
 
-
-            $this->top = <<<TEMPLATE
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>{$this->title}</title>
-TEMPLATE;
-
-            $this->closeTop = <<<TEMPLATE
-
-</head>
-<body>
-TEMPLATE;
-
-            $this->bottom = <<<TEMPLATE
-
-</body>
-</html>
-TEMPLATE;
-
-            /*
-                I've heard conflicting reports on string performance in PHP.  However, benchmarking
-                showed clearly that multiple echo statements by far had the worst performance.
-                All others --  concatenation, heredoc, and interpol variables -- were effectively equal.
-                And so, despite conventional wisdom of performance advantages of "not having to concatenate"
-                I am not echoing this statement using parameters.
-
-                $ time php5 -qC test.echo.php > /dev/null
-                real    0m11.351s
-                user    0m7.290s
-                sys 0m4.020s
-
-                $ time php5 -qC test.concat.php > /dev/null
-                real    0m4.786s
-                user    0m3.970s
-                sys 0m0.800s
-
-                $ time php5 -qC test.interpol.php > /dev/null
-                real    0m4.248s
-                user    0m3.370s
-                sys 0m0.870s
-
-                $ time php5 -qC test.heredoc.php > /dev/null
-                real    0m4.291s
-                user    0m3.630s
-                sys 0m0.660s
-            */
-            echo "{$this->top}{$this->head}{$this->closeTop}{$this->bodyTop}{$this->body}{$this->bodyBottom}{$this->bottom}";
+            $this->addTemplate("template.tpl", $this->getRoot()."classes/Template/");
+            parent::render();
         }
     }
 }

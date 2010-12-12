@@ -1,6 +1,6 @@
 #menu { background-color: #FFAA60; }
-#sidebar, #mainBg { background-color: #60AAFF; }
-#mainContent { background-color: #AA60FF; }
+#sidebar, #mainBg { background-color: #FFEEA0; }
+#mainContent { background-color: #BBDDFF; }
 
 /* ------ Structure ------*/
 html, body
@@ -62,7 +62,7 @@ a
     margin-right: 1px;
     margin: 7px 0px;
     width: 7em;
-    background-color: #EEEEEE;
+    background-color: #C6FF80;
 }
 
 #tabs ul li a
@@ -74,9 +74,9 @@ a
     height: 23px;
 }
 
-#tabs ul li:hover, #tabs ul li a:hover
+#tabs ul > li:hover, #tabs ul li a:hover
 {
-    background-color: #CCCCCC;
+    background-color: #FFDD83;
 }
 
 /* ------ Submenu ------ */
@@ -101,7 +101,7 @@ a
 
 #tabs ul li ul li a
 {
-    background-color: #E0E0E0;
+    background-color: #99FF99;
     display: block;
     height: 20px;
     *margin-bottom: -1px;
@@ -117,6 +117,11 @@ a
     overflow: visible;
     position: absolute;
     z-index: 99;
+}
+
+#tabs ul li:hover ul li:hover a
+{
+    background-color: #FFDD83;
 }
 
 /* ------ Sub-submenu ------ */
@@ -142,12 +147,12 @@ a
 
 #tabs ul li:hover ul li:hover ul a
 {
-    background-color: #EEEEEE;
+    background-color: #FFD864;
 }
 
 #tabs ul li:hover ul li:hover ul a:hover
 {
-    background-color: #CCCCCC;
+    background-color: #FF9e50;
 }
 
 /* ------ Sidebar ------ */
@@ -231,17 +236,4 @@ a
     background-image: url('img/loading.gif');
     background-position: center 10em;
     background-repeat: no-repeat;
-}
-
-/* ------ Admin ------ */
-#adminPanel
-{
-    position: fixed;
-    right: 5px;
-    top: 0px;
-}
-
-#adminErrors, #adminSuccesses
-{
-    font-size: 0.9em;
 }

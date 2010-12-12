@@ -26,7 +26,7 @@ function loadPage(obj, inline)
         // Fade out content to emphasize loading animation
         $('#mainContent').css('opacity', '0.3');
 
-        $.getJSON(obj, function(data)
+        $.get(obj, function(data)
         {
             if(typeof data['redirect'] != "undefined" && data['redirect'].toString() != "") 
                 loadPage(data['redirect'], true);
@@ -52,6 +52,8 @@ function loadPage(obj, inline)
                 {
                     userContentEditor = new nicEditor(
                     {
+                        uploadURI: 'do/doNicEditUpload.php',
+	                    buttonList: ['save','bold','italic','underline','strikethrough','left','center','right','justify','subscript','superscript','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor','removeformat','xhtml'],
                         xhtml: true,
                         onSave: function(content, id, instance)
                         {
@@ -92,7 +94,7 @@ function formSubmit(obj, callBack, postCallBack)
             }
             catch(err)
             {
-                setError(data);
+                setError('<pre>'+data+'</pre>');
                 showErrors(messages['errors']);
             }
         }
@@ -146,6 +148,11 @@ function showAll(message, errorsId, successesId)
         errorsId = "errors";
     if(typeof successesId == "undefined")
         successesId = "successes";
+
+    var errors = $('#'+errorsId);
+    errors.css('display', 'none');
+    var successes = $('#'+successesId);
+    successes.css('display', 'none');
 
     showErrors(message['errors'], errorsId, successesId);
     showSuccesses(message['successes'], errorsId, successesId);

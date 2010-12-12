@@ -1,14 +1,10 @@
 <?php
-require_once('../classloader.php');
+require_once('../global.php');
 
-$out = new PageTemplate();
-$out->title .= "Page cannot be found";
-$out->body .= <<<OUT
-<h2>Error 404</h2>
-<p>
-    Page cannot be found.
-</p>
-OUT;
+$out = new PageTemplate("errors", false, "../templates/");
+$out->title = "Page cannot be found";
+
+$out->body->content->addTemplate("404.tpl");
 
 $out->render();
 ?>

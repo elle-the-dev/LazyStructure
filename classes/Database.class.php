@@ -119,23 +119,19 @@ class Database
             $rows = false;
         }
 
-        $result = $rows ? $rows : true;
+        $lastId = $this->db->lastInsertId();
+        $return = $lastId > 0 ? $lastId : $statement->rowCount();
+        $result = $rows ? $rows : $return;
         return array($result, $statement);
     }
 
     public function getPdoReturn($result, $statement, $allRows=true, $key=false)
     {
         // is only false when query fails
-        if($result === false)
-            return false;
-
-        else if($result === true)
-        {
-            if($this->db->lastInsertId() > 0) // only true for INSERT statements
-                return $this->db->lastInsertId();
-            else // any non-insert query that doesn't return any rows
-                return $result;
-        }
+        if($result === false || $result === true)
+            return $result;
+        else if(!is_array($result))
+            return $result;
         else // SELECT statements
         {
             $rows = array();
@@ -168,8 +164,8 @@ class Database
         /*
             Singleton pattern as applied to the database connection
         */
-        if(isset($instance))
-            return $this->instance;
+        if(isset(self::$instance))
+            return self::$instance;
         else
             return self::$instance = new Database();
     }

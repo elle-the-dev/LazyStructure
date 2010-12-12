@@ -1,5 +1,5 @@
 <?php
-require_once('../classloader.php');
+require_once('../global.php');
 $pageId = (int) $_POST['pageId'];
 $pageHeading = strip_tags($_POST['pageHeading']);
 $content = $_POST['content'];

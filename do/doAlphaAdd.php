@@ -1,5 +1,5 @@
 <?php
-require_once('../classloader.php');
+require_once('../global.php');
 $name = $_POST['name'];
 
 if(empty($name))

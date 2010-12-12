@@ -15,5 +15,10 @@ class Filter
     {
         return preg_replace('/[^!-%\x27-;=?-~ ]/e', '"&#".ord("$0").chr(59)', $str);
     }
+
+    public static function filterStrong($text)
+    {
+        return htmlentities(strip_tags($text));
+    }
 }
 ?>

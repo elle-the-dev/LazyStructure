@@ -1,5 +1,5 @@
 <?php
-require_once('../classloader.php');
+require_once('../global.php');
 
 setcookie("id", '', time()-1209600);
 setcookie("username", '', time()-1209600);

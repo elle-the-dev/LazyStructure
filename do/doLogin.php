@@ -1,5 +1,5 @@
 <?php
-require_once('../classloader.php');
+require_once('../global.php');
 $username = $_POST['username'];
 $password = $db->getHash($_POST['password']);
 $remember = $_POST['remember'];
