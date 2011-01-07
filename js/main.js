@@ -40,34 +40,39 @@ function loadPage(obj, inline)
                 $(document).attr('title', data['title'].toString());
                 bindClick();
 
-                /*
-                    Loading of nicEdit for editing page content
-                    Only applicable if the userContent div exists
-                        -By default, only exists when user is logged in
-                         and permitted to edit the given page
-
-                    Note: This is NOT where security is handled
-                */
-                if(typeof $('#userContent').val() != "undefined")
-                {
-                    userContentEditor = new nicEditor(
-                    {
-                        uploadURI: 'do/doNicEditUpload.php',
-	                    buttonList: ['save','bold','italic','underline','strikethrough','left','center','right','justify','subscript','superscript','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor','removeformat','xhtml'],
-                        xhtml: true,
-                        onSave: function(content, id, instance)
-                        {
-                            nicEditSubmit(content, id);
-                        }
-                    });
-                    userContentEditor.setPanel('userContentPanel');
-                    userContentEditor.addInstance('userContent');
-                    userContentEditor.addInstance('pageHeading');
-                }
+                loadEditor();
             }
         });
     }
     return false;
+}
+
+function loadEditor()
+{
+    /*
+        Loading of nicEdit for editing page content
+        Only applicable if the userContent div exists
+            -By default, only exists when user is logged in
+             and permitted to edit the given page
+
+        Note: This is NOT where security is handled
+    */
+    if(typeof $('#userContent').val() != "undefined")
+    {
+        userContentEditor = new nicEditor(
+        {
+            uploadURI: 'do/doNicEditUpload.php',
+            buttonList: ['save','bold','italic','underline','strikethrough','left','center','right','justify','subscript','superscript','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor','removeformat','xhtml'],
+            xhtml: true,
+            onSave: function(content, id, instance)
+            {
+                nicEditSubmit(content, id);
+            }
+        });
+        userContentEditor.setPanel('userContentPanel');
+        userContentEditor.addInstance('userContent');
+        userContentEditor.addInstance('pageHeading');
+    }
 }
 
 function formSubmit(obj, callBack, postCallBack)
@@ -251,6 +256,8 @@ $.address.externalChange(function(event)
             first = false;
             loadPage(url, true);
         }   
+        else
+            loadEditor();
     }   
     bindClick();
 });

@@ -1,12 +1,13 @@
 <?php
 require_once('../global.php');
+$db->init("do/doUpdatePage");
 $pageId = (int) $_POST['pageId'];
 $pageHeading = strip_tags($_POST['pageHeading']);
 $content = $_POST['content'];
 
 if($db->authenticate($_POST['xsrfToken']))
 {
-    $db->query("UPDATE pages SET heading = ?, content = ? WHERE id = ?", $pageHeading, $content, $pageId);
+    $db->query("update.sql", $pageHeading, $content, $pageId);
     Reporting::setSuccess("Page saved.");
 }
 else
