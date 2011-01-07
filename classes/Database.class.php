@@ -13,6 +13,8 @@ class Database
     private $passwordSalt = ""; 
     private $tokenSeed = "";
 
+    private $hash = 'sha512';
+
     private function __construct()
     {
         $this->connect();
@@ -120,7 +122,19 @@ class Database
         }
 
         $lastId = $this->db->lastInsertId();
+
+        
+        /*
+            For returns when the query does not return any rows: 
+                If there's a lastInsertId, it was an insert, so return the lastInsertId
+                Otherwise, we want to return the rowCount
+        */
         $return = $lastId > 0 ? $lastId : $statement->rowCount();
+
+        /*
+            If there are rows to return, return the rows
+            Otherwise, return the value calculated above
+        */
         $result = $rows ? $rows : $return;
         return array($result, $statement);
     }
@@ -130,9 +144,9 @@ class Database
         // is only false when query fails
         if($result === false || $result === true)
             return $result;
-        else if(!is_array($result))
+        else if(!is_array($result)) // single column value or number of rows affected
             return $result;
-        else // SELECT statements
+        else // SELECT statements - returns array of rows
         {
             $rows = array();
 
@@ -143,12 +157,12 @@ class Database
             {
                 if($key)
                 {
-                    while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
+                    while($row = $statement->fetch(PDO::FETCH_ASSOC))
                         $rows[$row[$key]] = $row;
                 }
                 else
                 {
-                    while(@$row = $statement->fetch(PDO::FETCH_ASSOC))
+                    while($row = $statement->fetch(PDO::FETCH_ASSOC))
                         $rows[] = $row;
                 }
             }
@@ -178,12 +192,22 @@ class Database
 
     public function getHash($text)
     {
-        return hash('sha512', $this->passwordSalt.$text);
+        return hash($this->hash, $this->passwordSalt.$text);
     }
 
     public function getRandomToken()
     {
         return $this->getHash($this->tokenSeed.mt_rand());
+    }
+
+    public function getPassword($password, $salt)
+    {
+        return $salt.$this->getHash($salt.$password);
+    }
+
+    public function getSalt($length=16)
+    {
+        return substr($this->getRandomToken(), 0, $length);
     }
     
     public static function isAjax()

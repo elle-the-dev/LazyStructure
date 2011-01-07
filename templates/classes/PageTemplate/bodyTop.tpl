@@ -1,7 +1,7 @@
     <div id="containerBg">
         <div id="container">
             <div id="header">
-                <h1 id="h1"><a href="<?php echo PATH; ?>1/home">LazyStructure</a></h1>
+                <h1 id="h1"><a href="<?php echo PATH; ?>">LazyStructure</a></h1>
             </div>
             <div id="content">
                 <div id="tabs">

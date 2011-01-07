@@ -10,11 +10,12 @@ class Reporting
     {
         /*
             Setting $clear=false when calling endDo maintains error messages in the session
-            This allows for setting an error or success message alongside a redirect
         */
         if(Database::isAjax())
         {
-            if(self::hasAnyErrors() || self::hasSuccesses() || self::hasMarkup() || self::hasRedirect())
+            if(self::hasRedirect())
+                echo self::getJsonAll(false);
+            if(self::hasAnyErrors() || self::hasSuccesses() || self::hasMarkup())
                 echo self::getJsonAll($clear);
         }
         else

@@ -1,11 +1,8 @@
 <?php
 require_once('../global.php');
-$username = $_POST['username'];
-$password = $db->getHash($_POST['password']);
-$remember = $_POST['remember'];
 
 $user = new User();
-$user->login($username, $password, $remember);
+$user->login($_POST['username'], $_POST['password'], $_POST['remember']);
 
 Reporting::endDo();
 ?>

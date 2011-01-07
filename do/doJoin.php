@@ -33,7 +33,7 @@ if(!Validate::phone($phoneFiltered))
 
 if(!Reporting::hasAnyErrors())
 {
-    $id = $db->query("insert.sql", $username, $db->getHash($password), $email, $name, $surname, $phone, $address1, $address2);
+    $id = $db->query("insert.sql", $username, $db->getPassword($password, $db->getSalt()), $email, $name, $surname, $phone, $address1, $address2);
     if($id)
     {
         $user = new User($id);

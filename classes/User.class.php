@@ -24,9 +24,9 @@ class User
         }
     }
 
-    public function __get($value)
+    public function __get($name)
     {
-        return $this->$value;
+        return $this->$name;
     }
 
     public function __set($name, $value)
@@ -38,7 +38,8 @@ class User
     {
         global $db;
         $db->init("classes/User/login");
-        $row = $db->queryRow("select.sql", $username, $password);
+        $salt = $db->queryColumn("salt.sql", $username);
+        $row = $db->queryRow("select.sql", $username, $db->getPassword($password, $salt));
         if(is_array($row))
         {
             $loginToken = $db->getRandomToken();
