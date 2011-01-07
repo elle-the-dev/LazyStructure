@@ -259,6 +259,8 @@ $.address.externalChange(function(event)
         else
             loadEditor();
     }   
+    else
+        loadEditor();
     bindClick();
 });
 

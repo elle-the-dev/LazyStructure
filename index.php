@@ -11,11 +11,16 @@ $out->title = $page['title'];
 $out->body->heading = Filter::toXhtml($page['heading']);
 $out->body->content->pageContent = Filter::toXhtml($page['content']);
 $out->body->content->xsrfToken = $user ? $user->xsrfToken : "";
+$out->body->content->adminPanel = new View("index/adminPanel");
 
 if($db->authenticate($out->body->content->xsrfToken))
 {
-    $out->addStyle(PATH."css/admin.css");
     $out->body->content->divId = $page['editable'] ? "userContent" : "staticContent";
+    if($page['editable'])
+    {
+        $out->addStyle(PATH."css/admin.css");
+        $out->body->content->adminPanel->addTemplate("content.tpl");
+    }
 }
 else
     $out->body->content->divId = "staticContent";
