@@ -10,7 +10,7 @@ http://nicedit.com
 
 See the included example files for usage.
 
-Version: 3.0.4
+Version: 3.0.5
 
 Overview:
 LazyStructure provides a jumping-off point for a new PHP project.  Built-in MySQL usage is with regard to login and page editing.  This is seen in index.php.  For pages not using MySQL for page loads, see alpha.php and beta.php.
@@ -31,3 +31,11 @@ See the file classes/Globals.class.php
 -Set PATH for the document root of the site
 -Set FILE_PATH for the system root of the site folder
 -Set TITLE_SUFFIX for what to append to the site title
+
+Folder structure:
+-HTML is under templates
+    -Each View has its own folder
+    -Standard main template is content.tpl
+-Processing files are stored in /do/
+-Classes are all in /classes/ and use the suffix .class.php
+    -Only files with .class.php as the extension will be autoloaded

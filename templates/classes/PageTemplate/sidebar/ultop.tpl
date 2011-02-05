@@ -1,1 +1,1 @@
-                            <ul id="sidebarItems">
+                            <ul id="<?php echo $this->page; ?>SidebarItems">

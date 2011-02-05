@@ -26,10 +26,10 @@ function loadPage(obj, inline)
         // Fade out content to emphasize loading animation
         $('#mainContent').css('opacity', '0.3');
 
-        $.get(obj, function(data)
+        $.getJSON(obj, function(data)
         {
-            if(typeof data['redirect'] != "undefined" && data['redirect'].toString() != "") 
-                loadPage(data['redirect'], true);
+            if(typeof data['redirect'] != "undefined" && data['redirect'][0].toString() != "") 
+                loadPage(data['redirect'][0], true);
             else
             {
                 $('#mainContent').css('opacity', '1');
@@ -91,8 +91,8 @@ function formSubmit(obj, callBack, postCallBack)
                 var message = $.parseJSON(data);
                 if(message != "undefined")
                 {
-                    if(typeof message['redirect'] != "undefined" && message['redirect'].toString() != "") 
-                        loadPage(message['redirect'], true);
+                    if(typeof message['redirect'] != "undefined" && message['redirect'][0].toString() != "") 
+                        loadPage(message['redirect'][0], true);
                     else
                         showAll(message);
                 }

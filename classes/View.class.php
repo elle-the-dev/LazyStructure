@@ -27,6 +27,14 @@ class View
         $this->vars[$name] = $value;
     }
 
+    public function &getReference($name)
+    {
+        if(isset($this->vars[$name]))
+            return $this->vars[$name];
+        else
+            return false;
+    }
+
     public function getRoot()
     {
         return $this->root;
