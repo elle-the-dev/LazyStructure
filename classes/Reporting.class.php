@@ -1,8 +1,9 @@
 <?php
 /**
- * Reporting class
+ * Processing script handler for messages and form content
  *
  * Used for handling postbacks with error/success messages and redirects
+ * @package LazyStructure
  */
 class Reporting
 {

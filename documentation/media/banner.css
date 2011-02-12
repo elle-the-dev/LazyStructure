@@ -1,6 +1,6 @@
 body 
 { 
-	background-color: #EEEEEE; 
+	background-color: #DDDDDD;
 	margin: 0px; 
 	padding: 0px;
 }
@@ -10,24 +10,23 @@ body
 .banner {  }
 
 .banner-menu 
-{
-	text-align: right;
+{ 
 	clear: both;
 	padding: .5em;
-	border-top: 2px solid #AAAAAA;	
+	border-top: 2px solid #999999;	
 }
 
 .banner-title 
 { 
-	text-align: right; 
-	font-size: 20pt; 
-	font-weight: bold; 
+	text-align: right;
+	font-size: 20pt;
+	font-weight: bold;
 	margin: .2em;
 }
 
 .package-selector 
 { 
-	background-color: #DDDDDD; 
-	border: 1px solid #AAAAAA; 
-	color: #000090;
+	background-color: #CCCCCC;
+	border: 1px solid black;
+	color: blue;
 }

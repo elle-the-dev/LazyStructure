@@ -1,0 +1,583 @@
+<html>
+<head>
+<title>Docs For Class Model</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">LazyStructure</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_LazyStructure.html" class="menu">class tree: LazyStructure</a> ]
+		  [ <a href="../elementindex_LazyStructure.html" class="menu">index: LazyStructure</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_LazyStructure.html">LazyStructure</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../LazyStructure/_Database.class.php.html">		Database.class.php
+		</a><br>
+			<a href="../LazyStructure/_Filter.class.php.html">		Filter.class.php
+		</a><br>
+			<a href="../LazyStructure/_Format.class.php.html">		Format.class.php
+		</a><br>
+			<a href="../LazyStructure/_Globals.class.php.html">		Globals.class.php
+		</a><br>
+			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
+		</a><br>
+			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_Reporting.class.php.html">		Reporting.class.php
+		</a><br>
+			<a href="../LazyStructure/_Template.class.php.html">		Template.class.php
+		</a><br>
+			<a href="../LazyStructure/_User.class.php.html">		User.class.php
+		</a><br>
+			<a href="../LazyStructure/_Validate.class.php.html">		Validate.class.php
+		</a><br>
+			<a href="../LazyStructure/_View.class.php.html">		View.class.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../LazyStructure/Database.html">Database</a><br />
+	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
+	    		<a href="../LazyStructure/Format.html">Format</a><br />
+	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
+	    		<a href="../LazyStructure/Model.html">Model</a><br />
+	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
+	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
+	    		<a href="../LazyStructure/Template.html">Template</a><br />
+	    		<a href="../LazyStructure/User.html">User</a><br />
+	    		<a href="../LazyStructure/Validate.html">Validate</a><br />
+	    		<a href="../LazyStructure/View.html">View</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: Model</h1>
+Source Location: /Model.class.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre><a href="../LazyStructure/Database.html">Database</a>
+   |
+   --Model</pre><br />
+<div class="description">Database abstraction for queries and SQL files</div><br /><br />
+
+
+
+
+
+
+        
+</td>
+
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../LazyStructure/Model.html#var$instance">$instance</a></li>
+  </ul>
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../LazyStructure/Model.html#method__construct">__construct</a></li>
+    <li><a href="../LazyStructure/Model.html#methodgetModel">getModel</a></li>
+    <li><a href="../LazyStructure/Model.html#methodinit">init</a></li>
+    <li><a href="../LazyStructure/Model.html#methodquery">query</a></li>
+    <li><a href="../LazyStructure/Model.html#methodqueryColumn">queryColumn</a></li>
+    <li><a href="../LazyStructure/Model.html#methodqueryKey">queryKey</a></li>
+    <li><a href="../LazyStructure/Model.html#methodqueryRow">queryRow</a></li>
+    <li><a href="../LazyStructure/Model.html#method__get">__get</a></li>
+    <li><a href="../LazyStructure/Model.html#method__set">__set</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+<td valign="top">
+<h3>Inherited Methods</h3>
+<div class="tags">
+<h4>Class: <a href="../LazyStructure/Database.html">Database</a></h4>
+<dl>
+    <dt>
+    <a href="../LazyStructure/Database.html#method__construct">Database::__construct()</a>
+  </dt>
+  <dd>
+    
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodauthenticate">Database::authenticate()</a>
+  </dt>
+  <dd>
+    authenticate(string) verifies a user is logged in
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodgetDatabase">Database::getDatabase()</a>
+  </dt>
+  <dd>
+    getDatabase() returns an instance of the database connection
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodgetHash">Database::getHash()</a>
+  </dt>
+  <dd>
+    getHash(string) generates a hash based on the text passed
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodgetPassword">Database::getPassword()</a>
+  </dt>
+  <dd>
+    getPassword(string, string) generates the hash for a given password and salt
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodgetRandomToken">Database::getRandomToken()</a>
+  </dt>
+  <dd>
+    getRandomToken() generates a random string
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodgetSalt">Database::getSalt()</a>
+  </dt>
+  <dd>
+    getSalt([int]) generates a random salt of the given length
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodisAjax">Database::isAjax()</a>
+  </dt>
+  <dd>
+    isAjax() returns whether the request is via an AJAX call
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodquery">Database::query()</a>
+  </dt>
+  <dd>
+    query(string) executes an SQL query and returns the result
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodqueryColumn">Database::queryColumn()</a>
+  </dt>
+  <dd>
+    queryColumn(string) executes an SQL query and returns the resulting value
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodqueryKey">Database::queryKey()</a>
+  </dt>
+  <dd>
+    queryKey(string) executes an SQL query and returns the resulting value
+  </dd>
+    <dt>
+    <a href="../LazyStructure/Database.html#methodqueryRow">Database::queryRow()</a>
+  </dt>
+  <dd>
+    queryRow(string) executes an SQL query and returns the resulting row
+  </dd>
+  </dl>
+</div>
+</td>
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 8]<br />
+Database abstraction for queries and SQL files<br /><br /><p>Handler for SQL queries</p><br /></div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$instance"></a>
+	<p></p>
+	<h4>static $instance = <span class="value"></span></h4>
+	<p>[line 10]</p>
+  
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+        <tr>
+      <td><b>Overrides:</b>&nbsp;&nbsp;</td>
+      <td>Array</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="methodgetModel"></a>
+	<h3>static method getModel <span class="smalllinenumber">[line 157]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void getModel(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Get the model object<br /><br /><p>Get the model object if it exists, and create it if it doesn't (singleton pattern)</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+  <hr />
+	<a name="method__construct"></a>
+	<h3>constructor __construct <span class="smalllinenumber">[line 22]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Model __construct(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Make the database connection<br /><br /><p>Calls to the parent Database::connect</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../LazyStructure/Database.html#method__construct">Database::__construct()</a> (parent method not documented)<br /><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodinit"></a>
+	<h3>method init <span class="smalllinenumber">[line 145]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void init(
+string
+$name)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the appropriate path values and resets variables<br /><br /><p>Sets the name and path, and resets the vars array.  Should be called before use of the object.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td>specific folder within root</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodquery"></a>
+	<h3>method query <span class="smalllinenumber">[line 66]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>- query(
+string
+$file)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Execute an SQL statement and return the result<br /><br /><p>Reads in an SQL file and executes it by passing the corresponding  value to Database::query.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>two-dimensional array if successful <ul><li>false if the query fails</li><li>insertion ID on successful insert</li><li>number of rows affected on successful update/delete</li></ul></td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../LazyStructure/Database.html#methodquery">Database::query()</a> (query(string) executes an SQL query and returns the result)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$file</b>&nbsp;&nbsp;</td>
+        <td>SQL file name</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodqueryColumn"></a>
+	<h3>method queryColumn <span class="smalllinenumber">[line 94]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void queryColumn(
+string
+$file)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Execute an SQL statement and return the resulting column<br /><br /><p>Reads in an SQL file and executes it by passing the corresponding value to Database::queryColumn.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../LazyStructure/Database.html#methodqueryColumn">Database::queryColumn()</a> (queryColumn(string) executes an SQL query and returns the resulting value)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$file</b>&nbsp;&nbsp;</td>
+        <td>SQL file name</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodqueryKey"></a>
+	<h3>method queryKey <span class="smalllinenumber">[line 109]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void queryKey(
+string
+$key, string
+$file)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Execute an SQL statement and return the resulting value indexed on the given key<br /><br /><p>Reads in an SQL file and executes it by passing the corresponding value to Database::queryKey.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../LazyStructure/Database.html#methodqueryKey">Database::queryKey()</a> (queryKey(string) executes an SQL query and returns the resulting value)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$key</b>&nbsp;&nbsp;</td>
+        <td>column on which to index the values</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$file</b>&nbsp;&nbsp;</td>
+        <td>SQL file name</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodqueryRow"></a>
+	<h3>method queryRow <span class="smalllinenumber">[line 80]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void queryRow(
+string
+$file)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Execute an SQL statement and return the resulting row<br /><br /><p>Reads in an SQL file and executes it by passing the corresponding value to Database::queryRow.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../LazyStructure/Database.html#methodqueryRow">Database::queryRow()</a> (queryRow(string) executes an SQL query and returns the resulting row)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$file</b>&nbsp;&nbsp;</td>
+        <td>SQL file name</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="method__get"></a>
+	<h3>method __get <span class="smalllinenumber">[line 35]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>var __get(
+string
+$name)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Getter magic method for vars array<br /><br /><p>Returns the corresponding value from the vars array</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>value, or false if not set</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td>name/index of the var value</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="method__set"></a>
+	<h3>method __set <span class="smalllinenumber">[line 48]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void __set(
+string
+$name, mixed
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Setter magic method<br /><br /><p>Sets the corresponding value in the vars array</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td>name/index of the var value</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td>value to store</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Fri, 11 Feb 2011 22:55:40 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

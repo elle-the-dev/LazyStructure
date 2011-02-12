@@ -1,9 +1,19 @@
 <?php
-/*
-    Constants to appear globally are contained within __construct
+/**
+ * Container for global constants
+ *
+ * Constants to appear globally are contained within __construct
+ * @package LazyStructure
 */
 class Globals
 {
+    /**
+     * Constructur for Globals
+     *
+     * Instantiates the global constants.
+     * These will be available in any file that instantiates a Globals object, even if not stored.
+     * By default, these are instantiated in /global.php
+     */
     public function __construct()
     {
         // web root to the site directory

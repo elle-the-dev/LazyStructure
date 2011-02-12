@@ -1,818 +1,866 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-  <html xmlns="http://www.w3.org/1999/xhtml">
-		<head>
-			<!-- template designed by Marco Von Ballmoos -->
-			<title>Docs For Class Reporting</title>
-			<link rel="stylesheet" href="../media/stylesheet.css" />
-			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
-		</head>
-		<body>
-			<div class="page-body">			
-<h2 class="class-name"><img src="../media/images/Class_logo.png"
-														alt=" Class"
-														title=" Class"
-														style="vertical-align: middle"> Reporting</h2>
+<html>
+<head>
+<title>Docs For Class Reporting</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
 
-<a name="sec-description"></a>
-<div class="info-box">
-	<div class="info-box-title">Description</div>
-	<div class="nav-bar">
-					<span class="disabled">Description</span> |
-															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
-						
-					</div>
-	<div class="info-box-body">
-        		<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Reporting class</p>
-<p class="description"><p>Used for handling postbacks with error/success messages and redirects</p></p>
-		<p class="notes">
-			Located in <a class="field" href="_Reporting.class.php.html">/Reporting.class.php</a> (line <span class="field">7</span>)
-		</p>
-		
-				
-		<pre></pre>
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">LazyStructure</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_LazyStructure.html" class="menu">class tree: LazyStructure</a> ]
+		  [ <a href="../elementindex_LazyStructure.html" class="menu">index: LazyStructure</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_LazyStructure.html">LazyStructure</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../LazyStructure/_Database.class.php.html">		Database.class.php
+		</a><br>
+			<a href="../LazyStructure/_Filter.class.php.html">		Filter.class.php
+		</a><br>
+			<a href="../LazyStructure/_Format.class.php.html">		Format.class.php
+		</a><br>
+			<a href="../LazyStructure/_Globals.class.php.html">		Globals.class.php
+		</a><br>
+			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
+		</a><br>
+			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_Reporting.class.php.html">		Reporting.class.php
+		</a><br>
+			<a href="../LazyStructure/_Template.class.php.html">		Template.class.php
+		</a><br>
+			<a href="../LazyStructure/_User.class.php.html">		User.class.php
+		</a><br>
+			<a href="../LazyStructure/_Validate.class.php.html">		Validate.class.php
+		</a><br>
+			<a href="../LazyStructure/_View.class.php.html">		View.class.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../LazyStructure/Database.html">Database</a><br />
+	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
+	    		<a href="../LazyStructure/Format.html">Format</a><br />
+	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
+	    		<a href="../LazyStructure/Model.html">Model</a><br />
+	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
+	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
+	    		<a href="../LazyStructure/Template.html">Template</a><br />
+	    		<a href="../LazyStructure/User.html">User</a><br />
+	    		<a href="../LazyStructure/Validate.html">Validate</a><br />
+	    		<a href="../LazyStructure/View.html">View</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: Reporting</h1>
+Source Location: /Reporting.class.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">Processing script handler for messages and form content</div><br /><br />
+
+
+
+
+
+
+        
+</td>
+
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../LazyStructure/Reporting.html#method__construct">__construct</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methoddebugArray">debugArray</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodendDo">endDo</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodgetFieldErrors">getFieldErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodgetJsonErrors">getJsonErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodgetJsonFieldErrors">getJsonFieldErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodgetJsonMarkup">getJsonMarkup</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodgetJsonSuccesses">getJsonSuccesses</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodhasAnyErrors">hasAnyErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodhasErrors">hasErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodhasFieldErrors">hasFieldErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodhasMarkup">hasMarkup</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodhasRedirect">hasRedirect</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodhasSuccesses">hasSuccesses</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodsetError">setError</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodsetFieldError">setFieldError</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodsetMarkup">setMarkup</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodsetRedirect">setRedirect</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodsetSuccess">setSuccess</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodshowErrors">showErrors</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodshowSuccesses">showSuccesses</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 8]<br />
+Processing script handler for messages and form content<br /><br /><p>Used for handling postbacks with error/success messages and redirects</p><br /></div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+  <hr />
+	<a name="methoddebugArray"></a>
+	<h3>static method debugArray <span class="smalllinenumber">[line 47]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static string debugArray(
+array
+$ar)</code>
+    </td></tr></table>
+    </td></tr></table><br />
 	
-			</div>
+		debugArray(array) return printed array<br /><br /><p>Used to generate and return print_r output of an array within</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
 </div>
-
-
-
-
-	<a name="sec-method-summary"></a>
-	<div class="info-box">
-		<div class="info-box-title">Method Summary</span></div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
-		</div>
-		<div class="info-box-body">			
-			<div class="method-summary">
-																				<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">string</span>
-										<a href="#debugArray" title="details" class="method-name">debugArray</a>
-											(<span class="var-type">array</span>&nbsp;<span class="var-name">$ar</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#endDo" title="details" class="method-name">endDo</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#getFieldErrors" title="details" class="method-name">getFieldErrors</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#getJsonErrors" title="details" class="method-name">getJsonErrors</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#getJsonFieldErrors" title="details" class="method-name">getJsonFieldErrors</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#getJsonMarkup" title="details" class="method-name">getJsonMarkup</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#getJsonSuccesses" title="details" class="method-name">getJsonSuccesses</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">bool</span>
-										<a href="#hasAnyErrors" title="details" class="method-name">hasAnyErrors</a>
-										()
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">bool</span>
-										<a href="#hasErrors" title="details" class="method-name">hasErrors</a>
-										()
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">bool</span>
-										<a href="#hasFieldErrors" title="details" class="method-name">hasFieldErrors</a>
-										()
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">bool</span>
-										<a href="#hasMarkup" title="details" class="method-name">hasMarkup</a>
-										()
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">bool</span>
-										<a href="#hasRedirect" title="details" class="method-name">hasRedirect</a>
-										()
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">bool</span>
-										<a href="#hasSuccesses" title="details" class="method-name">hasSuccesses</a>
-										()
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#setError" title="details" class="method-name">setError</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#setFieldError" title="details" class="method-name">setFieldError</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#setMarkup" title="details" class="method-name">setMarkup</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$markup</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#setRedirect" title="details" class="method-name">setRedirect</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$link</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#setSuccess" title="details" class="method-name">setSuccess</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#showErrors" title="details" class="method-name">showErrors</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																<div class="method-definition">
-					<img src="../media/images/StaticMethod.png" alt=" "/>
-											static <span class="method-result">void</span>
-										<a href="#showSuccesses" title="details" class="method-name">showSuccesses</a>
-											([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-									</div>
-																				<div class="method-definition">
-					<img src="../media/images/Constructor.png" alt=" "/>
-											<span class="method-result">Reporting</span>
-										<a href="#__construct" title="details" class="method-name">__construct</a>
-										()
-									</div>
-																																																																																																																																																																											</div>
-		</div>
-	</div>		
+<br /><br />
 
 	
-	<a name="sec-methods"></a>
-	<div class="info-box">
-		<div class="info-box-title">Methods</div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
-						
-		</div>
-		<div class="info-box-body">
-			<A NAME='method_detail'></A>
-<a name="methoddebugArray" id="debugArray"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static debugArray</span> (line <span class="line-number">46</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">debugArray(array) return printed array</p>
-<p class="description"><p>Used to generate and return print_r output of an array within</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">string</span>
-		<span class="method-name">
-			debugArray
-		</span>
-					(<span class="var-type">array</span>&nbsp;<span class="var-name">$ar</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">array</span>
-				<span class="var-name">$ar</span><span class="var-description">: the array to print</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodendDo" id="endDo"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static endDo</span> (line <span class="line-number">22</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">endDo([bool]) processing file handler</p>
-<p class="description"><p>Used to end processing scripts.  It will handle the return of JSON data if necessary  or redirect header if there was no JSON call</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			endDo
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: denotes whether to unset success and error messages, and markup</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodgetFieldErrors" id="getFieldErrors"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static getFieldErrors</span> (line <span class="line-number">231</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">getFieldErrors(bool) returns field errors array</p>
-<p class="description"><p>Returns an array of field errors</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			getFieldErrors
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the field errors</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodgetJsonErrors" id="getJsonErrors"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static getJsonErrors</span> (line <span class="line-number">183</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">getJsonErrors(bool) returns errors as a JSON string</p>
-<p class="description"><p>Returns errors in JSON object</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			getJsonErrors
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the errors</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodgetJsonFieldErrors" id="getJsonFieldErrors"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static getJsonFieldErrors</span> (line <span class="line-number">207</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">getJsonFieldErrors(bool) returns field errors as a JSON string</p>
-<p class="description"><p>Returns field errors in JSON object</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			getJsonFieldErrors
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the field errors</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodgetJsonMarkup" id="getJsonMarkup"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static getJsonMarkup</span> (line <span class="line-number">219</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">getJsonMarkup(bool) returns markup as a JSON string</p>
-<p class="description"><p>Returns markup in JSON object</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			getJsonMarkup
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the markup</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodgetJsonSuccesses" id="getJsonSuccesses"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static getJsonSuccesses</span> (line <span class="line-number">195</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">getJsonSuccesses(bool) returns successes as a JSON string</p>
-<p class="description"><p>Returns successes in JSON object</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			getJsonSuccesses
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the successes</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodhasAnyErrors" id="hasAnyErrors"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static hasAnyErrors</span> (line <span class="line-number">90</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">hasAnyErrors() returns true if there are any errors</p>
-	<ul class="tags">
-				<li><span class="field">return:</span> result of if there are any error messages or any field-specific error messages</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">bool</span>
-		<span class="method-name">
-			hasAnyErrors
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodhasErrors" id="hasErrors"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static hasErrors</span> (line <span class="line-number">60</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">hasErrors() returns true if there are errrors</p>
-	<ul class="tags">
-				<li><span class="field">return:</span> result of if there are any error messages</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">bool</span>
-		<span class="method-name">
-			hasErrors
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodhasFieldErrors" id="hasFieldErrors"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static hasFieldErrors</span> (line <span class="line-number">80</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">hasFieldErrors() returns true if there are field errors</p>
-	<ul class="tags">
-				<li><span class="field">return:</span> result of if there are any field-specific error messages</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">bool</span>
-		<span class="method-name">
-			hasFieldErrors
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodhasMarkup" id="hasMarkup"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static hasMarkup</span> (line <span class="line-number">100</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">hasMarkup() returns true if there is markup</p>
-	<ul class="tags">
-				<li><span class="field">return:</span> result of if there is any markup to return</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">bool</span>
-		<span class="method-name">
-			hasMarkup
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodhasRedirect" id="hasRedirect"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static hasRedirect</span> (line <span class="line-number">110</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">hasRedirect() returns true if a redirect is set</p>
-	<ul class="tags">
-				<li><span class="field">return:</span> result of if there is a redirect pending</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">bool</span>
-		<span class="method-name">
-			hasRedirect
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodhasSuccesses" id="hasSuccesses"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static hasSuccesses</span> (line <span class="line-number">70</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">hasSuccesses() returns true if there are successes</p>
-	<ul class="tags">
-				<li><span class="field">return:</span> result of if there are any success messages</li>
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">bool</span>
-		<span class="method-name">
-			hasSuccesses
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-<a name="methodsetError" id="setError"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static setError</span> (line <span class="line-number">122</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">setError(string) adds an error to the session</p>
-<p class="description"><p>Adds an error message to the array of error messages to display</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			setError
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$message</span><span class="var-description">: the text to display in the message</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodsetFieldError" id="setFieldError"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static setFieldError</span> (line <span class="line-number">147</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">setFieldError(string, string) adds a field error to the session</p>
-<p class="description"><p>Adds a field-specific error message to the list of field errors to display</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			setFieldError
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$id</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$id</span><span class="var-description">: the HTML id attribute of the field that the message is applicable</span>			</li>
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$message</span><span class="var-description">: the text to display in the message</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodsetMarkup" id="setMarkup"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static setMarkup</span> (line <span class="line-number">159</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">setMarkup(string) adds markup to the session</p>
-<p class="description"><p>Adds the passed HTML markup to the list of markup strings to return</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			setMarkup
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$markup</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$markup</span><span class="var-description">: the HTML markup to add to the array of markup returns</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodsetRedirect" id="setRedirect"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static setRedirect</span> (line <span class="line-number">171</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">setRedirect(string) adds a redirect to the session</p>
-<p class="description"><p>Sets the intended redirect path</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			setRedirect
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$link</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$link</span><span class="var-description">: the URL path to redirect to</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodsetSuccess" id="setSuccess"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static setSuccess</span> (line <span class="line-number">134</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">setSuccess(string) adds a success to the session</p>
-<p class="description"><p>Adds a success message to the array of success messages to display</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			setSuccess
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$message</span>)
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">string</span>
-				<span class="var-name">$message</span><span class="var-description">: the text to display in the message</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodshowErrors" id="showErrors"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static showErrors</span> (line <span class="line-number">249</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">showErrors(bool) returns HTML list of errors</p>
-<p class="description"><p>Returns an unordered HTML list of errors</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			showErrors
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the errors</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodshowSuccesses" id="showSuccesses"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../media/images/StaticMethod.png" />
-		<span class="method-title">static showSuccesses</span> (line <span class="line-number">261</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">showSuccesses(bool) returns HTML list of successes</p>
-<p class="description"><p>Returns an unordered HTML list of successes</p></p>
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			showSuccesses
-		</span>
-					([<span class="var-type">bool</span>&nbsp;<span class="var-name">$clear</span> = <span class="var-default">true</span>])
-			</div>
-	
-			<ul class="parameters">
-					<li>
-				<span class="var-type">bool</span>
-				<span class="var-name">$clear</span><span class="var-description">: indicates whether to unset the successes</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="method__construct" id="__construct"><!-- --></a>
-<div class="evenrow">
-	
-	<div class="method-header">
-		<img src="../media/images/Constructor.png" />
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">9</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">Reporting</span>
-		<span class="method-name">
-			__construct
-		</span>
-				()
-			</div>
-	
-		
-			
-	</div>
-						
-		</div>
-	</div>
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$ar</b>&nbsp;&nbsp;</td>
+        <td>the array to print</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodendDo"></a>
+	<h3>static method endDo <span class="smalllinenumber">[line 23]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void endDo(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		endDo([bool]) processing file handler<br /><br /><p>Used to end processing scripts.  It will handle the return of JSON data if necessary  or redirect header if there was no JSON call</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
 
 	
-	<p class="notes" id="credit">
-		Documentation generated on Fri, 04 Feb 2011 22:10:58 -0500 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
-	</p>
-	</div></body>
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>denotes whether to unset success and error messages, and markup</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetFieldErrors"></a>
+	<h3>static method getFieldErrors <span class="smalllinenumber">[line 232]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void getFieldErrors(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		getFieldErrors(bool) returns field errors array<br /><br /><p>Returns an array of field errors</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the field errors</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetJsonErrors"></a>
+	<h3>static method getJsonErrors <span class="smalllinenumber">[line 184]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void getJsonErrors(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		getJsonErrors(bool) returns errors as a JSON string<br /><br /><p>Returns errors in JSON object</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the errors</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetJsonFieldErrors"></a>
+	<h3>static method getJsonFieldErrors <span class="smalllinenumber">[line 208]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void getJsonFieldErrors(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		getJsonFieldErrors(bool) returns field errors as a JSON string<br /><br /><p>Returns field errors in JSON object</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the field errors</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetJsonMarkup"></a>
+	<h3>static method getJsonMarkup <span class="smalllinenumber">[line 220]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void getJsonMarkup(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		getJsonMarkup(bool) returns markup as a JSON string<br /><br /><p>Returns markup in JSON object</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the markup</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodgetJsonSuccesses"></a>
+	<h3>static method getJsonSuccesses <span class="smalllinenumber">[line 196]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void getJsonSuccesses(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		getJsonSuccesses(bool) returns successes as a JSON string<br /><br /><p>Returns successes in JSON object</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the successes</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhasAnyErrors"></a>
+	<h3>static method hasAnyErrors <span class="smalllinenumber">[line 91]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static bool hasAnyErrors(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		hasAnyErrors() returns true if there are any errors<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result of if there are any error messages or any field-specific error messages</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhasErrors"></a>
+	<h3>static method hasErrors <span class="smalllinenumber">[line 61]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static bool hasErrors(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		hasErrors() returns true if there are errrors<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result of if there are any error messages</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhasFieldErrors"></a>
+	<h3>static method hasFieldErrors <span class="smalllinenumber">[line 81]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static bool hasFieldErrors(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		hasFieldErrors() returns true if there are field errors<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result of if there are any field-specific error messages</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhasMarkup"></a>
+	<h3>static method hasMarkup <span class="smalllinenumber">[line 101]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static bool hasMarkup(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		hasMarkup() returns true if there is markup<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result of if there is any markup to return</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhasRedirect"></a>
+	<h3>static method hasRedirect <span class="smalllinenumber">[line 111]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static bool hasRedirect(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		hasRedirect() returns true if a redirect is set<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result of if there is a redirect pending</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodhasSuccesses"></a>
+	<h3>static method hasSuccesses <span class="smalllinenumber">[line 71]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static bool hasSuccesses(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		hasSuccesses() returns true if there are successes<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>result of if there are any success messages</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetError"></a>
+	<h3>static method setError <span class="smalllinenumber">[line 123]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void setError(
+string
+$message)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		setError(string) adds an error to the session<br /><br /><p>Adds an error message to the array of error messages to display</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$message</b>&nbsp;&nbsp;</td>
+        <td>the text to display in the message</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetFieldError"></a>
+	<h3>static method setFieldError <span class="smalllinenumber">[line 148]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void setFieldError(
+string
+$id, string
+$message)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		setFieldError(string, string) adds a field error to the session<br /><br /><p>Adds a field-specific error message to the list of field errors to display</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$id</b>&nbsp;&nbsp;</td>
+        <td>the HTML id attribute of the field that the message is applicable</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$message</b>&nbsp;&nbsp;</td>
+        <td>the text to display in the message</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetMarkup"></a>
+	<h3>static method setMarkup <span class="smalllinenumber">[line 160]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void setMarkup(
+string
+$markup)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		setMarkup(string) adds markup to the session<br /><br /><p>Adds the passed HTML markup to the list of markup strings to return</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$markup</b>&nbsp;&nbsp;</td>
+        <td>the HTML markup to add to the array of markup returns</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetRedirect"></a>
+	<h3>static method setRedirect <span class="smalllinenumber">[line 172]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void setRedirect(
+string
+$link)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		setRedirect(string) adds a redirect to the session<br /><br /><p>Sets the intended redirect path</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$link</b>&nbsp;&nbsp;</td>
+        <td>the URL path to redirect to</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetSuccess"></a>
+	<h3>static method setSuccess <span class="smalllinenumber">[line 135]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void setSuccess(
+string
+$message)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		setSuccess(string) adds a success to the session<br /><br /><p>Adds a success message to the array of success messages to display</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$message</b>&nbsp;&nbsp;</td>
+        <td>the text to display in the message</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodshowErrors"></a>
+	<h3>static method showErrors <span class="smalllinenumber">[line 250]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void showErrors(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		showErrors(bool) returns HTML list of errors<br /><br /><p>Returns an unordered HTML list of errors</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the errors</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodshowSuccesses"></a>
+	<h3>static method showSuccesses <span class="smalllinenumber">[line 262]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void showSuccesses(
+[bool
+$clear = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		showSuccesses(bool) returns HTML list of successes<br /><br /><p>Returns an unordered HTML list of successes</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">bool&nbsp;&nbsp;</td>
+        <td><b>$clear</b>&nbsp;&nbsp;</td>
+        <td>indicates whether to unset the successes</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+
+  <hr />
+	<a name="method__construct"></a>
+	<h3>constructor __construct <span class="smalllinenumber">[line 10]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Reporting __construct(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Fri, 11 Feb 2011 22:55:40 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
 </html>

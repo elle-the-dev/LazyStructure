@@ -1,4 +1,10 @@
 <?php
+/**
+ * Class for an authenticated user
+ *
+ * Handler for a logged in user
+ * @package LazyStructure
+ */
 class User
 {
     private $id;
@@ -13,6 +19,14 @@ class User
     private $ip;
     private $xsrfToken;
 
+    /**
+     * Constructor for User
+     *
+     * Instantiates a user. If an ID is given, the attributes are populated with the values for that user
+     * Calls the init.sql query from sql/classes/User/
+     *
+     * @param int $id user ID for instantiating an existing user
+     */
     public function User($id=null)
     {
         if(isset($id))
@@ -24,17 +38,42 @@ class User
         }
     }
 
+    /**
+     * Getter magic method
+     *
+     * Returns the class attribute
+     *
+     * @param string $name the name of the class variable to return
+     * @return variable value, or false if not set
+     */
     public function __get($name)
     {
-        return $this->$name;
+        return isset($this->$name) ? $this->$name : false;
     }
 
+    /**
+     * Setter magic method
+     *
+     * Assigns the given value to the given attribute
+     *
+     * @param string $name the name of the class variable to assign to
+     * @param mixed $value the value to assign
+     */
     public function __set($name, $value)
     {
         $this->$name = $value;
     }
 
-    public function login($username, $password, $remember)
+    /**
+     * login method
+     *
+     * Validates login information and applies the appropriate class values
+     *
+     * @param string $username username
+     * @param string $password password
+     * @param string $remember save the session in a cookie
+     */
+    public function login($username, $password, $remember=false)
     {
         global $db;
         $db->init("classes/User/login");

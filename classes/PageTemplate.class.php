@@ -1,10 +1,31 @@
 <?php
+/**
+ * Main content per web page
+ *
+ * The main class for tailoring the page structure for a specific site
+ * Inheriting from Template which includes the necessities (doctype declaration, meta tags)
+ * PageTemplate adds the main navigation, handles the stylesheets, and adds content to the page sections
+ * @package LazyStructure
+ */
 class PageTemplate extends Template
 {
     public $heading = "";
     public $tab = "home";
     public $content;
 
+    /**
+     * Constructor for PageTemplate
+     *
+     * Redirects if required, otherwise stores the last page visited in the session,
+     * creates Views for styles, messages, and content
+     * $this->head->styles will hold the markup for outputting per-page stylesheets
+     * $this->body->messages will hold the markup for error and success messages
+     * $this->body->content will hold the main content per page
+     *
+     * @param string $name the template name, which defines the relative folder path
+     * @param string $template an initial template to add
+     * @param string $root the root path from which $name is relative. By default this is the "templates" folder, as defined in View.
+     */
     public function __construct($name, $template=false, $root=false)
     {
         if(isset($_SESSION['redirect']))
@@ -25,6 +46,16 @@ class PageTemplate extends Template
         $this->body->sidebarItems = array();
     }
 
+    /**
+     * addSidebarItem adds a link to the sidebar
+     *
+     * The sidebar is generated per-page via calls to this method.
+     * Links are stored in an array until the page is rendered.
+     *
+     * @param string $text the display text for the link
+     * @param string $url the link address
+     * @param string $class the CSS class for the <a> tag
+     */
     public function addSidebarItem($text, $url, $class="")
     {
         $items = is_array($this->body->sidebarItems) ? $this->body->sidebarItems : array();
@@ -32,6 +63,14 @@ class PageTemplate extends Template
         $this->body->sidebarItems = $items;
     }
 
+    /**
+     * addStyle adds a stylesheet to the page
+     *
+     * Stylesheets are updated per-page via calls to this method.
+     * Stylesheets are stored in an array until the page is rendered.
+     *
+     * @param string $style the stylesheet to add
+     */
     public function addStyle($style)
     {
         $styles = $this->styles;
@@ -39,6 +78,13 @@ class PageTemplate extends Template
         $this->styles = $styles;
     }
 
+    /**
+     * render outputs the markup
+     *
+     * Templates comprising the content and style for each page is added here.
+     * Any messages are detected and generated, as are all sidebar items and stylesheets.
+     * It finishes by calling render() in Template
+     */
     public function render()
     {
         define('TEMPLATE_PATH', $this->getRoot().'classes/PageTemplate/');
