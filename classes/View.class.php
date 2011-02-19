@@ -40,9 +40,9 @@ class View
      * @param string $name name of the variable - index of the array
      * @return variable value, or false if not set.
      */
-    public function __get($name)
+    public function &__get($name)
     {
-        return isset($this->vars[$name]) ? $this->vars[$name] : false;
+        return $this->vars[$name];
     }
 
     /**
@@ -56,31 +56,6 @@ class View
     public function __set($name, $value)
     {
         $this->vars[$name] = $value;
-    }
-
-    /**
-     * Return a reference to a var array value
-     *
-     * The getter magic method returns the array element by value
-     * As such, an array in the vars array cannot be manipulated
-     * in normal ways, such as the function
-     * <code>
-     * next($view->variable);
-     * </code>
-     * Instead, you'd do this
-     * <code>
-     * next($view->getReference("variable"));
-     * </code>
-     *
-     * @param string $name the variable name/index to return as a reference
-     * @return variable value or false if not set
-     */
-    public function &getReference($name)
-    {
-        if(isset($this->vars[$name]))
-            return $this->vars[$name];
-        else
-            return false;
     }
 
     /**

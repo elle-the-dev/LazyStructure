@@ -11,10 +11,14 @@ $out->title = $page['title'];
 $out->body->heading = Filter::toXhtml($page['heading']);
 $out->body->content->pageContent = Filter::toXhtml($page['content']);
 $out->body->content->xsrfToken = $user ? $user->xsrfToken : "";
+
+// top menu bar
 $out->body->content->adminPanel = new View("index/adminPanel");
 
 if($db->authenticate($out->body->content->xsrfToken))
 {
+    // userContent will start nicEditor
+    // staticContent will appear as a normal web page
     $out->body->content->divId = $page['editable'] ? "userContent" : "staticContent";
     if($page['editable'])
     {

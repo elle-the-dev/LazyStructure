@@ -9,7 +9,7 @@ if(Reporting::hasFieldErrors())
 
 if(!Reporting::hasErrors())
 {
-    $db->query("INSERT INTO alpha (name) VALUES(?)", $name);
+    $db->query("insert.sql", $name);
     Reporting::setSuccess("<em>$name</em> added successfully");
 }
 

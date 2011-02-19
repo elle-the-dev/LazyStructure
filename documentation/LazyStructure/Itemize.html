@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Docs For Class Template</title>
+<title>Docs For Class Itemize</title>
 <link rel="stylesheet" type="text/css" href="../media/style.css">
 </head>
 <body>
@@ -85,23 +85,24 @@
     <td>
       <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
 
-<h1>Class: Template</h1>
-Source Location: /Template.class.php<br /><br />
+<h1>Class: Itemize</h1>
+Source Location: /Itemize.class.php<br /><br />
 
 
 <table width="100%" border="0">
 <tr><td valign="top">
 
 <h3><a href="#class_details">Class Overview</a></h3>
-<pre><a href="../LazyStructure/View.html">View</a>
-   |
-   --Template</pre><br />
-<div class="description">Base template for web pages</div><br /><br />
+<pre></pre><br />
+<div class="description">Base functions for classes for itemized output</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+        </ul>
 
 
 
 
-
+    
 
         
 </td>
@@ -109,7 +110,9 @@ Source Location: /Template.class.php<br /><br />
 <td valign="top">
 <h3><a href="#class_vars">Variables</a></h3>
 <ul>
-    <li><a href="../LazyStructure/Template.html#var$styles">$styles</a></li>
+    <li><a href="../LazyStructure/Itemize.html#var$class">$class</a></li>
+    <li><a href="../LazyStructure/Itemize.html#var$id">$id</a></li>
+    <li><a href="../LazyStructure/Itemize.html#var$view">$view</a></li>
   </ul>
 </td>
 
@@ -117,8 +120,9 @@ Source Location: /Template.class.php<br /><br />
 <td valign="top">
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
-    <li><a href="../LazyStructure/Template.html#method__construct">__construct</a></li>
-    <li><a href="../LazyStructure/Template.html#methodrender">render</a></li>
+    <li><a href="../LazyStructure/Itemize.html#methodgenerate">generate</a></li>
+    <li><a href="../LazyStructure/Itemize.html#methodrender">render</a></li>
+    <li><a href="../LazyStructure/Itemize.html#methodsort">sort</a></li>
   </ul>
 </td>
 
@@ -132,58 +136,18 @@ Source Location: /Template.class.php<br /><br />
 <h3>Child classes:</h3>
 <div class="tags">
 <dl>
-<dt><a href="../LazyStructure/PageTemplate.html">PageTemplate</a></dt>
-	<dd>Main content per web page</dd>
+<dt><a href="../LazyStructure/HtmlList.html">HtmlList</a></dt>
+	<dd>Class for converting an array to an HTML list</dd>
+</dl>
+<dl>
+<dt><a href="../LazyStructure/HtmlSelect.html">HtmlSelect</a></dt>
+	<dd>Class for converting an array to an HTML select menu</dd>
 </dl>
 </div>
 </td>
 
 
 
-<td valign="top">
-<h3>Inherited Methods</h3>
-<div class="tags">
-<h4>Class: <a href="../LazyStructure/View.html">View</a></h4>
-<dl>
-    <dt>
-    <a href="../LazyStructure/View.html#method__construct">View::__construct()</a>
-  </dt>
-  <dd>
-    Constructor for the view
-  </dd>
-    <dt>
-    <a href="../LazyStructure/View.html#methodaddTemplate">View::addTemplate()</a>
-  </dt>
-  <dd>
-    Add a template to be rendered
-  </dd>
-    <dt>
-    <a href="../LazyStructure/View.html#methodgetRoot">View::getRoot()</a>
-  </dt>
-  <dd>
-    Return the root value
-  </dd>
-    <dt>
-    <a href="../LazyStructure/View.html#methodrender">View::render()</a>
-  </dt>
-  <dd>
-    Render the view
-  </dd>
-    <dt>
-    <a href="../LazyStructure/View.html#method__get">View::__get()</a>
-  </dt>
-  <dd>
-    Getter magic method
-  </dd>
-    <dt>
-    <a href="../LazyStructure/View.html#method__set">View::__set()</a>
-  </dt>
-  <dd>
-    Setter magic method
-  </dd>
-  </dl>
-</div>
-</td>
 
 </tr></table>
 <hr />
@@ -191,24 +155,81 @@ Source Location: /Template.class.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 14]<br />
-Base template for web pages<br /><br /><p>All pages should directly or indirectly inherit from this class.  Template contains only the basic XHTML page structure and no more.  The vast majority, if not all, of your pages should extend the PageTemplate  class as it should be the one to contain CSS and JavaScript files,  along with the majority of your page markup.</p><p>For mark-up that is <strong>not</strong> an actual web page, use View, from which Template inherits</p><br /></div><br /><br />
+[line 8]<br />
+Base functions for classes for itemized output<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>abstract:</b>&nbsp;&nbsp;</td><td></td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
 <div class="top">[ <a href="#top">Top</a> ]</div><br />
 
 <hr />
 <a name="class_vars"></a>
 <h3>Class Variables</h3>
 <div class="tags">
-	<a name="var$styles"></a>
+	<a name="var$class"></a>
 	<p></p>
-	<h4>$styles = <span class="value">array()</span></h4>
-	<p>[line 16]</p>
+	<h4>$class = <span class="value"></span></h4>
+	<p>[line 12]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$id"></a>
+	<p></p>
+	<h4>$id = <span class="value"></span></h4>
+	<p>[line 11]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$view"></a>
+	<p></p>
+	<h4>$view = <span class="value"></span></h4>
+	<p>[line 10]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
   </tr>
 </table>
 </div>
@@ -231,20 +252,18 @@ Base template for web pages<br /><br /><p>All pages should directly or indirectl
 <div class="tags">
 
   <hr />
-	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 30]</span></h3>
+	<a name="methodgenerate"></a>
+	<h3>method generate <span class="smalllinenumber">[line 46]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>Template __construct(
-string
-$name, [string
-$template = false], [string
-$root = false])</code>
+		<code>void generate(
+[string
+$type = &quot;ul&quot;])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Constructor for Template<br /><br /><p>Creates Views for head, bodyTop, body, and bodyBottom.  By default, per page the templates added are rendered in $this-&gt;body  The actual implementation of the different Views, and for additional Views  should be defined as part of PageTemplate which extends Template</p><br /><br /><br />
+		Generates an unordered list<br /><br /><p>Add the necessary templates to the view for the list</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -257,28 +276,18 @@ $root = false])</code>
 
 	<p>Overridden in child classes as:<br />
 		<dl>
-	<dt><a href="../LazyStructure/PageTemplate.html#method__construct">PageTemplate::__construct()</a></dt>
-		<dd>Constructor for PageTemplate</dd>
+	<dt><a href="../LazyStructure/HtmlSelect.html#methodgenerate">HtmlSelect::generate()</a></dt>
+		<dd>Generates a select dropdown</dd>
 	</dl>
 	</p>
-	Overrides <a href="../LazyStructure/View.html#method__construct">View::__construct()</a> (Constructor for the view)<br /><br />
+	
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
         <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$name</b>&nbsp;&nbsp;</td>
-        <td>the template name, which defines the relative folder path</td>
-      </tr>
-          <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$template</b>&nbsp;&nbsp;</td>
-        <td>an initial template to add</td>
-      </tr>
-          <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$root</b>&nbsp;&nbsp;</td>
-        <td>the root path from which $name is relative. By default this is the &quot;templates&quot; folder, as defined in View.</td>
+        <td><b>$type</b>&nbsp;&nbsp;</td>
+        <td>the HTML tag to use (ul, ol)</td>
       </tr>
         </table>
     </div><br />
@@ -286,7 +295,7 @@ $root = false])</code>
   </div>
   <hr />
 	<a name="methodrender"></a>
-	<h3>method render <span class="smalllinenumber">[line 45]</span></h3>
+	<h3>method render <span class="smalllinenumber">[line 19]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -295,7 +304,7 @@ $root = false])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		render outputs the markup<br /><br /><p>If the page is called via AJAX, the body, along with title and stylesheets are outputted in JSON format  Otherwise, the main page template file is added, then the View render is called to include all the template files</p><br /><br /><br />
+		Output the list<br /><br /><p>Renders the list that has been generated</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -306,13 +315,43 @@ $root = false])</code>
 </div>
 <br /><br />
 
-	<p>Overridden in child classes as:<br />
-		<dl>
-	<dt><a href="../LazyStructure/PageTemplate.html#methodrender">PageTemplate::render()</a></dt>
-		<dd>render outputs the markup</dd>
-	</dl>
-	</p>
-	Overrides <a href="../LazyStructure/View.html#methodrender">View::render()</a> (Render the view)<br /><br />
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsort"></a>
+	<h3>method sort <span class="smalllinenumber">[line 34]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void sort(
+[
+$asc = true])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$asc</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
 </div><br />

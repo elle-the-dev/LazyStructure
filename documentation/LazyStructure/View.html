@@ -38,6 +38,14 @@
 		</a><br>
 			<a href="../LazyStructure/_Globals.class.php.html">		Globals.class.php
 		</a><br>
+			<a href="../LazyStructure/_HtmlList.class.php.html">		HtmlList.class.php
+		</a><br>
+			<a href="../LazyStructure/_HtmlSelect.class.php.html">		HtmlSelect.class.php
+		</a><br>
+			<a href="../LazyStructure/_Itemize.class.php.html">		Itemize.class.php
+		</a><br>
+			<a href="../LazyStructure/_ItemizeView.class.php.html">		ItemizeView.class.php
+		</a><br>
 			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
 		</a><br>
 			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
@@ -61,6 +69,10 @@
 	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
 	    		<a href="../LazyStructure/Format.html">Format</a><br />
 	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
+	    		<a href="../LazyStructure/HtmlList.html">HtmlList</a><br />
+	    		<a href="../LazyStructure/HtmlSelect.html">HtmlSelect</a><br />
+	    		<a href="../LazyStructure/Itemize.html">Itemize</a><br />
+	    		<a href="../LazyStructure/ItemizeView.html">ItemizeView</a><br />
 	    		<a href="../LazyStructure/Model.html">Model</a><br />
 	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
 	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
@@ -99,7 +111,6 @@ Source Location: /View.class.php<br /><br />
 <ul>
     <li><a href="../LazyStructure/View.html#method__construct">__construct</a></li>
     <li><a href="../LazyStructure/View.html#methodaddTemplate">addTemplate</a></li>
-    <li><a href="../LazyStructure/View.html#methodgetReference">getReference</a></li>
     <li><a href="../LazyStructure/View.html#methodgetRoot">getRoot</a></li>
     <li><a href="../LazyStructure/View.html#methodrender">render</a></li>
     <li><a href="../LazyStructure/View.html#method__get">__get</a></li>
@@ -116,6 +127,10 @@ Source Location: /View.class.php<br /><br />
 <td valign="top">
 <h3>Child classes:</h3>
 <div class="tags">
+<dl>
+<dt><a href="../LazyStructure/ItemizeView.html">ItemizeView</a></dt>
+	<dd>Class for functions required for Itemize classes</dd>
+</dl>
 <dl>
 <dt><a href="../LazyStructure/Template.html">Template</a></dt>
 	<dd>Base template for web pages</dd>
@@ -202,7 +217,7 @@ $root = false])</code>
   </div>
   <hr />
 	<a name="methodaddTemplate"></a>
-	<h3>method addTemplate <span class="smalllinenumber">[line 107]</span></h3>
+	<h3>method addTemplate <span class="smalllinenumber">[line 82]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -243,49 +258,8 @@ $path = false])</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
-	<a name="methodgetReference"></a>
-	<h3>method getReference <span class="smalllinenumber">[line 78]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>variable &amp;getReference(
-string
-$name)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		Return a reference to a var array value<br /><br /><p>The getter magic method returns the array element by value  As such, an array in the vars array cannot be manipulated  in normal ways, such as the function  <ol><li><div class="src-line">&nbsp;<a href="http://www.php.net/next">next</a><span class="src-sym">(</span><span class="src-var">$view</span><span class="src-sym">-&gt;</span><span class="src-id">variable</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
-</ol>  Instead, you'd do this  <ol><li><div class="src-line">&nbsp;<a href="http://www.php.net/next">next</a><span class="src-sym">(</span><span class="src-var">$view</span><span class="src-sym">-&gt;</span><a href="../LazyStructure/View.html#methodgetReference">getReference</a><span class="src-sym">(</span><span class="src-str">&quot;variable&quot;</span><span class="src-sym">))</span><span class="src-sym">;</span></div></li>
-</ol></p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>value or false if not set</td>
-  </tr>
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <h4>Parameters:</h4>
-    <div class="tags">
-    <table border="0" cellspacing="0" cellpadding="0">
-          <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$name</b>&nbsp;&nbsp;</td>
-        <td>the variable name/index to return as a reference</td>
-      </tr>
-        </table>
-    </div><br />
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
-  <hr />
 	<a name="methodgetRoot"></a>
-	<h3>method getRoot <span class="smalllinenumber">[line 93]</span></h3>
+	<h3>method getRoot <span class="smalllinenumber">[line 68]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -313,7 +287,7 @@ $name)</code>
   </div>
   <hr />
 	<a name="methodrender"></a>
-	<h3>method render <span class="smalllinenumber">[line 119]</span></h3>
+	<h3>method render <span class="smalllinenumber">[line 94]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -352,7 +326,7 @@ $name)</code>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>variable __get(
+		<code>variable &amp;__get(
 string
 $name)</code>
     </td></tr></table>
@@ -432,7 +406,7 @@ $value)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 11 Feb 2011 22:55:40 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Fri, 18 Feb 2011 21:10:27 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
