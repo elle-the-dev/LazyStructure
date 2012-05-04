@@ -16,7 +16,7 @@ else // blank form for new record
     $out->body->content->disabled = '';
 }
 
-$pages = $db->query("selectPages.sql", $out->body->content->id);
+$pages = $db->query($out->body->content->id === GROUP_GUEST ? "selectGuestPages.sql" : "selectPages.sql", $out->body->content->id);
 $allowedPages = array();
 $disallowedPages = array();
 if(!empty($pages))

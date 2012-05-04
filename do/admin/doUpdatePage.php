@@ -24,7 +24,7 @@ if(!Reporting::hasAnyErrors())
     }
     else
     {
-        if($db->query("insert.sql", $title, $editable))
+        if($db->query("insert.sql", $title, $title, '<p>Content goes here</p>', $editable))
             Reporting::setSuccess("Page created successfully.");
         else
             Reporting::setError("Something went wrong!  Please try again.");

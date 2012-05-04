@@ -51,6 +51,74 @@ function bindTabs()
                 $('#tabTooltip').fadeOut();
         }, 1000);
     });
+
+    $('#tabs ul ul').sortable(
+    {   
+        start: tabStart,
+        stop: tabStop,
+        tolerance: 'pointer',
+        revert: true,
+        items: 'li:not(".ignore")',
+        helper: 'clone',
+        connectWith: '#tabs ul',
+        placeholder: 'placeholder',
+        opacity: '0.6',
+        forcePlaceholderSize: true
+    }); 
+    $('#tabs ul ul').disableSelection();
+
+    $('#tabs > ul').sortable(
+    {   
+        start: tabStart,
+        stop: tabStop,
+        tolerance: 'pointer',
+        revert: true,
+        items: 'li:not(".ignore")',
+        helper: 'clone',
+        connectWith: '#tabs ul ul',
+        placeholder: 'placeholder',
+        opacity: '0.6',
+        forcePlaceholderSize: true
+    }); 
+    $('#tabs ul').disableSelection();
+
+    $('#footer ul').sortable(
+    {   
+        tolerance: 'pointer',
+        revert: true,
+        items: 'li:not(".ignore")',
+        helper: 'clone',
+        placeholder: 'placeholder',
+        opacity: '0.6',
+        forcePlaceholderSize: true
+    }); 
+    $('ul, #footer ul').disableSelection();
+
+    $('#sidebar ul').sortable(
+    {
+        tolerance: 'pointer',
+        revert: true,
+        items: 'li:not(".ignore")',
+        helper: 'clone',
+        placeholder: 'placeholder',
+        opacity: '0.6',
+        forcePlaceholderSize: true
+    });
+}
+
+var tabSorting = false;
+function tabStart(event, ui)
+{
+    showMenus();
+    tabSorting=true;
+    placeholderLoop();
+}
+
+function tabStop(event, ui)
+{
+    hideMenus();
+    placeholderLoop();
+    tabSorting=false;
 }
 
 function showTooltip(obj, className)
@@ -147,59 +215,6 @@ function adminPanel()
     userContentEditor.addInstance('userContent');
     userContentEditor.addInstance('pageHeading');
 
-    $('#tabs ul ul').sortable(
-    {   
-        start: showMenus,
-        stop: hideMenus,
-        tolerance: 'pointer',
-        revert: true,
-        items: 'li:not(".ignore")',
-        helper: 'clone',
-        connectWith: '#tabs ul',
-        placeholder: 'placeholder',
-        opacity: '0.6',
-        forcePlaceholderSize: true
-    }); 
-    $('#tabs ul ul').disableSelection();
-
-    $('#tabs > ul').sortable(
-    {   
-        start: showMenus,
-        stop: hideMenus,
-        tolerance: 'pointer',
-        revert: true,
-        items: 'li:not(".ignore")',
-        helper: 'clone',
-        connectWith: '#tabs ul ul',
-        placeholder: 'placeholder',
-        opacity: '0.6',
-        forcePlaceholderSize: true
-    }); 
-    $('#tabs ul').disableSelection();
-
-    $('#footer ul').sortable(
-    {   
-        tolerance: 'pointer',
-        revert: true,
-        items: 'li:not(".ignore")',
-        helper: 'clone',
-        placeholder: 'placeholder',
-        opacity: '0.6',
-        forcePlaceholderSize: true
-    }); 
-    $('ul, #footer ul').disableSelection();
-
-    $('#sidebar ul').sortable(
-    {
-        tolerance: 'pointer',
-        revert: true,
-        items: 'li:not(".ignore")',
-        helper: 'clone',
-        placeholder: 'placeholder',
-        opacity: '0.6',
-        forcePlaceholderSize: true
-    });
-
 }
 
 function showMenus(event, ui)
@@ -238,11 +253,18 @@ function nicEditSubmit(content, id)
 
     $.post(url, {pageId: pageId, pageHeading: pageHeading, content: content, tabsMenu: tabsMenu, sideMenu: sideMenu, xsrfToken: xsrfToken}, function(data)
     {
-        alert(data);
         var message = $.parseJSON(data);
         showAll(message, 'adminErrors', 'adminSuccesses');
     });
     return false;
 }
 
-
+function placeholderLoop()
+{
+    if(tabSorting)
+    {
+        $('.dropzone').removeClass('dropzone');
+        $('.placeholder').closest('div > ul > li').addClass('dropzone');
+        setTimeout('placeholderLoop()', 350);
+    }
+}

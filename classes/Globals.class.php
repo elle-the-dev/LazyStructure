@@ -41,7 +41,7 @@ class Globals
         define('PERMISSIONS_SELECT_SIZE', 8);
 
         // number of rows for pagination
-        define('ROWS_PER_PAGE', 2);
+        define('ROWS_PER_PAGE', 10);
         
         //
         define('BREAK_PAGES', 7);
