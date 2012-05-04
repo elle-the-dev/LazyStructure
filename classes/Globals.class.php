@@ -16,14 +16,37 @@ class Globals
      */
     public function __construct()
     {
-        // web root to the site directory
+        // web root to the site directory - this also needs to be set in js/main.js
         define('PATH', '/LazyStructure/');
 
         // system root to the site directory
-        define('FILE_PATH', '/var/www/LazyStructure/');
+        define('FILE_PATH', dirname(dirname(__FILE__)).'/'); //'/home/zurahn/Documents/PHP/LazyStructure/');
+        
+        // relative root to SQL files
+        define('SQL_PATH', 'sql/');
+
+        // relative root to template files
+        define('TEMPLATES_PATH', 'templates/');
 
         // the text to append after the window title
         define('TITLE_SUFFIX', ' - LazyStructure');
+
+        // universal user group. should always be 1
+        define('GROUP_GUEST', 1);
+
+        // universal admin group, should always be 2
+        define('GROUP_ADMIN', 2);
+
+        // size of select box for admin permissions
+        define('PERMISSIONS_SELECT_SIZE', 8);
+
+        // number of rows for pagination
+        define('ROWS_PER_PAGE', 2);
+        
+        //
+        define('BREAK_PAGES', 7);
+
+        define('ERROR_LINES', 10);
     }
 }
 ?>

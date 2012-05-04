@@ -1,0 +1,17 @@
+admin/groups/content.tpl:<p><a href="<?php echo PATH; ?>admin/updateGroup.php" rel="address:<?php echo PATH; ?>admin/updateGroup.php">Add new group</a></p>
+admin/users/content.tpl:<p><a href="<?php echo PATH; ?>admin/updateUser.php" rel="address:<?php echo PATH; ?>admin/updateUser.php">Add new user</a></p>
+classes/PageTemplate/menu/admin/item.tpl:                                    <a href="<?php echo PATH; ?><?php echo $item['url']; ?>" rel="address:<?php echo PATH; ?><?php echo $item['url']; ?>"><?php echo $item['name']; ?></a>
+classes/PageTemplate/menu/admin/groups.tpl:                                    <a href="<?php echo PATH; ?>admin/groups.php" rel="address:<?php echo PATH; ?>admin/groups.php">Manage Groups</a>
+classes/PageTemplate/menu/admin/open.tpl:                            <a href="<?php echo PATH; ?>admin/users.php" rel="address:<?php echo PATH; ?>admin/users.php">Admin</a>
+classes/PageTemplate/menu/admin/content.tpl:                            <a href="<?php echo PATH; ?>admin/users.php" rel="address:<?php echo PATH; ?>admin/users.php">Admin</a>
+classes/PageTemplate/menu/admin/content.tpl:                                    <a href="<?php echo PATH; ?>admin/users.php" rel="address:<?php echo PATH; ?>admin/users.php">Manage Users</a>
+classes/PageTemplate/menu/admin/content.tpl:                                    <a href="<?php echo PATH; ?>admin/groups.php" rel="address:<?php echo PATH; ?>admin/groups.php">Manage Groups</a>
+classes/PageTemplate/menu/admin/users.tpl:                                    <a href="<?php echo PATH; ?>admin/users.php" rel="address:<?php echo PATH; ?>admin/users.php">Manage Users</a>
+classes/PageTemplate/menu/content.tpl:                            <a href="<?php echo PATH; ?>1/home" rel="address:1/home">Home</a>
+classes/PageTemplate/menu/content.tpl:                            <a href="<?php echo PATH; ?>2/alpha" rel="address:2/alpha">Alpha</a>
+classes/PageTemplate/menu/content.tpl:                            <a href="<?php echo PATH; ?>4/login" rel="address:4/login">Members</a>
+classes/PageTemplate/menu/content.tpl:                                    <a href="<?php echo PATH; ?>3/join" rel="address:3/join">Join</a>
+classes/PageTemplate/menu/content.tpl:                                    <a href="<?php echo PATH; ?>4/login" rel="address:4/login">Login</a>
+classes/PageTemplate/sidebar/li.tpl:                                <li><a href="<?php echo $this->item['url']; ?>" rel="address:<?php echo $this->item['url']; ?>"><?php echo $this->item['text']; ?></a></li>
+classes/PageTemplate/head.tpl:    <link rel="stylesheet" href="<?php echo PATH; ?>css/main.css" />
+classes/PageTemplate/style.tpl:<link rel="stylesheet" type="text/css" href="<?php echo $this->style; ?>" class="pageStyle" />

@@ -30,6 +30,10 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../LazyStructure/_AdminTemplate.class.php.html">		AdminTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_ConfirmDeleteTemplate.class.php.html">		ConfirmDeleteTemplate.class.php
+		</a><br>
 			<a href="../LazyStructure/_Database.class.php.html">		Database.class.php
 		</a><br>
 			<a href="../LazyStructure/_Filter.class.php.html">		Filter.class.php
@@ -46,9 +50,13 @@
 		</a><br>
 			<a href="../LazyStructure/_ItemizeView.class.php.html">		ItemizeView.class.php
 		</a><br>
+			<a href="../LazyStructure/_LazyTable.class.php.html">		LazyTable.class.php
+		</a><br>
 			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
 		</a><br>
 			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_Permissions.class.php.html">		Permissions.class.php
 		</a><br>
 			<a href="../LazyStructure/_Reporting.class.php.html">		Reporting.class.php
 		</a><br>
@@ -65,7 +73,9 @@
       
             <b>Classes:</b><br />
         <div class="package">
-		    		<a href="../LazyStructure/Database.html">Database</a><br />
+		    		<a href="../LazyStructure/AdminTemplate.html">AdminTemplate</a><br />
+	    		<a href="../LazyStructure/ConfirmDeleteTemplate.html">ConfirmDeleteTemplate</a><br />
+	    		<a href="../LazyStructure/Database.html">Database</a><br />
 	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
 	    		<a href="../LazyStructure/Format.html">Format</a><br />
 	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
@@ -73,8 +83,10 @@
 	    		<a href="../LazyStructure/HtmlSelect.html">HtmlSelect</a><br />
 	    		<a href="../LazyStructure/Itemize.html">Itemize</a><br />
 	    		<a href="../LazyStructure/ItemizeView.html">ItemizeView</a><br />
+	    		<a href="../LazyStructure/LazyTable.html">LazyTable</a><br />
 	    		<a href="../LazyStructure/Model.html">Model</a><br />
 	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
+	    		<a href="../LazyStructure/Permissions.html">Permissions</a><br />
 	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
 	    		<a href="../LazyStructure/Template.html">Template</a><br />
 	    		<a href="../LazyStructure/User.html">User</a><br />
@@ -112,6 +124,8 @@ Source Location: /Filter.class.php<br /><br />
     <li><a href="../LazyStructure/Filter.html#methodfilterStrong">filterStrong</a></li>
     <li><a href="../LazyStructure/Filter.html#methodfilterXML">filterXML</a></li>
     <li><a href="../LazyStructure/Filter.html#methodhtmlnumericentities">htmlnumericentities</a></li>
+    <li><a href="../LazyStructure/Filter.html#methodstripNonAlphaNumeric">stripNonAlphaNumeric</a></li>
+    <li><a href="../LazyStructure/Filter.html#methodstripNonNumeric">stripNonNumeric</a></li>
     <li><a href="../LazyStructure/Filter.html#methodtoXhtml">toXhtml</a></li>
   </ul>
 </td>
@@ -259,6 +273,84 @@ $str)</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodstripNonAlphaNumeric"></a>
+	<h3>static method stripNonAlphaNumeric <span class="smalllinenumber">[line 79]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static string stripNonAlphaNumeric(
+string
+$str)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		stripNonAlphaNumeric removes all characters that aren't alphabetical or numeric<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>the filtered string</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$str</b>&nbsp;&nbsp;</td>
+        <td>the string to filter</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodstripNonNumeric"></a>
+	<h3>static method stripNonNumeric <span class="smalllinenumber">[line 68]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static string stripNonNumeric(
+string
+$str)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		stripNonNumeric removes all characters that aren't 0-9<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>the filtered string</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$str</b>&nbsp;&nbsp;</td>
+        <td>the string to filter</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodtoXhtml"></a>
 	<h3>static method toXhtml <span class="smalllinenumber">[line 18]</span></h3>
 	<div class="function">
@@ -303,7 +395,7 @@ $html)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 18 Feb 2011 21:10:27 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 11 Apr 2011 18:00:09 -0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

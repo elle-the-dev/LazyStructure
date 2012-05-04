@@ -1,3 +1,4 @@
+<h2>Login</h2>
 <div id="formClass">
     <form action="<?php echo PATH; ?>do/doLogin.php" method="post" onsubmit="return formSubmit(this);">
         <table>

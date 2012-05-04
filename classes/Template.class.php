@@ -29,10 +29,10 @@ class Template extends View
      */
     public function __construct($name, $template=false, $root=false)
     {
-        $this->head         = new View($name, $template, $root);
-        $this->bodyTop      = new View($name, $template, $root);
-        $this->body         = new View($name, $template, $root);
-        $this->bodyBottom   = new View($name, $template, $root);
+        parent::__set('head', new View($name, $template, $root));
+        parent::__set('bodyTop', new View($name, $template, $root));
+        parent::__set('body', new View($name, $template, $root));
+        parent::__set('bodyBottom', new View($name, $template, $root));
         parent::__construct($name, $template, $root);
     }
 
@@ -49,7 +49,7 @@ class Template extends View
         header('X-XSS-Protection: 0');
 
         /* Checks if it's an AJAX request -- if so, no need for the whole site structure */
-        if(Database::isAjax())
+        if(Reporting::isAjax())
         {
             /*
                 If it's an AJAX call, the markup is handled by jQuery, so we want to pass a JSON object.
@@ -78,8 +78,18 @@ class Template extends View
 
             header('content-type: text/html; charset=utf-8');
 
-            $this->addTemplate("template.tpl", $this->getRoot()."classes/Template/");
+            parent::addTemplate("template.tpl", $this->getRoot()."classes/Template/");
+            ob_start();
             parent::render();
+            $output = ob_get_clean();
+            if(isset($_SESSION['phpErrors']))
+            {
+                echo $_SESSION['phpErrors'];
+                unset($_SESSION['phpErrors']);
+                die;
+            }
+            else
+                echo $output;
         }
     }
 }

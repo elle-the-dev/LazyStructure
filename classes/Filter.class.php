@@ -58,5 +58,28 @@ class Filter
     {
         return htmlentities(strip_tags($text));
     }
+
+    /**
+     * stripNonNumeric removes all characters that aren't 0-9
+     *
+     * @param string $str the string to filter
+     * @return string $str the filtered string
+     */
+    public static function stripNonNumeric($str)
+    {  
+        return preg_replace('/\D/', '', $str);
+    }  
+
+    /**
+     * stripNonAlphaNumeric removes all characters that aren't alphabetical or numeric
+     *
+     * @param string $str the string to filter
+     * @return string $str the filtered string
+     */
+    public static function stripNonAlphaNumeric($str)
+    {  
+        return preg_replace('/[^a-zA-Z0-9]/', '', $str);
+    } 
+
 }
 ?>

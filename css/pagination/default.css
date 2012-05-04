@@ -1,0 +1,27 @@
+/* ------ Pagination ------ */
+
+.pagination
+{
+    font-family: verdana, 'dejavu sans', sans-serif;
+    font-size: 0.8em;
+}
+
+.pagination span.page a
+{
+    background-color: #FFF;
+    border: 1px solid #A0A0A0;
+    color: #000060;
+    padding: 0.1em 0.5em;
+}
+
+.pagination span.page a:hover
+{
+    text-decoration: underline;
+}
+
+.pagination span.current a
+{
+    background-color: #0000A0;
+    color: #FFF;
+    font-weight: bold;
+}

@@ -1,3 +1,4 @@
+var PATH;
 var MESSAGE_SPEED = 500;
 var messages = { errors: Array(), successes: Array() };
 var userContentEditor;
@@ -29,7 +30,12 @@ function loadPage(obj, inline)
         $.getJSON(obj, function(data)
         {
             if(typeof data['redirect'] != "undefined" && data['redirect'][0].toString() != "") 
-                loadPage(data['redirect'][0], true);
+            {
+                if(data['ajax'])
+                    loadPage(data['redirect'][0], true);
+                else
+                    window.location = data['redirect'][0];
+            }
             else
             {
                 $('#mainContent').css('opacity', '1');
@@ -59,19 +65,7 @@ function loadEditor()
     */
     if(typeof $('#userContent').val() != "undefined")
     {
-        userContentEditor = new nicEditor(
-        {
-            uploadURI: 'do/doNicEditUpload.php',
-            buttonList: ['save','bold','italic','underline','strikethrough','left','center','right','justify','subscript','superscript','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor','removeformat','xhtml'],
-            xhtml: true,
-            onSave: function(content, id, instance)
-            {
-                nicEditSubmit(content, id);
-            }
-        });
-        userContentEditor.setPanel('userContentPanel');
-        userContentEditor.addInstance('userContent');
-        userContentEditor.addInstance('pageHeading');
+        adminPanel();
     }
 }
 
@@ -91,16 +85,32 @@ function formSubmit(obj, callBack, postCallBack)
                 var message = $.parseJSON(data);
                 if(message != "undefined")
                 {
-                    if(typeof message['redirect'] != "undefined" && message['redirect'][0].toString() != "") 
-                        loadPage(message['redirect'][0], true);
+                    if(typeof message['redirect'] != "undefined" && message['redirect'][0].toString() != "")
+                    {
+                        if(!message['ajax'])
+                            window.location = message['redirect'][0];
+                        else
+                        {
+                            if(message['redirect'][0].toString() == "-1")
+                                location.reload();
+                            else
+                                window.location = message['redirect'][0];
+                                //loadPage(message['redirect'][0], true);
+                        }
+                    }
                     else
                         showAll(message);
                 }
             }
             catch(err)
             {
+                alert(data);
+                /*
+                alert(err);
                 setError('<pre>'+data+'</pre>');
                 showErrors(messages['errors']);
+                */
+                $('html').html(data);
             }
         }
 
@@ -109,27 +119,6 @@ function formSubmit(obj, callBack, postCallBack)
         $(window).scrollTop(0);
         if(typeof postCallBack != "undefined")
             postCallBack(data);
-    });
-    return false;
-}
-
-function nicEditSubmit(content, id)
-{
-    if(id == "userContent")
-        var pageHeading = $('#pageHeading').html();
-    else
-    {
-        var pageHeading = content;
-        content = $('#userContent').html();
-    }
-    var pageId = $('#pageId').val();
-    var xsrfToken = $('#xsrfToken').val();
-    var url = $('#path').val()+'do/doUpdatePage.php';
-
-    $.post(url, {pageId: pageId, pageHeading: pageHeading, content: content, xsrfToken: xsrfToken}, function(data)
-    {
-        var message = $.parseJSON(data);
-        showAll(message, 'adminErrors', 'adminSuccesses');
     });
     return false;
 }
@@ -245,7 +234,13 @@ function bindClick()
     });
 }
 
+function cancelClicked()
+{
+    $('form').append('<input type="hidden" name="cancel" value="1" />');
+}
+
 var first = true;
+/*
 $.address.externalChange(function(event)
 {
     var url = event.value.substring(1);
@@ -254,7 +249,7 @@ $.address.externalChange(function(event)
         if(!(first && url == ''))
         {   
             first = false;
-            loadPage(url, true);
+            loadPage(PATH+url, true);
         }   
         else
             loadEditor();
@@ -263,10 +258,12 @@ $.address.externalChange(function(event)
         loadEditor();
     bindClick();
 });
-
+*/
 
 $(document).ready(function()
 {
+    PATH = $('#path').val();
+    loadEditor();
     $.ajaxSetup(
     {
         error:function(x,e)
@@ -274,7 +271,7 @@ $(document).ready(function()
             if(x.status==0)
                 alert('You are offline!!\n Please Check Your Network.');
             else if(x.status==404)
-                loadPage("/errors/404.php", true);
+                loadPage(PATH+"errors/404.php", true);
             else if(x.status==500)
                 alert('Internel Server Error.');
             else if(e=='parsererror')

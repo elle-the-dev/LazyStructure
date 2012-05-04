@@ -7,13 +7,11 @@
  */
 class Database
 {
-    static $instance;
-    
-    private $db;
+    private static $db;
     private $dbDriver = "mysql"; // "pgsql" for Postgres
     private $dbHost = "localhost";
-    private $dbUsername = "";
-    private $dbPassword = "";
+    private $dbUsername = "lazystructure";
+    private $dbPassword = "lazystructure";
     private $database = "lazystructure";
 
     private $passwordSalt = ""; 
@@ -35,8 +33,8 @@ class Database
     {
         try
         {
-            $this->db = new PDO($this->dbDriver.':host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$db = new PDO($this->dbDriver.':host='.$this->dbHost.';dbname='.$this->database, $this->dbUsername, $this->dbPassword);
+            self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(Exception $err)
         {
@@ -109,6 +107,7 @@ class Database
      * - SELECT returns results in associative array
      *   based on the key provided
      *
+     * @param string $key the key to index on
      * @param string $query SQL statement to execute
      * @param mixed any additional arguments are passed as parameters to the query
      * @return array two-dimensional array of values
@@ -121,11 +120,31 @@ class Database
         return $this->getPdoReturn($return[0], $return[1], true, $key);
     }
 
+    /**
+     * queryKeyRow(string, string) executes an SQL query and returns the resulting value
+     *
+     * Executes an SQL
+     * - SELECT returns results in one-dimensional associative array
+     *   comprised of elements of the given key
+     *
+     * @param string $key the key of the column whose records will comprise the array
+     * @param string $query SQL statement to execute
+     * @param mixed any additional arguments are passed as parameters to the query
+     * @return array one-dimensional array of values
+     */
+    public function queryKeyRow($key, $query)
+    {
+        $args = func_get_args();
+        array_shift($args);
+        $return = $this->getPdoResult($args);
+        return $this->getPdoReturn($return[0], $return[1], true, $key, false);
+    }
+
     private function getPdoResult($args, $allColumns=true)
     {
         $query = $args[0];
         array_shift($args);
-        $statement = $this->db->prepare($query);
+        $statement = self::$db->prepare($query);
 
         // if the statement failed, there's an issue with the query itself
         // the first element is false as the statement failed (return false)
@@ -138,12 +157,20 @@ class Database
             this allows the query functions to accept the parameters
             as part of an array rather than passing them individually
         */
-        if(isset($args[0]) && is_array($args[0]))
+        while(isset($args[0]) && is_array($args[0]))
             $args = $args[0];
 
-        // execute returns false if the query fails (syntax error or other such issue)
-        if($statement->execute($args) === false)
-            return array(false, $statement);
+        try
+        {
+            // execute returns false if the query fails (syntax error or other such issue)
+            if($statement->execute($args) === false)
+                return array(false, $statement);
+        }
+        catch(PDOException $err)
+        {
+            trigger_error("<pre class=\"triggeredError\">Failed query: {$statement->queryString}</pre>", E_USER_WARNING);
+            trigger_error('<pre class="triggeredError">'.$err.'</pre>', E_USER_WARNING);
+        }
 
         try
         {
@@ -158,7 +185,7 @@ class Database
             $rows = false;
         }
 
-        $lastId = $this->db->lastInsertId();
+        $lastId = self::$db->lastInsertId();
 
         
         /*
@@ -176,7 +203,7 @@ class Database
         return array($result, $statement);
     }
 
-    private function getPdoReturn($result, $statement, $allRows=true, $key=false)
+    private function getPdoReturn($result, $statement, $allRows=true, $key=false, $allColumns=true)
     {
         // is only false when query fails
         if($result === false || $result === true)
@@ -188,19 +215,23 @@ class Database
             $rows = array();
 
             // if queryKey, index based on the column (key) provided
-            $key ? $rows[$result[$key]] = $result : $rows = array($result);
+
+            if($allColumns)
+                $key ? $rows[$result[$key]] = $result : $rows = array($result);
+            else
+                $key ? $rows[$result[$key]] = reset($result) : $rows = array(reset($result));
 
             if($allRows)
             {
                 if($key)
                 {
                     while($row = $statement->fetch(PDO::FETCH_ASSOC))
-                        $rows[$row[$key]] = $row;
+                        $rows[$row[$key]] = $allColumns ? $row : reset($row);
                 }
                 else
                 {
                     while($row = $statement->fetch(PDO::FETCH_ASSOC))
-                        $rows[] = $row;
+                        $rows[] = $allColumns ? $row : reset($row);
                 }
             }
             else if(!empty($result))
@@ -290,19 +321,19 @@ class Database
     }
     
     /**
-     * isAjax() returns whether the request is via an AJAX call
+     * getPlaceholders([int|array]) returns a comma separated list of PDO placeholders (?)
      *
-     * Uses the $_SERVER['HTTP_X_REQUESTED_WITH'] value 
-     * in order to determine whether the request was via an AJAX call
+     * Takes either the number provided or the length of the array and returns that many placeholders
      *
-     * @return bool if the request was via AJAX
+     * @return string list of placeholders
      */
-    public static function isAjax()
-    {
-        /*
-            If a request is made via AJAX, the server's HTTP_X_REQUESTED_WITH value will be XMLHttpRequest
-        */
-        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-    }
+     public function getPlaceholders($amount)
+     {
+        $num = is_array($amount) ? count($amount) : (int) $amount;
+        $list = "";
+        for($i=0;$i<$num;++$i)
+            $list .= "?,";
+        return rtrim($list, ',');
+     }
 }
 ?>

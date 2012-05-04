@@ -7,9 +7,7 @@
  */
 class Model extends Database
 {
-    static $instance;
-
-    private $root = 'sql/'; // top level sql file directory
+    private $root = SQL_PATH; // top level sql file directory
     private $path;          // path to sql folder
     private $name;          // specific folder within the root
     private $vars;          // array of values to be used by the model sql files
@@ -19,8 +17,9 @@ class Model extends Database
      *
      * Calls to the parent Database::connect
      */
-    protected function __construct()
+    public function __construct($name="")
     {
+        $this->init($name);
         parent::__construct();
     }
 
@@ -76,6 +75,9 @@ class Model extends Database
      * Reads in an SQL file and executes it by passing the corresponding value to Database::queryRow.
      *
      * @param string $file SQL file name
+     * @return
+     * - one-dimensional array if successful
+     * - false if the query fails
      */
     public function queryRow($file)
     {
@@ -90,6 +92,9 @@ class Model extends Database
      * Reads in an SQL file and executes it by passing the corresponding value to Database::queryColumn.
      *
      * @param string $file SQL file name
+     * @return
+     * - column value if successful
+     * - false if the query fails
      */
     public function queryColumn($file)
     {
@@ -115,6 +120,22 @@ class Model extends Database
     }
 
     /**
+     * Execute an SQL statement and return the resulting value indexed on the given key
+     *
+     * Reads in an SQL file and executes it by passing the corresponding value to Database::queryKeyRow.
+     *
+     * @param string $key column on which to index the values
+     * @param string $file SQL file name
+     */
+    public function queryKeyRow($key, $file)
+    {
+        $args = func_get_args();
+        $this->prepQuery($file, $query, $args);
+        array_shift($args);
+        return parent::queryKeyRow($key, $query, $args);
+    }
+
+    /**
      * Prepare query and arguments to pass to the Database query functions
      *
      * Reads in the SQL statement from the given file
@@ -126,13 +147,32 @@ class Model extends Database
      * @param array &$args array reference at which to store the query parameters
      */
     private function prepQuery($file, &$query, &$args)
-    {
+    {   
         ob_start();
         require(dirname(__FILE__).'/../'.$this->path.$file);
         $query = ob_get_clean();
         if(is_array($args))
             array_shift($args);
-    }
+        while(isset($args[0]) && is_array($args[0]))
+            $args = $args[0];
+
+        $id_pattern = '/(:[a-z0-9_]+)/i';
+        if (preg_match_all($id_pattern, $query, $matches))
+        {   
+            $newargs = array();
+            foreach ($matches[0] as $match)
+            {   
+                if (array_key_exists($match, $args))
+                    $newargs[] = $args[$match];
+                else if (array_key_exists(ltrim($match, ':'), $args))
+                    $newargs[] = $args[ltrim($match, ':')];
+                else
+                    $newargs[] = NULL;  // This should really be an error...
+            }   
+            $query = preg_replace($id_pattern, '?', $query);
+            $args = $newargs;
+        }   
+    } 
 
     /**
      * Set the appropriate path values and resets variables
@@ -154,12 +194,9 @@ class Model extends Database
      *
      * Get the model object if it exists, and create it if it doesn't (singleton pattern)
      */
-    public static function getModel()
+    public static function getModel($name="")
     {
-        if(isset(self::$instance))
-            return self::$instance;
-        else
-            return self::$instance = new Model();
+        return new Model($name);
     }
 }
 ?>

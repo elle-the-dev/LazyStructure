@@ -271,8 +271,8 @@ var nicEditorConfig = bkClass.extend({
 		'hr' : {name : __('Horizontal Rule'), command : 'insertHorizontalRule', noActive : true}
 	},
 	iconsPath : '<?php echo PATH; ?>nicedit/nicEditorIcons.gif',
-	buttonList : ['save','bold','italic','underline','left','center','right','justify','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor'],
-	iconList : {"xhtml":1,"bgcolor":2,"forecolor":3,"bold":4,"center":5,"hr":6,"indent":7,"italic":8,"justify":9,"left":10,"ol":11,"outdent":12,"removeformat":13,"right":14,"save":25,"strikethrough":16,"subscript":17,"superscript":18,"ul":19,"underline":20,"image":21,"link":22,"unlink":23,"close":24,"arrow":26,"upload":27}
+	buttonList : ['save','bold','italic','underline','left','center','right','justify','ol','ul','fontSize','fontFamily','fontFormat','indent','outdent','image','upload','link','unlink','forecolor','bgcolor','fileupload','filemanager'],
+	iconList : {"xhtml":1,"bgcolor":2,"forecolor":3,"bold":4,"center":5,"hr":6,"indent":7,"italic":8,"justify":9,"left":10,"ol":11,"outdent":12,"removeformat":13,"right":14,"save":25,"strikethrough":16,"subscript":17,"superscript":18,"ul":19,"underline":20,"image":21,"link":22,"unlink":23,"close":24,"arrow":26,"upload":27,"fileupload":28,"filemanager":29,"stopediting":24}
 	
 });
 /* END CONFIG */
@@ -576,7 +576,11 @@ var nicEditorInstance = bkClass.extend({
 	},
 	
 	nicCommand : function(cmd,args) {
-		document.execCommand(cmd,false,args);
+
+	    if(cmd.toLowerCase() == "inserthtml" && navigator.appVersion.indexOf("MSIE") != -1)
+            document.selection.createRange().pasteHTML(args);
+        else
+		    document.execCommand(cmd,false,args);
 	}		
 });
 
@@ -986,6 +990,15 @@ var nicEditorAdvancedButton = nicEditorButton.extend({
 					case 'content':
 						this.inputs[itm] = new bkElement('textarea').setAttributes({id : itm}).setStyle({border : '1px solid #ccc', 'float' : 'left'}).setStyle(field.style).appendTo(contain);
 						this.inputs[itm].value = val;
+                        break;
+                    case 'checkbox':
+						this.inputs[itm] = new bkElement('input').setAttributes({id : itm, 'value' : val, 'type' : 'checkbox', 'checked' : 'checked'}).appendTo(contain);
+                        this.inputs[itm].value = val;
+                        break;
+                    case 'hidden':
+						this.inputs[itm] = new bkElement('input').setAttributes({id : itm, 'value' : val, 'type' : 'hidden'}).appendTo(contain);
+                        this.inputs[itm].value = val;
+                        break;
 				}	
 			}
 		}
@@ -1297,13 +1310,27 @@ var nicImageOptions = {
 
 var nicImageButton = nicEditorAdvancedButton.extend({	
 	addPane : function() {
-		this.im = this.ne.selectedInstance.selElm().parentTag('IMG');
+        this.im = $(this.ne.selectedInstance.selElm()).parent().find('img').get(0);
 		this.addForm({
 			'' : {type : 'title', txt : 'Add/Edit Image'},
 			'src' : {type : 'text', txt : 'URL', 'value' : 'http://', style : {width: '150px'}},
 			'alt' : {type : 'text', txt : 'Alt Text', style : {width: '100px'}},
-			'align' : {type : 'select', txt : 'Align', options : {none : 'Default','left' : 'Left', 'right' : 'Right'}}
+			'align' : {type : 'select', txt : 'Align', options : {none : 'Default','left' : 'Left', 'right' : 'Right'}},
+            'width' : {type : 'text', txt : 'Width', value: this.im.width, style : {width: '100px'}},
+            'height' : {type : 'text', txt : 'Height', value: this.im.height, style : {width: '100px'}},
+            'linkRatio' : {type: 'checkbox', txt : 'Maintain Aspect Ratio'},
+            'ratio' : {type: 'hidden', value: this.im.width / this.im.height}
 		},this.im);
+        $('#width').bind('change', function()
+        {
+            if($('#linkRatio').attr('checked'))
+                $('#height').val(Math.round($('#width').val() / $('#ratio').val()));
+        });
+        $('#height').bind('change', function()
+        {
+            if($('#linkRatio').attr('checked'))
+                $('#width').val(Math.round($('#height').val() * $('#ratio').val()));
+        });
 	},
 	
 	submit : function(e) {
@@ -1323,7 +1350,9 @@ var nicImageButton = nicEditorAdvancedButton.extend({
 			this.im.setAttributes({
 				src : this.inputs['src'].value,
 				alt : this.inputs['alt'].value,
-				align : this.inputs['align'].value
+				align : this.inputs['align'].value,
+                width : this.inputs['width'].value,
+                height : this.inputs['height'].value
 			});
 		}
 	}
@@ -1369,7 +1398,7 @@ var nicUploadOptions = {
 /* END CONFIG */
 
 var nicUploadButton = nicEditorAdvancedButton.extend({	
-	nicURI : 'http://files.nicedit.com/',
+	nicURI : '<?php echo PATH; ?>do/doNicEditUpload.php',
 
 	addPane : function() {
 		this.im = this.ne.selectedInstance.selElm().parentTag('IMG');
@@ -1391,9 +1420,6 @@ var nicUploadButton = nicEditorAdvancedButton.extend({
 		myDoc.write("<html><body>");
 		myDoc.write('<form method="post" action="'+this.uri+'?id='+this.myID+'" enctype="multipart/form-data">');
 		myDoc.write('<input type="hidden" name="APC_UPLOAD_PROGRESS" value="'+this.myID+'" />');
-		if(this.uri == this.nicURI) {
-			myDoc.write('<div style="position: absolute; margin-left: 160px;"><img src="http://imageshack.us/img/imageshack.png" width="30" style="float: left;" /><div style="float: left; margin-left: 5px; font-size: 10px;">Hosted by<br /><a href="http://www.imageshack.us/" target="_blank">ImageShack</a></div></div>');
-		}
 		myDoc.write('<div style="font-size: 14px; font-weight: bold; padding-top: 5px;">Insert an Image</div>');
 		myDoc.write('<input name="nicImage" type="file" style="margin-top: 10px;" />');
 		myDoc.write('</form>');
@@ -1441,9 +1467,11 @@ var nicUploadButton = nicEditorAdvancedButton.extend({
 			if(!this.im) {
 				this.ne.selectedInstance.restoreRng();
 				var tmp = 'javascript:nicImTemp();';
-				this.ne.nicCommand("insertImage",tmp);
-				this.im = this.findElm('IMG','src',tmp);
+				//this.ne.nicCommand("insertImage",tmp);
+				this.ne.nicCommand("insertHTML",'<img src="'+o.url+'" />');
+				//this.im = this.findElm('IMG','src',tmp);
 			}
+            /*
 			var w = parseInt(this.ne.selectedInstance.elm.getStyle('width'));
 			if(this.im) {
 				this.im.setAttributes({
@@ -1451,6 +1479,7 @@ var nicUploadButton = nicEditorAdvancedButton.extend({
 					width : (w && o.width) ? Math.min(w,o.width) : ''
 				});
 			}
+            */
 
 			this.removePane();
 		} else if(o.error) {
@@ -1658,6 +1687,7 @@ var nicCodeOptions = {
 };
 /* END CONFIG */
 
+var editor;
 var nicCodeButton = nicEditorAdvancedButton.extend({
 	width : '810px',
 		
@@ -1666,15 +1696,237 @@ var nicCodeButton = nicEditorAdvancedButton.extend({
 			'' : {type : 'title', txt : 'Edit HTML'},
 			'code' : {type : 'content', 'value' : this.ne.selectedInstance.getContent(), style : {width: '800px', height : '300px'}}
 		});
+
+        editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+          mode: "text/html",
+          lineNumbers: true,
+          lineWrapping: true
+        });
+        var hlLine = editor.setLineClass(0, "activeline");
+        $('.nicEdit-pane').append('<button onclick="javascript:autoFormatSelection();">Format Selected</button>'
+            + '<button onclick="javascript:viMode();" class="viMode">vi mode</button>'
+        );
+
 	},
 	
 	submit : function(e) {
-		var code = this.inputs['code'].value;
+		//var code = this.inputs['code'].value;
+        var code = editor.getValue();
 		this.ne.selectedInstance.setContent(code);
 		this.removePane();
 	}
 });
+      function viMode() {
+        if(editor.getOption("keyMap") == "vim")
+        {
+            editor.setOption("keyMap", "default");
+            $('.viMode').css('border-style', 'outset');
+        }
+        else
+        {
+            editor.setOption("keyMap", "vim");
+            $('.viMode').css('border-style', 'inset');
+        }
+      }
+
+      function getSelectedRange() {
+        return { from: editor.getCursor(true), to: editor.getCursor(false) };
+      }
+ 
+      function autoFormatSelection() {
+        var range = getSelectedRange();
+        editor.autoFormatRange(range.from, range.to);
+      }
+ 
 
 nicEditors.registerPlugin(nicPlugin,nicCodeOptions);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* START CONFIG */
+var nicFileUploadOptions = {
+	buttons : {
+		'fileupload' : {name : 'Upload File', type : 'nicFileUploadButton'}
+	}
+	
+};
+/* END CONFIG */
+
+var nicFileUploadButton = nicEditorAdvancedButton.extend({	
+    nicURI: '<?php echo PATH; ?>do/doNicEditFileUpload.php',
+
+	addPane : function() {
+		this.im = this.ne.selectedInstance.selElm().parentTag('IMG');
+		this.myID = Math.round(Math.random()*Math.pow(10,15));
+		this.requestInterval = 1000;
+		this.uri = this.ne.options.fileUploadURI || this.nicURI;
+		nicFileUploadButton.lastPlugin = this;
+					
+		this.myFrame = new bkElement('iframe').setAttributes({ width : '100%', height : '100px', frameBorder : 0, scrolling : 'no' }).setStyle({border : 0}).appendTo(this.pane.pane);
+		this.progressWrapper = new bkElement('div').setStyle({display: 'none', width: '100%', height: '20px', border : '1px solid #ccc'}).appendTo(this.pane.pane);
+		this.progress = new bkElement('div').setStyle({width: '0%', height: '20px', backgroundColor : '#ccc'}).setContent('&nbsp').appendTo(this.progressWrapper);
+
+		setTimeout(this.addForm.closure(this),50);
+	},
+
+	addForm : function() {
+		var myDoc = this.myDoc = this.myFrame.contentWindow.document;
+		myDoc.open();
+		myDoc.write("<html><body>");
+		myDoc.write('<form method="post" action="'+this.uri+'?id='+this.myID+'" enctype="multipart/form-data">');
+		myDoc.write('<input type="hidden" name="APC_UPLOAD_PROGRESS" value="'+this.myID+'" />');
+		myDoc.write('<div style="font-size: 14px; font-weight: bold; padding-top: 5px;">Upload a File</div>');
+		myDoc.write('<input name="nicImage" type="file" style="margin-top: 10px;" />');
+		myDoc.write('</form>');
+		myDoc.write("</body></html>");
+		myDoc.close();
+
+		this.myBody = myDoc.body;
+
+		this.myForm = $BK(this.myBody.getElementsByTagName('form')[0]);
+		this.myInput = $BK(this.myBody.getElementsByTagName('input')[1]).addEvent('change', this.startFileUpload.closure(this));
+		this.myStatus = new bkElement('div',this.myDoc).setStyle({textAlign : 'center', fontSize : '14px'}).appendTo(this.myBody);
+	},
+
+	startFileUpload : function() {
+		this.myForm.setStyle({display : 'none'});
+		this.myStatus.setContent('<img src="http://files.nicedit.com/ajax-loader.gif" style="float: right; margin-right: 40px;" /><strong>File Uploading...</strong><br />Please wait');
+		this.myForm.submit();
+		setTimeout(this.makeRequest.closure(this),this.requestInterval);
+	},
+
+	makeRequest : function() {
+		if(this.pane && this.pane.pane) {
+			nicFileUploadButton.lastPlugin = this;
+			var s = new bkElement('script').setAttributes({ type : 'text/javascript', src : this.uri+'?check='+this.myID+'&rand='+Math.round(Math.random()*Math.pow(10,15))}).addEvent('load', function() {
+				s.parentNode.removeChild(s);
+			}).appendTo(document.getElementsByTagName('head')[0]);
+			if(this.requestInterval) {
+				setTimeout(this.makeRequest.closure(this), this.requestInterval);
+			}
+		}
+	},
+
+	setProgress : function(percent) {
+		this.progressWrapper.setStyle({display: 'block'});
+		this.progress.setStyle({width : percent+'%'});
+	},
+
+	update : function(o) {
+		if(o == false) {
+			this.progressWrapper.setStyle({display : 'none'});
+		} else if(o.url) {
+			this.setProgress(100);
+			this.requestInterval = false;
+
+    	    if(!this.im) {
+				this.ne.selectedInstance.restoreRng();
+				var tmp = 'javascript:nicImTemp();';
+				this.ne.nicCommand("insertImage",tmp);
+				this.im = this.findElm('IMG','src',tmp);
+			}
+			var w = parseInt(this.ne.selectedInstance.elm.getStyle('width'));
+			if(this.im) {
+                $(this.im).replaceWith('<a href="'+o.url+'">'+o.name+'</a>');
+			}
+
+
+			this.removePane();
+		} else if(o.error) {
+			this.requestInterval = false;
+			this.setProgress(100);
+			alert("There was an error uploading your image ("+o.error+").");
+			this.removePane();
+		} else if(o.noprogress) {
+			this.progressWrapper.setStyle({display : 'none'});
+			if(this.uri.indexOf('http:') == -1 || this.uri.indexOf(window.location.host) != -1) {
+				this.requestInterval = false;
+			}
+		} else {
+			this.setProgress( Math.round( (o.current/o.total) * 75) );
+			if(o.interval) {
+				this.requestInterval = o.interval;
+			}
+		}
+	}
+
+});
+
+nicFileUploadButton.statusCb = function(o) {
+	nicFileUploadButton.lastPlugin.update(o);
+}
+
+nicEditors.registerPlugin(nicPlugin,nicFileUploadOptions);
+
+
+
+/* START CONFIG */
+var stopEditingOptions = {
+	buttons : {
+		'filemanager' : {name : __('Open File Manager'), type : 'nicEditorFileManagerButton'}
+	}
+};
+/* END CONFIG */
+
+var nicEditorFileManagerButton = nicEditorButton.extend({
+	init : function() {
+	},
+	mouseClick : function() {
+        window.open('<?php echo PATH; ?>nicedit/kfm/index.php','File_Manager','width=800,height=400');
+	}
+});
+
+nicEditors.registerPlugin(nicPlugin,stopEditingOptions);
+
+
+/* START CONFIG */
+var stopEditingOptions = {
+	buttons : {
+		'stopediting' : {name : __('Stop Editing'), type : 'nicEditorStopEditingButton'}
+	}
+};
+/* END CONFIG */
+
+var nicEditorStopEditingButton = nicEditorButton.extend({
+	init : function() {
+	},
+	mouseClick : function() {
+        if(confirm("Are you sure you want to quit editing?"))
+        {
+            for (var e in nicEditors.editors) {
+                // Save contents of all editors back into textareas.
+                var instances = nicEditors.editors[e].nicInstances;
+                for (var i = 0; i < instances.length; i++) {
+                    instances[i].remove();
+                }
+                // Remove all editor instances.
+                nicEditors.editors[e].nicInstances = [];
+            }
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementsByTagName("HTML")[0].style.marginTop = '0';
+        }
+	}
+});
+
+nicEditors.registerPlugin(nicPlugin,stopEditingOptions);
 
 

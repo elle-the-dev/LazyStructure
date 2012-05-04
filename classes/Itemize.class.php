@@ -18,6 +18,8 @@ abstract class Itemize
      */
     public function render()
     {
+        if(!is_array($this->view->items))
+            $this->view->items = array();
         // items are looped, so we have to ensure it starts from the top
         reset($this->view->items);
 
@@ -34,6 +36,7 @@ abstract class Itemize
     public function sort($asc=true)
     {
         $asc ? sort($this->view->items) : rsort($this->view->items);
+        //($asc ? sort : rsort)($this->view->items);
     }
 
    /**

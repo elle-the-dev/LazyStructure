@@ -1,0 +1,12 @@
+User-Agent: *
+Disallow: /admin/
+Disallow: /classes/
+Disallow: /css/
+Disallow: /do/
+Disallow: /error/
+Disallow: /img/
+Disallow: /js/
+Disallow: /niceditor/
+Disallow: /sql/
+Disallow: /templates/
+Disallow: /upload/

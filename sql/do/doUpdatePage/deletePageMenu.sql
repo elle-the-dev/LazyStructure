@@ -1,0 +1,1 @@
+TRUNCATE page_menu;

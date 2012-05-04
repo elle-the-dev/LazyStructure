@@ -1,0 +1,2 @@
+<span class="page next"><a href="<?php echo PATH.$this->queryString; ?>page=<?php echo $this->page+1; ?>" rel="address:<?php echo $this->queryString; ?>page=<?php echo $this->page+1; ?>">next &rsaquo;</a></span>
+<span class="page last"><a href="<?php echo PATH.$this->queryString; ?>page=<?php echo $this->numPages; ?>" rel="address:<?php echo $this->queryString; ?>page=<?php echo $this->numPages; ?>">last &raquo;</a></span>

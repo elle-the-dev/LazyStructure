@@ -30,6 +30,10 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../LazyStructure/_AdminTemplate.class.php.html">		AdminTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_ConfirmDeleteTemplate.class.php.html">		ConfirmDeleteTemplate.class.php
+		</a><br>
 			<a href="../LazyStructure/_Database.class.php.html">		Database.class.php
 		</a><br>
 			<a href="../LazyStructure/_Filter.class.php.html">		Filter.class.php
@@ -46,9 +50,13 @@
 		</a><br>
 			<a href="../LazyStructure/_ItemizeView.class.php.html">		ItemizeView.class.php
 		</a><br>
+			<a href="../LazyStructure/_LazyTable.class.php.html">		LazyTable.class.php
+		</a><br>
 			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
 		</a><br>
 			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_Permissions.class.php.html">		Permissions.class.php
 		</a><br>
 			<a href="../LazyStructure/_Reporting.class.php.html">		Reporting.class.php
 		</a><br>
@@ -65,7 +73,9 @@
       
             <b>Classes:</b><br />
         <div class="package">
-		    		<a href="../LazyStructure/Database.html">Database</a><br />
+		    		<a href="../LazyStructure/AdminTemplate.html">AdminTemplate</a><br />
+	    		<a href="../LazyStructure/ConfirmDeleteTemplate.html">ConfirmDeleteTemplate</a><br />
+	    		<a href="../LazyStructure/Database.html">Database</a><br />
 	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
 	    		<a href="../LazyStructure/Format.html">Format</a><br />
 	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
@@ -73,8 +83,10 @@
 	    		<a href="../LazyStructure/HtmlSelect.html">HtmlSelect</a><br />
 	    		<a href="../LazyStructure/Itemize.html">Itemize</a><br />
 	    		<a href="../LazyStructure/ItemizeView.html">ItemizeView</a><br />
+	    		<a href="../LazyStructure/LazyTable.html">LazyTable</a><br />
 	    		<a href="../LazyStructure/Model.html">Model</a><br />
 	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
+	    		<a href="../LazyStructure/Permissions.html">Permissions</a><br />
 	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
 	    		<a href="../LazyStructure/Template.html">Template</a><br />
 	    		<a href="../LazyStructure/User.html">User</a><br />
@@ -120,12 +132,14 @@ Source Location: /Database.class.php<br /><br />
     <li><a href="../LazyStructure/Database.html#methodgetDatabase">getDatabase</a></li>
     <li><a href="../LazyStructure/Database.html#methodgetHash">getHash</a></li>
     <li><a href="../LazyStructure/Database.html#methodgetPassword">getPassword</a></li>
+    <li><a href="../LazyStructure/Database.html#methodgetPlaceholders">getPlaceholders</a></li>
     <li><a href="../LazyStructure/Database.html#methodgetRandomToken">getRandomToken</a></li>
     <li><a href="../LazyStructure/Database.html#methodgetSalt">getSalt</a></li>
     <li><a href="../LazyStructure/Database.html#methodisAjax">isAjax</a></li>
     <li><a href="../LazyStructure/Database.html#methodquery">query</a></li>
     <li><a href="../LazyStructure/Database.html#methodqueryColumn">queryColumn</a></li>
     <li><a href="../LazyStructure/Database.html#methodqueryKey">queryKey</a></li>
+    <li><a href="../LazyStructure/Database.html#methodqueryKeyRow">queryKeyRow</a></li>
     <li><a href="../LazyStructure/Database.html#methodqueryRow">queryRow</a></li>
   </ul>
 </td>
@@ -186,7 +200,7 @@ PDO Database handler<br /><br /><p>Interface with the database through PDO conne
 <div class="tags">
   <hr />
 	<a name="methodgetDatabase"></a>
-	<h3>static method getDatabase <span class="smalllinenumber">[line 221]</span></h3>
+	<h3>static method getDatabase <span class="smalllinenumber">[line 254]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -214,7 +228,7 @@ PDO Database handler<br /><br /><p>Interface with the database through PDO conne
   </div>
   <hr />
 	<a name="methodisAjax"></a>
-	<h3>static method isAjax <span class="smalllinenumber">[line 300]</span></h3>
+	<h3>static method isAjax <span class="smalllinenumber">[line 333]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -274,7 +288,7 @@ PDO Database handler<br /><br /><p>Interface with the database through PDO conne
   </div>
   <hr />
 	<a name="methodauthenticate"></a>
-	<h3>method authenticate <span class="smalllinenumber">[line 237]</span></h3>
+	<h3>method authenticate <span class="smalllinenumber">[line 270]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -313,7 +327,7 @@ $xsrfToken)</code>
   </div>
   <hr />
 	<a name="methodgetHash"></a>
-	<h3>method getHash <span class="smalllinenumber">[line 250]</span></h3>
+	<h3>method getHash <span class="smalllinenumber">[line 283]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -352,7 +366,7 @@ $text)</code>
   </div>
   <hr />
 	<a name="methodgetPassword"></a>
-	<h3>method getPassword <span class="smalllinenumber">[line 274]</span></h3>
+	<h3>method getPassword <span class="smalllinenumber">[line 307]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -396,8 +410,47 @@ $salt)</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodgetPlaceholders"></a>
+	<h3>method getPlaceholders <span class="smalllinenumber">[line 348]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string getPlaceholders(
+
+$amount)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		getPlaceholders([int|array]) returns a comma separated list of PDO placeholders (?)<br /><br /><p>Takes either the number provided or the length of the array and returns that many placeholders</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>list of placeholders</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$amount</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodgetRandomToken"></a>
-	<h3>method getRandomToken <span class="smalllinenumber">[line 262]</span></h3>
+	<h3>method getRandomToken <span class="smalllinenumber">[line 295]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -425,7 +478,7 @@ $salt)</code>
   </div>
   <hr />
 	<a name="methodgetSalt"></a>
-	<h3>method getSalt <span class="smalllinenumber">[line 287]</span></h3>
+	<h3>method getSalt <span class="smalllinenumber">[line 320]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -567,14 +620,15 @@ $query, mixed
   </div>
   <hr />
 	<a name="methodqueryKey"></a>
-	<h3>method queryKey <span class="smalllinenumber">[line 116]</span></h3>
+	<h3>method queryKey <span class="smalllinenumber">[line 117]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>array queryKey(
-
-$key, mixed
-$query)</code>
+string
+$key, string
+$query, mixed
+2)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -604,14 +658,77 @@ $query)</code>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">mixed&nbsp;&nbsp;</td>
-        <td><b>$query</b>&nbsp;&nbsp;</td>
-        <td>any additional arguments are passed as parameters to the query</td>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$key</b>&nbsp;&nbsp;</td>
+        <td>the key to index on</td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$query</b>&nbsp;&nbsp;</td>
+        <td>SQL statement to execute</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>2</b>&nbsp;&nbsp;</td>
+        <td>any additional arguments are passed as parameters to the query</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodqueryKeyRow"></a>
+	<h3>method queryKeyRow <span class="smalllinenumber">[line 137]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array queryKeyRow(
+string
+$key, string
+$query, mixed
+2)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		queryKeyRow(string, string) executes an SQL query and returns the resulting value<br /><br /><p>Executes an SQL <ul><li>SELECT returns results in one-dimensional associative array
+   comprised of elements of the given key</li></ul></p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>one-dimensional array of values</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../LazyStructure/Model.html#methodqueryKeyRow">Model::queryKeyRow()</a></dt>
+		<dd>Execute an SQL statement and return the resulting value indexed on the given key</dd>
+	</dl>
+	</p>
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$key</b>&nbsp;&nbsp;</td>
-        <td></td>
+        <td>the key of the column who's records will comprise the array</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$query</b>&nbsp;&nbsp;</td>
+        <td>SQL statement to execute</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>2</b>&nbsp;&nbsp;</td>
+        <td>any additional arguments are passed as parameters to the query</td>
       </tr>
         </table>
     </div><br />
@@ -673,7 +790,7 @@ $query, mixed
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 18 Feb 2011 21:10:26 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 11 Apr 2011 18:00:09 -0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

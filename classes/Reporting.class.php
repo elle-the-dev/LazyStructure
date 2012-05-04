@@ -7,10 +7,7 @@
  */
 class Reporting
 {
-    public function __construct()
-    {
-
-    }
+    const RELOAD = "-1";
 
     /**
      * endDo([bool]) processing file handler
@@ -25,15 +22,16 @@ class Reporting
         /*
             Setting $clear=false when calling endDo maintains error messages in the session
         */
-        if(Database::isAjax())
+        if(self::isAjax())
         {
             if(self::hasRedirect())
                 echo self::getJsonAll(false);
-            if(self::hasAnyErrors() || self::hasSuccesses() || self::hasMarkup())
+            else if(self::hasAnyErrors() || self::hasSuccesses() || self::hasMarkup())
                 echo self::getJsonAll($clear);
         }
         else
             header('Location: '.$_SESSION['lastPage']);
+        die;
     }
 
     /**
@@ -169,10 +167,23 @@ class Reporting
      *
      * @param string $link the URL path to redirect to
      */
-    public static function setRedirect($link)
+    public static function setRedirect($link, $ajax=true)
     {   
         $_SESSION['redirect'] = $link;
+        if(!$ajax)
+            $_SESSION['ajax'] = false;
     }  
+
+    /**
+     * setReload() adds a redirect to cause a page fresh on return
+     *
+     * Sets a redirect of -1, which indicates to reload the page if JavaScript is enabled
+     * This directive can be ignored if JavaScript is disabled, as the page much reload regardless
+     */
+    public static function setReload()
+    {
+        self::setRedirect(self::RELOAD);
+    }
 
     /**
      * getJsonErrors(bool) returns errors as a JSON string
@@ -275,7 +286,7 @@ class Reporting
     private static function showMessages($type, $clear)
     {
         $output = "";
-        if(isset($_SESSION[$type]))
+        if(isset($_SESSION[$type]) && count($_SESSION[$type]) > 0)
         {
             $output = '<ul>';
             foreach($_SESSION[$type] as $val)
@@ -307,6 +318,8 @@ class Reporting
             $ar['markup'] = $_SESSION['markup'];
         if(self::hasRedirect())
             $ar['redirect'] = array($_SESSION['redirect']); // 2D array avoids a JSON parsing glitch
+        $ar['ajax'] = (isset($_SESSION['ajax']) && !$_SESSION['ajax']);
+
         if($clear)
         {
             unset($_SESSION['errors']);
@@ -338,5 +351,24 @@ class Reporting
             $_SESSION[$type] = array();
         return $output;
     }
+
+    /**
+     * isAjax() returns whether the request is via an AJAX call
+     *
+     * Uses the $_SERVER['HTTP_X_REQUESTED_WITH'] value 
+     * in order to determine whether the request was via an AJAX call
+     *
+     * @return bool if the request was via AJAX
+     */
+    public static function isAjax()
+    {
+        /*
+            If a request is made via AJAX, the server's HTTP_X_REQUESTED_WITH value will be XMLHttpRequest
+        */
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+    }
+
+
+
 }
 ?>
