@@ -1,7 +1,7 @@
+Options -Indexes
+
 RewriteEngine on
-
 RewriteRule ^[\#!]?/?([0-9]+)/.*$ index.php?pageId=$1
-
 RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)$
 RewriteRule ^$ %1
 

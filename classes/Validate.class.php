@@ -85,11 +85,18 @@ class Validate
      * Receives a password and verifies it meets the minimum security requirements
      *
      * @param string $password the password to validate
+     * @param int $minLength the minimum password length
+     * @param bool $upper if it must contain an uppercase character
+     * @param bool $numeric if it must contain a number
+     * @param bool $special if it must contain a special character
      * @return bool true if valid, false if not
      */
-    public static function password($password)
+    public static function password($password, $minLength=8, $upper=false, $numeric=false, $special=false)
     {
-        return !(strlen($password) < 8);
+        return strlen($password) >= $minLength
+            && (!$upper || preg_match('/[A-Z]/', $password) > 0) // contains an uppercase character
+            && (!$numeric || preg_match('/\D/', $password) > 0) // contains a number
+            && (!$special || preg_match('/[^a-zA-Z0-9]/', $password) > 0); // contains a non-alphanumeric character
     }
 
     /**
@@ -103,6 +110,7 @@ class Validate
      */
     public static function phone($phone, $required=true)
     {
+        $phone = Filter::stripNonNumeric($phone);
         return (!$required && empty($phone)) || strlen($phone) === 10;
     }
 

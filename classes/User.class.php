@@ -16,7 +16,9 @@ class User
     private $phone;
     private $address1;
     private $address2;
+    private $city;
     private $ip;
+    private $groups;
     private $xsrfToken;
 
     /**
@@ -31,8 +33,7 @@ class User
     {
         if(isset($id))
         {
-            global $db;
-            $db->init("classes/User");
+            $db = new Model("classes/User");
             $row = $db->queryRow("init.sql", $id);
             $this->setValues($row);
         }
@@ -73,10 +74,9 @@ class User
      * @param string $password password
      * @param string $remember save the session in a cookie
      */
-    public function login($username, $password, $remember=false)
+    public function login($username, $password, $remember=false, $redirect=false, $successMessage="Login successful", $failureMessage="Login unsuccessful")
     {
-        global $db;
-        $db->init("classes/User/login");
+        $db = new Model("classes/User/login");
         $salt = $db->queryColumn("salt.sql", $username);
         $row = $db->queryRow("select.sql", $username, $db->getPassword($password, $salt));
         if(is_array($row))
@@ -95,11 +95,30 @@ class User
             setcookie('xsrfToken', $this->xsrfToken, 0, '/');
             $db->query("update.sql", $loginToken, $row['id']);
 
+            $this->groups = $db->query("selectGroups.sql", $row['id']);
+            if(!empty($this->groups))
+            {
+                array_walk($this->groups, function(&$a)
+                {
+                    $a = implode($a);
+                });
+            }
+            else
+                $this->groups = array();
+            $this->groups[] = GROUP_GUEST;
+
             $this->setValues($row);
-            Reporting::setSuccess("Login successful");
+            Reporting::setSuccess($successMessage);
+            if($redirect)
+            {
+                if($redirect == -1)
+                    Reporting::setReload();
+                else
+                    Reporting::setRedirect($redirect, false);
+            }
         }
         else
-            Reporting::setError("Login unsuccessful");
+            Reporting::setError($failureMessage);
     }
 
     private function setValues($row)
@@ -107,10 +126,10 @@ class User
         $this->id = $row['id'];
         $this->username = $row['username'];
         $this->password = $row['password'];
-        $this->firstName = $row['name'];
-        $this->lastName = $row['surname'];
-        $this->email = $row['email'];
-        $this->phone = $row['phone'];
+        $this->name     = $row['name'];
+        $this->surname  = $row['surname'];
+        $this->email    = $row['email'];
+        $this->phone    = $row['phone'];
         $this->address1 = $row['address1'];
         $this->address2 = $row['address2'];
         $_SESSION['user'] = serialize($this);
@@ -118,7 +137,7 @@ class User
 
     public function update($fields=null)
     {
-        $db = Database::getDatabase();
+        $db = new Model("classes/User/update");
         if(isset($fields))
         {
             $count = 0;
@@ -146,7 +165,7 @@ class User
         }
         else
         {
-            $db->query("all.sql", $this->password, $this->firstName, $this->lastName, $this->email, $this->phone, $this->address1, $this->address2, $this->id);
+            $db->query("all.sql", $this->password, $this->name, $this->surname, $this->email, $this->phone, $this->address1, $this->address2, $this->city, $this->id);
         }
         $_SESSION['user'] = serialize($this);
     }

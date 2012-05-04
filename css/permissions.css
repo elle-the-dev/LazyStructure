@@ -1,0 +1,9 @@
+.permissions th
+{
+    font-size: 0.8em;
+}
+
+.permissions select
+{
+    width: 15em;
+}

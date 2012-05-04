@@ -1,0 +1,77 @@
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+    padding-right: 20px;
+    text-transform: capitalize;
+}
+table.tablesorter thead tr .header {
+	background-image: url('bg.gif');
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+    padding-right: 20px;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.asc th.sorted{
+	background-image: url('img/asc.gif');
+}
+table.desc th.sorted{
+	background-image: url('img/desc.gif');
+}
+table.asc th.sorted, table.desc th.sorted{
+    background-color: #8dbdd8;
+    background-position: center right;
+    background-repeat: no-repeat;
+}
+table.asc th.sorted a, table.desc th.sorted a{
+    color: #406090;
+}
+
+button.editable, button.deletable
+{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    font-size: 0px;
+    height: 20px;
+    width: 20px;
+}
+
+button.editable
+{
+    background-image: url('img/editicon.gif');
+}
+
+button.deletable
+{
+    background-image: url('img/trashicon.gif');
+}
+
+td.editdelete
+{
+    width: 50px;
+}
+
+td.editdelete form, td.editdelete form div
+{
+    display: inline;
+}

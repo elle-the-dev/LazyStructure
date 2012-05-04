@@ -35,19 +35,20 @@
                             </ul>
                         </li>
                         <li class="stats">
-                            <a href="<?php echo PATH; ?>4/login" rel="address:4/login">Members</a>
+                            <a href="<?php echo PATH; ?>login.php" rel="address:login.php">Members</a>
                             <ul>
                                 <li>
                                     <a href="<?php echo PATH; ?>3/join" rel="address:3/join">Join</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo PATH; ?>4/login" rel="address:4/login">Login</a>
+                                    <a href="<?php echo PATH; ?>login.php" rel="address:login.php">Login</a>
                                 </li>
                                 <li>
                                     <a href="do/doLogout.php">Logout</a>
                                 </li>
                             </ul>
-                       </li>
+                        </li>
+                        <?php $this->admin->render(); ?>
                     </ul>
                 </div>
 

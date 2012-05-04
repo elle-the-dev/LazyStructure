@@ -30,6 +30,10 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../LazyStructure/_AdminTemplate.class.php.html">		AdminTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_ConfirmDeleteTemplate.class.php.html">		ConfirmDeleteTemplate.class.php
+		</a><br>
 			<a href="../LazyStructure/_Database.class.php.html">		Database.class.php
 		</a><br>
 			<a href="../LazyStructure/_Filter.class.php.html">		Filter.class.php
@@ -46,9 +50,13 @@
 		</a><br>
 			<a href="../LazyStructure/_ItemizeView.class.php.html">		ItemizeView.class.php
 		</a><br>
+			<a href="../LazyStructure/_LazyTable.class.php.html">		LazyTable.class.php
+		</a><br>
 			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
 		</a><br>
 			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_Permissions.class.php.html">		Permissions.class.php
 		</a><br>
 			<a href="../LazyStructure/_Reporting.class.php.html">		Reporting.class.php
 		</a><br>
@@ -65,7 +73,9 @@
       
             <b>Classes:</b><br />
         <div class="package">
-		    		<a href="../LazyStructure/Database.html">Database</a><br />
+		    		<a href="../LazyStructure/AdminTemplate.html">AdminTemplate</a><br />
+	    		<a href="../LazyStructure/ConfirmDeleteTemplate.html">ConfirmDeleteTemplate</a><br />
+	    		<a href="../LazyStructure/Database.html">Database</a><br />
 	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
 	    		<a href="../LazyStructure/Format.html">Format</a><br />
 	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
@@ -73,8 +83,10 @@
 	    		<a href="../LazyStructure/HtmlSelect.html">HtmlSelect</a><br />
 	    		<a href="../LazyStructure/Itemize.html">Itemize</a><br />
 	    		<a href="../LazyStructure/ItemizeView.html">ItemizeView</a><br />
+	    		<a href="../LazyStructure/LazyTable.html">LazyTable</a><br />
 	    		<a href="../LazyStructure/Model.html">Model</a><br />
 	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
+	    		<a href="../LazyStructure/Permissions.html">Permissions</a><br />
 	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
 	    		<a href="../LazyStructure/Template.html">Template</a><br />
 	    		<a href="../LazyStructure/User.html">User</a><br />
@@ -105,11 +117,16 @@ Source Location: /Reporting.class.php<br /><br />
 </td>
 
 
+<td valign="top">
+<h3><a href="#class_consts">Constants</a></h3>
+<ul>
+    <li><a href="../LazyStructure/Reporting.html#constRELOAD">RELOAD</a></li>
+  </ul>
+</td>
 
 <td valign="top">
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
-    <li><a href="../LazyStructure/Reporting.html#method__construct">__construct</a></li>
     <li><a href="../LazyStructure/Reporting.html#methoddebugArray">debugArray</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodendDo">endDo</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodgetFieldErrors">getFieldErrors</a></li>
@@ -127,6 +144,7 @@ Source Location: /Reporting.class.php<br /><br />
     <li><a href="../LazyStructure/Reporting.html#methodsetFieldError">setFieldError</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodsetMarkup">setMarkup</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodsetRedirect">setRedirect</a></li>
+    <li><a href="../LazyStructure/Reporting.html#methodsetReload">setReload</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodsetSuccess">setSuccess</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodshowErrors">showErrors</a></li>
     <li><a href="../LazyStructure/Reporting.html#methodshowSuccesses">showSuccesses</a></li>
@@ -160,7 +178,7 @@ Processing script handler for messages and form content<br /><br /><p>Used for h
 <div class="tags">
   <hr />
 	<a name="methoddebugArray"></a>
-	<h3>static method debugArray <span class="smalllinenumber">[line 47]</span></h3>
+	<h3>static method debugArray <span class="smalllinenumber">[line 44]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -196,7 +214,7 @@ $ar)</code>
   </div>
   <hr />
 	<a name="methodendDo"></a>
-	<h3>static method endDo <span class="smalllinenumber">[line 23]</span></h3>
+	<h3>static method endDo <span class="smalllinenumber">[line 20]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -232,7 +250,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodgetFieldErrors"></a>
-	<h3>static method getFieldErrors <span class="smalllinenumber">[line 232]</span></h3>
+	<h3>static method getFieldErrors <span class="smalllinenumber">[line 240]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -268,7 +286,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodgetJsonErrors"></a>
-	<h3>static method getJsonErrors <span class="smalllinenumber">[line 184]</span></h3>
+	<h3>static method getJsonErrors <span class="smalllinenumber">[line 192]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -304,7 +322,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodgetJsonFieldErrors"></a>
-	<h3>static method getJsonFieldErrors <span class="smalllinenumber">[line 208]</span></h3>
+	<h3>static method getJsonFieldErrors <span class="smalllinenumber">[line 216]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -340,7 +358,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodgetJsonMarkup"></a>
-	<h3>static method getJsonMarkup <span class="smalllinenumber">[line 220]</span></h3>
+	<h3>static method getJsonMarkup <span class="smalllinenumber">[line 228]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -376,7 +394,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodgetJsonSuccesses"></a>
-	<h3>static method getJsonSuccesses <span class="smalllinenumber">[line 196]</span></h3>
+	<h3>static method getJsonSuccesses <span class="smalllinenumber">[line 204]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -412,7 +430,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodhasAnyErrors"></a>
-	<h3>static method hasAnyErrors <span class="smalllinenumber">[line 91]</span></h3>
+	<h3>static method hasAnyErrors <span class="smalllinenumber">[line 88]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -440,7 +458,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodhasErrors"></a>
-	<h3>static method hasErrors <span class="smalllinenumber">[line 61]</span></h3>
+	<h3>static method hasErrors <span class="smalllinenumber">[line 58]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -468,7 +486,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodhasFieldErrors"></a>
-	<h3>static method hasFieldErrors <span class="smalllinenumber">[line 81]</span></h3>
+	<h3>static method hasFieldErrors <span class="smalllinenumber">[line 78]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -496,7 +514,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodhasMarkup"></a>
-	<h3>static method hasMarkup <span class="smalllinenumber">[line 101]</span></h3>
+	<h3>static method hasMarkup <span class="smalllinenumber">[line 98]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -524,7 +542,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodhasRedirect"></a>
-	<h3>static method hasRedirect <span class="smalllinenumber">[line 111]</span></h3>
+	<h3>static method hasRedirect <span class="smalllinenumber">[line 108]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -552,7 +570,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodhasSuccesses"></a>
-	<h3>static method hasSuccesses <span class="smalllinenumber">[line 71]</span></h3>
+	<h3>static method hasSuccesses <span class="smalllinenumber">[line 68]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -580,7 +598,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodsetError"></a>
-	<h3>static method setError <span class="smalllinenumber">[line 123]</span></h3>
+	<h3>static method setError <span class="smalllinenumber">[line 120]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -616,7 +634,7 @@ $message)</code>
   </div>
   <hr />
 	<a name="methodsetFieldError"></a>
-	<h3>static method setFieldError <span class="smalllinenumber">[line 148]</span></h3>
+	<h3>static method setFieldError <span class="smalllinenumber">[line 145]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -658,7 +676,7 @@ $message)</code>
   </div>
   <hr />
 	<a name="methodsetMarkup"></a>
-	<h3>static method setMarkup <span class="smalllinenumber">[line 160]</span></h3>
+	<h3>static method setMarkup <span class="smalllinenumber">[line 157]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -694,7 +712,7 @@ $markup)</code>
   </div>
   <hr />
 	<a name="methodsetRedirect"></a>
-	<h3>static method setRedirect <span class="smalllinenumber">[line 172]</span></h3>
+	<h3>static method setRedirect <span class="smalllinenumber">[line 169]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -729,8 +747,33 @@ $link)</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodsetReload"></a>
+	<h3>static method setReload <span class="smalllinenumber">[line 180]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static void setReload(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		setReload() adds a redirect to cause a page fresh on return<br /><br /><p>Sets a redirect of -1, which indicates to reload the page if JavaScript is enabled  This directive can be ignored if JavaScript is disabled, as the page much reload regardless</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodsetSuccess"></a>
-	<h3>static method setSuccess <span class="smalllinenumber">[line 135]</span></h3>
+	<h3>static method setSuccess <span class="smalllinenumber">[line 132]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -766,7 +809,7 @@ $message)</code>
   </div>
   <hr />
 	<a name="methodshowErrors"></a>
-	<h3>static method showErrors <span class="smalllinenumber">[line 250]</span></h3>
+	<h3>static method showErrors <span class="smalllinenumber">[line 258]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -802,7 +845,7 @@ $clear = true])</code>
   </div>
   <hr />
 	<a name="methodshowSuccesses"></a>
-	<h3>static method showSuccesses <span class="smalllinenumber">[line 262]</span></h3>
+	<h3>static method showSuccesses <span class="smalllinenumber">[line 270]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -837,37 +880,24 @@ $clear = true])</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
 
-  <hr />
-	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 10]</span></h3>
-	<div class="function">
-    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>Reporting __construct(
-)</code>
-    </td></tr></table>
-    </td></tr></table><br />
-	
-		<br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
-  </tr>
-</table>
-</div>
-<br /><br />
-
-	
-        <div class="top">[ <a href="#top">Top</a> ]</div>
-  </div>
 </div><br />
 
+<hr />
+<a name="class_consts"></a>
+<h3>Class Constants</h3>
+<div class="tags">
+	<a name="constRELOAD"></a>
+	<p></p>
+	<h4>RELOAD = <span class="value">&nbsp;&quot;-1&quot;</span></h4>
+	<p>[line 10]</p>
+  
+  <br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 18 Feb 2011 21:10:27 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 11 Apr 2011 18:00:10 -0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

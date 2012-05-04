@@ -19,7 +19,7 @@ class ItemizeView extends View
     public function getIfSelected($item, $selected)
     {
         if(is_array($item))
-            return $this->getIfSelected($item['value'], $selected);
+            return $this->getIfSelected($item[$this->value], $selected);
         else if($item == $selected)
             return ' selected="selected"';
         else

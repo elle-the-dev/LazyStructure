@@ -1,3 +1,5 @@
+The guiding principle behind LazyStructure is that there should be no logic in the presentation.  That means no conditional statements and no loops in your HTML.  The code doesn't force you to do anything you don't want; it only makes options available.  If you feel the need at any point to throw in a foreach loop, you're perfectly free to do so, but the framework has been created in an attempt to eliminate that from being a necessity.
+
 LazyStructure is created under the BSD License (see LICENSE file).
 
 JavaScript functionality makes use of jQuery and the jQuery address plugin
@@ -8,9 +10,15 @@ Address: http://www.asual.com/jquery/address/
 Inline editor uses nicEdit
 http://nicedit.com
 
+Syntax highlighting in nicEdit HTML editor uses CodeMirror
+http://codemirror.net
+
+File manager is KFM
+http://code.google.com/p/kfm/
+
 See the included example files for usage.
 
-Version: 3.1.0
+Version: 3.3.0
 
 Overview:
 LazyStructure provides a jumping-off point for a new PHP project.  Built-in MySQL usage is with regard to login and page editing.  This is seen in index.php.  For pages not using MySQL for page loads, see alpha.php and beta.php.
@@ -18,7 +26,7 @@ LazyStructure provides a jumping-off point for a new PHP project.  Built-in MySQ
 
 Instructions:
 See the file ./lazystructure.sql
--Create a database named lazystructure
+-Create a database
 -Import the database from the file
     -mysql -uusername -p -hlocalhost dbname < ./lazystructure.sql
 
@@ -29,7 +37,6 @@ See the file classes/Database.class.php
 
 See the file classes/Globals.class.php
 -Set PATH for the document root of the site
--Set FILE_PATH for the system root of the site folder
 -Set TITLE_SUFFIX for what to append to the site title
 
 Folder structure:
@@ -39,3 +46,17 @@ Folder structure:
 -Processing files are stored in /do/
 -Classes are all in /classes/ and use the suffix .class.php
     -Only files with .class.php as the extension will be autoloaded
+
+NicEdit Configuration:
+    FileManager:
+        - Folder: nicedit/kfm/
+        - Must configure the file path in config.php
+        - Must configure the file path in plugins/insert/plugin.js
+
+Authentication:
+- Users belong to groups
+- Groups have permissions
+- Permissions are for either pages or actions
+    - Page permissions are only applied to pages that pull from the database (loaded from index.php).  If you need to protect a custom PHP page, you'd protect that as an action.
+    - Actions are any arbitrary tasks that require restricting.  Consequently, this cannot be handled strictly through an interface -- it must have a basis in the code.
+    - The actions table has a `key` column for use in code for easy mapping to database permissions.  Each key is automatically made available as a constant. 

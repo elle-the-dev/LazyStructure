@@ -30,6 +30,10 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../LazyStructure/_AdminTemplate.class.php.html">		AdminTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_ConfirmDeleteTemplate.class.php.html">		ConfirmDeleteTemplate.class.php
+		</a><br>
 			<a href="../LazyStructure/_Database.class.php.html">		Database.class.php
 		</a><br>
 			<a href="../LazyStructure/_Filter.class.php.html">		Filter.class.php
@@ -46,9 +50,13 @@
 		</a><br>
 			<a href="../LazyStructure/_ItemizeView.class.php.html">		ItemizeView.class.php
 		</a><br>
+			<a href="../LazyStructure/_LazyTable.class.php.html">		LazyTable.class.php
+		</a><br>
 			<a href="../LazyStructure/_Model.class.php.html">		Model.class.php
 		</a><br>
 			<a href="../LazyStructure/_PageTemplate.class.php.html">		PageTemplate.class.php
+		</a><br>
+			<a href="../LazyStructure/_Permissions.class.php.html">		Permissions.class.php
 		</a><br>
 			<a href="../LazyStructure/_Reporting.class.php.html">		Reporting.class.php
 		</a><br>
@@ -65,7 +73,9 @@
       
             <b>Classes:</b><br />
         <div class="package">
-		    		<a href="../LazyStructure/Database.html">Database</a><br />
+		    		<a href="../LazyStructure/AdminTemplate.html">AdminTemplate</a><br />
+	    		<a href="../LazyStructure/ConfirmDeleteTemplate.html">ConfirmDeleteTemplate</a><br />
+	    		<a href="../LazyStructure/Database.html">Database</a><br />
 	    		<a href="../LazyStructure/Filter.html">Filter</a><br />
 	    		<a href="../LazyStructure/Format.html">Format</a><br />
 	    		<a href="../LazyStructure/Globals.html">Globals</a><br />
@@ -73,8 +83,10 @@
 	    		<a href="../LazyStructure/HtmlSelect.html">HtmlSelect</a><br />
 	    		<a href="../LazyStructure/Itemize.html">Itemize</a><br />
 	    		<a href="../LazyStructure/ItemizeView.html">ItemizeView</a><br />
+	    		<a href="../LazyStructure/LazyTable.html">LazyTable</a><br />
 	    		<a href="../LazyStructure/Model.html">Model</a><br />
 	    		<a href="../LazyStructure/PageTemplate.html">PageTemplate</a><br />
+	    		<a href="../LazyStructure/Permissions.html">Permissions</a><br />
 	    		<a href="../LazyStructure/Reporting.html">Reporting</a><br />
 	    		<a href="../LazyStructure/Template.html">Template</a><br />
 	    		<a href="../LazyStructure/User.html">User</a><br />
@@ -111,6 +123,7 @@ Source Location: /View.class.php<br /><br />
 <ul>
     <li><a href="../LazyStructure/View.html#method__construct">__construct</a></li>
     <li><a href="../LazyStructure/View.html#methodaddTemplate">addTemplate</a></li>
+    <li><a href="../LazyStructure/View.html#methodcountTemplates">countTemplates</a></li>
     <li><a href="../LazyStructure/View.html#methodgetRoot">getRoot</a></li>
     <li><a href="../LazyStructure/View.html#methodrender">render</a></li>
     <li><a href="../LazyStructure/View.html#method__get">__get</a></li>
@@ -191,6 +204,14 @@ $root = false])</code>
 	<dt><a href="../LazyStructure/PageTemplate.html#method__construct">PageTemplate::__construct()</a></dt>
 		<dd>Constructor for PageTemplate</dd>
 	</dl>
+		<dl>
+	<dt><a href="../LazyStructure/AdminTemplate.html#method__construct">AdminTemplate::__construct()</a></dt>
+		<dd>Constructor for AdminTemplate</dd>
+	</dl>
+		<dl>
+	<dt><a href="../LazyStructure/ConfirmDeleteTemplate.html#method__construct">ConfirmDeleteTemplate::__construct()</a></dt>
+		<dd></dd>
+	</dl>
 	</p>
 	
         <h4>Parameters:</h4>
@@ -217,7 +238,7 @@ $root = false])</code>
   </div>
   <hr />
 	<a name="methodaddTemplate"></a>
-	<h3>method addTemplate <span class="smalllinenumber">[line 82]</span></h3>
+	<h3>method addTemplate <span class="smalllinenumber">[line 88]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -258,8 +279,33 @@ $path = false])</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodcountTemplates"></a>
+	<h3>method countTemplates <span class="smalllinenumber">[line 111]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void countTemplates(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodgetRoot"></a>
-	<h3>method getRoot <span class="smalllinenumber">[line 68]</span></h3>
+	<h3>method getRoot <span class="smalllinenumber">[line 74]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -287,7 +333,7 @@ $path = false])</code>
   </div>
   <hr />
 	<a name="methodrender"></a>
-	<h3>method render <span class="smalllinenumber">[line 94]</span></h3>
+	<h3>method render <span class="smalllinenumber">[line 100]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -316,13 +362,17 @@ $path = false])</code>
 	<dt><a href="../LazyStructure/PageTemplate.html#methodrender">PageTemplate::render()</a></dt>
 		<dd>render outputs the markup</dd>
 	</dl>
+		<dl>
+	<dt><a href="../LazyStructure/ConfirmDeleteTemplate.html#methodrender">ConfirmDeleteTemplate::render()</a></dt>
+		<dd></dd>
+	</dl>
 	</p>
 	
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 43]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 49]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -361,7 +411,7 @@ $name)</code>
   </div>
   <hr />
 	<a name="method__set"></a>
-	<h3>method __set <span class="smalllinenumber">[line 56]</span></h3>
+	<h3>method __set <span class="smalllinenumber">[line 62]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -406,7 +456,7 @@ $value)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 18 Feb 2011 21:10:27 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 11 Apr 2011 18:00:10 -0400 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -15,6 +15,8 @@
  */
 
 require_once('../global.php');
+if(!$db->authenticate($user->xsrfToken))
+    die;
 
 define('NICUPLOAD_PATH', FILE_PATH."upload"); // Set the path (relative or absolute) to
 // the directory to save image files
@@ -69,7 +71,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') { // Upload is complete
     if($rfc1867) {
         $status = apc_fetch('upload_'.$id);
     }
-    if(!$status) {
+    if(!isset($status)) {
         $status = array();
     }
     $status['done'] = 1;

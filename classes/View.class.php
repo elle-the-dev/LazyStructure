@@ -7,7 +7,7 @@
  */
 class View
 {
-    private $root = "templates/"; // top level templates directory
+    private $root = TEMPLATES_PATH; // top level templates directory
     private $name;                // template folder name within the root
     private $path;                // path to template folder
     private $templates = array(); // holds template filenames
@@ -24,6 +24,12 @@ class View
      */
     public function __construct($name, $template=false, $root=false)
     {
+        if(is_null($name))
+            trigger_error("You didn't provide your view with a root directory.<br />
+                           For example,<br />
+                           new PageTemplate(); // BAD<br />
+                           new PageTemplate('index'); // GOOD
+                          ", E_USER_WARNING);
         $this->name = $name;
         if($root)
             $this->root = $root;
@@ -83,7 +89,7 @@ class View
     {
         if(!$path)
             $path = $this->path;
-        $this->templates[] = $path.$template;
+        $this->templates[] = FILE_PATH.$path.$template;
     }
 
     /**
@@ -93,8 +99,33 @@ class View
      */
     public function render()
     {
+        ob_start();
         foreach($this->templates AS $template)
-            include $template;
+        {
+            if(file_exists($template))
+                include $template;
+            else
+                trigger_error("Template $template does not exist.", E_USER_WARNING);
+        }
+    }
+
+    /**
+     * Get the total amount of templates added to the view
+     *
+     * Count and return the number of templates that have been added to the view
+     * @return int number of templates
+     */
+    public function countTemplates()
+    {
+        return count($this->templates);
+    }
+
+    public function getElement($array, $index)
+    {
+        if(isset($array[$index]))
+            return $array[$index];
+        else
+            return false;
     }
 }
 ?>

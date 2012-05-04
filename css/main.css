@@ -61,16 +61,17 @@ a
     float: left;
     margin-right: 1px;
     margin: 7px 0px;
-    width: 7em;
-    background-color: #C6FF80;
+    white-space: nowrap;
+    width: 8em;
 }
 
 #tabs ul li a
 {
+    background-color: #C6FF80;
     display: block;
     padding: 7px 0px;
     text-align: center;
-    width: 7em;
+    width: 8em;
     height: 23px;
 }
 
@@ -85,6 +86,10 @@ a
     pseudo-element class on anything other than a,
     therefore pure CSS menus are impossible.
 */
+
+#tabs ul:hover
+{
+}
 
 #tabs ul li ul
 {
@@ -101,14 +106,13 @@ a
 
 #tabs ul li ul li a
 {
-    background-color: #99FF99;
     display: block;
     height: 20px;
     *margin-bottom: -1px;
     padding-left: 0.5em;
     padding-right: 0.5em;
     text-align: left;
-    width: 8em;
+    width: 9em;
 }
 
 #tabs ul li:hover ul
@@ -135,11 +139,11 @@ a
     display: none;
 }
 
-#tabs ul li:hover ul li:hover ul
+#tabs ul li:hover ul li:hover > ul
 {
     display: block;
     position: absolute;
-    left: 9em;
+    left: 10em;
     *margin-left: -1px;
     margin-top: -34px;
     *margin-top: 0px;
@@ -155,6 +159,21 @@ a
     background-color: #FF9e50;
 }
 
+#tabs ul li.sorting ul li ul
+{
+    display: none;
+}
+
+#tabs ul li.sorting ul li.sorting ul
+{
+    display: block;
+    position: absolute;
+    left: 9em;
+    *margin-left: -1px;
+    margin-top: -34px;
+    *margin-top: 0px;
+}
+
 /* ------ Sidebar ------ */
 #sidebar
 {
@@ -164,6 +183,11 @@ a
     padding-top: 15px;
     width: 185px;
     _width: 200px;
+}
+
+#sidebar ul ul
+{
+    display: none;
 }
 
 /* ------ Footer ------- */
@@ -202,12 +226,19 @@ a
 /* ------ Messages ------ */
 .errors, .successes
 {
+    background-position: 10px; center;
+    background-repeat: no-repeat;
     display: none;
-    font-weight: bold;
     font-family: verdana, 'DejaVu Sans', sans-serif;
-    font-size: 1em;
+    font-size: 0.8em;
     margin: 0.5em 0em;
-    padding: 0.5em 0em;
+    padding: 0.5em;
+    padding-left: 35px;
+}
+
+.errors .errorLine
+{
+    font-weight: bold;
 }
 
 .errors, .fieldError
@@ -217,9 +248,15 @@ a
     color: #FFCCCC;
 }
 
+.errors
+{
+    background-image: url('img/errorbg.gif');
+}
+
 .successes
 {
     background-color: #005000;
+    background-image: url('img/successbg.gif');
     border: 1px solid #00FF00;
     color: #CCFFCC;
 }
@@ -239,10 +276,38 @@ a
     word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
+.errors li
+{
+    margin-top: 5px;
+}
+
+.required
+{
+    color: #FF0000;
+    font-size: 0.8em;
+    margin-left: -0.8em;
+    position: absolute;
+}
+
+.triggeredError
+{
+    font-family: monospace;
+}
+
 /* ------ Loading ------ */
 .loading
 {
     background-image: url('img/loading.gif');
     background-position: center 10em;
     background-repeat: no-repeat;
+}
+
+code
+{
+    white-space: pre;
+}
+
+.errorLine
+{
+    font-weight: bold;
 }

@@ -15,6 +15,8 @@ $phoneFiltered = preg_replace('/\D/', '', $_POST['phone']);
 
 $db->init("do/doJoin");
 
+echo $x;
+
 if(!Validate::username($username))
     Reporting::setFieldError("username", "Invalid username");
 else

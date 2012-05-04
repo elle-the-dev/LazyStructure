@@ -6,8 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1"></meta>
 
     <link rel="stylesheet" href="<?php echo PATH; ?>css/main.css" />
+    <link rel="stylesheet" href="<?php echo PATH; ?>css/pagination/simple.css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" type="text/css" />
     <?php $this->styles->render(); ?>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo PATH; ?>js/jquery.address.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo PATH; ?>js/jquery.address.min.js"></script> -->
     <script type="text/javascript" src="<?php echo PATH; ?>js/main.js"></script>
+    <?php $this->admin->render(); ?>

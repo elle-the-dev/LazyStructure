@@ -28,7 +28,7 @@ class PageTemplate extends Template
      */
     public function __construct($name, $template=false, $root=false)
     {
-        if(isset($_SESSION['redirect']))
+        if(isset($_SESSION['redirect']) && $_SESSION['redirect'] != Reporting::RELOAD) // reload can be ignored
         {
             $redirect = $_SESSION['redirect'];
             unset($_SESSION['redirect']);
@@ -37,6 +37,10 @@ class PageTemplate extends Template
         }
 
         // remember the last page to return to on form submit if not AJAX
+        if(isset($_SESSION['lastPage']))
+            $_SESSION['lastLastPage'] = $_SESSION['lastPage'];
+        else
+            $_SESSION['lastLastPage'] = $_SERVER['PHP_SELF'];
         $_SESSION['lastPage'] = $_SERVER['PHP_SELF'];
 
         parent::__construct($name, $template, $root);
@@ -44,6 +48,101 @@ class PageTemplate extends Template
         $this->body->messages   = new View($name, $template, $root);
         $this->body->content    = new View($name, $template, $root);
         $this->body->sidebarItems = array();
+    }
+
+    /**
+     * __set is used to map direct object variable access to $this->body->content->variable
+     *
+     * In order to reduce the need for lengthy calls to $pageTemplate->body->content->somevalue
+     * __set is used to allow for $pageTemplate->somevalue to map directly to the aforementioned
+     * value
+     *
+     * @param string $name the name of the variable
+     * @param mixed $val the value stored
+     */
+    public function __set($name, $val)
+    {
+        $this->body->content->$name = $val;
+    }
+
+    public function &__get($name)
+    {
+        /*
+            Okay, so here's what's going on.  Calling $this->body then checks this __get() function
+            this creates a weird logical paradox where everything goes to hell
+            to avoid this, we call __get('body') of the parent, instead of $this->body.
+        */
+        $body = parent::__get('body');
+        if(is_object($body) && is_object($body->content) && !is_null($body->content->$name))
+        {
+            //echo isset($this->body) ? "TRUE" : "FALSE";  // - FALSE
+            //echo is_null($this->body) ? "TRUE" : "FALSE"; // - FALSE :|
+            $a = &$this->body->content->$name;
+            return $a; 
+        }
+        else
+            return parent::__get($name);
+    }
+    
+
+    function getMenuItems($rows, $table, $id=false, $class=false, $appendItems="")
+    {
+        if(is_array($rows))
+        {
+            $db = new Model("classes/PageTemplate");
+            if(!is_array($this->menuItemIds))
+                $this->menuItemIds = array();
+
+            $ulId = $id ? ' id = "'.$id.'"' : '';
+            $ulClass = $class ? ' class="'.$class.'"' : '';
+
+            $output = <<<OUT
+
+            <ul{$ulId}{$ulClass}>
+OUT;
+            foreach($rows AS $row)
+            {
+                if(in_array($row['id'], $this->menuItemIds) === false)
+                {
+                    $output .= '<li>';
+                    if($row['is_ajax'])
+                    {
+                        $rel = ' rel="address:'.$row['link'].'"';
+                        $link = PATH.$row['link'];
+                    }
+                    else
+                    {
+                        $rel = "";
+                        $link = $row['link'];
+                    }
+
+                    $output .= empty($row['link']) ? $row['title'] : '<a href="'.$link.'"'.$rel.'><span>'.$row['title'].'</span></a>';
+                    if(in_array($row['id'], $this->menuItemIds) === false)
+                    {
+                        if(isset($row['id']))
+                        {
+                            $db->table = $table;
+                            $subRows = $db->query("getMenuItem.sql", $row['id']);
+                        }
+
+                        if(is_array($subRows))
+                            $output .= $this->getMenuItems($subRows, $table);
+                        else
+                            $output .= "<ul><li class=\"empty\"> </li></ul>";
+                    }
+                    $this->menuItemIds[] = $row['id'];
+                    $output .= <<<OUT
+
+                        <input type="hidden" class="menuItemId" value="{$row['id']}" />
+                    </li>
+OUT;
+                }
+            }
+            return $output.$appendItems.'</ul>';
+        }
+        else
+            return "<ul><li class=\"empty\"> </li></ul>";
+                                                                                                                                                                                                                             
     }
 
     /**
@@ -56,10 +155,10 @@ class PageTemplate extends Template
      * @param string $url the link address
      * @param string $class the CSS class for the <a> tag
      */
-    public function addSidebarItem($text, $url, $class="")
+    public function addSidebarItem($title, $link, $class="")
     {
         $items = is_array($this->body->sidebarItems) ? $this->body->sidebarItems : array();
-        $items[] = array('text' => $text, 'url' => $url, 'class' => $class);
+        $items[] = array('title' => $title, 'link' => $link, 'class' => $class);
         $this->body->sidebarItems = $items;
     }
 
@@ -74,8 +173,14 @@ class PageTemplate extends Template
     public function addStyle($style)
     {
         $styles = $this->styles;
-        array_push($styles, $style);
+        array_push($styles, PATH.$style);
         $this->styles = $styles;
+    }
+
+   
+    public function addTemplate($template, $path=false)
+    {
+        $this->body->content->addTemplate($template, $path);
     }
 
     /**
@@ -88,20 +193,46 @@ class PageTemplate extends Template
     public function render()
     {
         define('TEMPLATE_PATH', $this->getRoot().'classes/PageTemplate/');
+        global $permissions;
 
         $this->title .= TITLE_SUFFIX;
 
+        $this->head->styles->styles = $this->styles;
         foreach($this->styles as $style)
         {
-            $this->head->styles->style = $style;
             $this->head->styles->addTemplate('style.tpl', TEMPLATE_PATH);
         }
 
         $this->head->addTemplate("head.tpl", TEMPLATE_PATH);
+        $this->head->admin = new View("../".TEMPLATE_PATH."admin");
+        if($permissions->isAuthorizedAction(CONTENT_EDIT))
+            $this->head->admin->addTemplate("head.tpl");
+
         $this->bodyTop->addTemplate("bodyTop.tpl", TEMPLATE_PATH);
         $this->bodyTop->menu = new View("classes/PageTemplate/menu");
         $this->bodyTop->menu->tab = $this->tab;
         $this->bodyTop->menu->addTemplate("content.tpl");
+
+        $this->bodyTop->menu->admin = new View("classes/PageTemplate/menu/admin");
+        $menuActions = array(USERS, GROUPS, PAGES);
+        $menuActionItems = array();
+        if($permissions->hasAnyActions($menuActions))
+        {
+            //$this->bodyTop->menu->admin->actions = $permissions->actions;
+            $this->bodyTop->menu->admin->addTemplate("open.tpl");
+            foreach($menuActions as $menuAction)
+            {
+                if($permissions->isAuthorizedAction($menuAction))
+                {
+                    $this->bodyTop->menu->admin->items[] = array(
+                        'name' => $permissions->allActions[$menuAction]['name'],
+                        'url' => $permissions->allActions[$menuAction]['url']
+                    );
+                    $this->bodyTop->menu->admin->addTemplate("item.tpl");
+                }
+            }
+            $this->bodyTop->menu->admin->addTemplate("close.tpl");
+        }
 
 
         /*
@@ -115,6 +246,18 @@ class PageTemplate extends Template
         $this->body->messages->successStyle = Reporting::hasSuccesses() ? "block" : "none";
         $this->body->messages->addTemplate('successes.tpl', TEMPLATE_PATH);
 
+
+        $db = new Model("classes/PageTemplate");
+        $rows = $db->query("mainMenu.sql");
+        $username = isset($_GET['username']) ? $_GET['username'] : "FAIL";
+        ob_start();
+        $this->bodyTop->menu->admin->render();
+        $adminItems = ob_get_clean();
+        $this->bodyTop->mainMenu = $this->getMenuItems($rows, "main_menu", $this->tab, "mainMenu", $adminItems);
+
+        //$rows = $db->query("footerMenu.sql", $siteUserId);
+        //$this->bodyBottom->footerMenu = $this->getMenuItems($rows, "footer_menu", $this->tab, "footerMenu");
+
         /*
             Generate the sidebar based on the links added through $this->addSidebarItem
             This is so the sidebar links can be customized for each page as opposed to
@@ -124,23 +267,48 @@ class PageTemplate extends Template
         $this->body->sidebar->addTemplate("top.tpl");
         $this->body->sidebar->page = $this->page; // ul class to identify which page is active
         if(isset($this->body->sidebarItems[0]))
+        //if($sidebarItems = $db->query("sidebar.sql"))
         {
             $this->body->sidebar->addTemplate("ultop.tpl");
+            $this->body->sidebar->items = $this->body->sidebarItems;
+            //$this->body->sidebar->items = $sidebarItems;
 
-            foreach($this->body->sidebarItems AS $item)
+            foreach($this->body->sidebar->items AS $item)
             {
-                $this->body->sidebar->item = array('url' => $item['url'], 'text' => $item['text']);
                 $this->body->sidebar->addTemplate("li.tpl");
             }
-
+            reset($this->body->sidebar->items);
             $this->body->sidebar->addTemplate("ulbottom.tpl");
         }
         $this->body->sidebar->addTemplate("bottom.tpl");
 
         $this->body->addTemplate("body.tpl", TEMPLATE_PATH);
         $this->bodyBottom->addTemplate("bodyBottom.tpl", TEMPLATE_PATH);
+        if($permissions->isAuthorizedAction(CONTENT_EDIT))
+        {
+            $pages = $db->query("pages.sql");
+            array_unshift($pages, array('id' => '', 'title' => '-- Select a Page --'));
+            $this->bodyBottom->pages = new HtmlSelect($pages, array('value' => 'id', 'label' => 'title', 'id' => 'newTabPage'));
+            $this->bodyBottom->pages->generate();
+            $this->bodyBottom->addTemplate("newTab.tpl", TEMPLATE_PATH);
+            $this->bodyBottom->addTemplate("tabTooltip.tpl", TEMPLATE_PATH);
+        }
 
+        /*
+        $phpErrors = isset($_SESSION['phpErrors']) ? $_SESSION['phpErrors'] : false;
+        ob_start();
         parent::render();
+        $output = ob_get_clean();
+        if($phpErrors)
+        {
+            echo $phpErrors;
+            die("FFFFUUUUUUUUUUU");
+        }
+        else
+            echo $output;
+        */
+        parent::render();
+
     }
 }
 ?>

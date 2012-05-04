@@ -29,3 +29,63 @@ html
     width: 100%;
     z-index: -1;
 }
+
+#tabs li a:hover, #footer li a:hover, #header li a:hover
+{
+    cursor: move;
+}
+
+#tabs li.ignore a:hover, #footer li.ignore a:hover, #header li.ignore a:hover
+{
+    cursor: pointer;
+}
+
+.placeholder
+{
+    background-color: #60FF60 !important;
+    border: 2px dashed #00A000;
+}
+
+#newTab
+{
+    display: none;
+}
+
+.empty
+{
+    visibility: hidden !important;
+}
+
+.nicEdit-pane button
+{
+    float: right;
+}
+
+#tabs ul li.sorting ul
+{
+    display: block;
+    overflow: visible;
+    position: absolute;
+    z-index: 99;
+}
+
+#tabs ul li.sorting.ignore
+{
+    opacity: 0.5;
+}
+
+#tabTooltip
+{
+    display: none;
+    z-index: 100;
+}
+
+.tabsTooltip
+{
+    margin-top: -20px;
+}
+
+.sidebarTooltip
+{
+    margin-left: -60px;
+}
