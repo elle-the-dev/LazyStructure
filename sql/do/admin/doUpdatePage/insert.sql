@@ -1,5 +1,7 @@
-INSERT INTO pages (title, editable)
+INSERT INTO pages (title, heading, content, editable)
 VALUES (
     ?, /* title */
+    ?, /* heading */
+    ?, /* content */
     ? /* editable */
 );

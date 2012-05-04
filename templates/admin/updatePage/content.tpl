@@ -9,7 +9,7 @@
         <tr>
             <td><span class="required">*</span><label for="title">Title:</label></td>
             <td>
-                <input type="text" name="title" id="title" maxlength="20" value="<?php echo $this->getElement($this->fields, 'title'); ?>"<?php echo $this->disabled; ?> /><?php echo $this->getElement($this->fieldErrors, 'title'); ?>
+                <input type="text" name="title" id="title" maxlength="100" value="<?php echo $this->getElement($this->fields, 'title'); ?>"<?php echo $this->disabled; ?> /><?php echo $this->getElement($this->fieldErrors, 'title'); ?>
             </td>
         </tr>
         <tr>

@@ -46,11 +46,6 @@ html
     border: 2px dashed #00A000;
 }
 
-#newTab
-{
-    display: none;
-}
-
 .empty
 {
     visibility: hidden !important;
@@ -74,12 +69,6 @@ html
     opacity: 0.5;
 }
 
-#tabTooltip
-{
-    display: none;
-    z-index: 100;
-}
-
 .tabsTooltip
 {
     margin-top: -20px;
@@ -88,4 +77,9 @@ html
 .sidebarTooltip
 {
     margin-left: -60px;
+}
+
+.dropzone
+{
+    border: 1px solid red;
 }

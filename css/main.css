@@ -311,3 +311,14 @@ code
 {
     font-weight: bold;
 }
+
+#newTab
+{
+    display: none;
+}
+
+#tabTooltip
+{
+    display: none;
+    z-index: 100;
+}

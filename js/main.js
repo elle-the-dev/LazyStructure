@@ -104,7 +104,6 @@ function formSubmit(obj, callBack, postCallBack)
             }
             catch(err)
             {
-                alert(data);
                 /*
                 alert(err);
                 setError('<pre>'+data+'</pre>');
