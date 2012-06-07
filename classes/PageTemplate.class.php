@@ -194,6 +194,7 @@ OUT;
     {
         define('TEMPLATE_PATH', $this->getRoot().'classes/PageTemplate/');
         global $permissions;
+        global $user;
 
         $this->title .= TITLE_SUFFIX;
 
@@ -214,6 +215,14 @@ OUT;
         $this->bodyTop->menu->addTemplate("content.tpl");
 
         $this->bodyTop->menu->admin = new View("classes/PageTemplate/menu/admin");
+        $this->bodyTop->login = new View("classes/PageTemplate/login");
+        if($user)
+        {
+            $this->bodyTop->login->username = $user->username;
+            $this->bodyTop->login->addTemplate("loggedIn.tpl");
+        }
+        else
+            $this->bodyTop->login->addTemplate("login.tpl");
         $menuActions = array(USERS, GROUPS, PAGES);
         $menuActionItems = array();
         if($permissions->hasAnyActions($menuActions))

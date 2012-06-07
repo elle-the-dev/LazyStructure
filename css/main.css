@@ -28,6 +28,12 @@ a
     padding-left: 50px;
 }
 
+#header div.login
+{
+    float: right;
+    margin-right: 50px;
+}
+
 #content
 {
     margin-left: 50px;

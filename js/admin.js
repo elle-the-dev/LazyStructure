@@ -82,6 +82,7 @@ function bindTabs()
     }); 
     $('#tabs ul').disableSelection();
 
+    /*
     $('#footer ul').sortable(
     {   
         tolerance: 'pointer',
@@ -93,6 +94,7 @@ function bindTabs()
         forcePlaceholderSize: true
     }); 
     $('ul, #footer ul').disableSelection();
+    */
 
     $('#sidebar ul').sortable(
     {

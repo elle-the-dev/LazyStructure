@@ -30,7 +30,7 @@ html
     z-index: -1;
 }
 
-#tabs li a:hover, #footer li a:hover, #header li a:hover
+#tabs li a:hover, /* #footer li a:hover, */ #header li a:hover
 {
     cursor: move;
 }
