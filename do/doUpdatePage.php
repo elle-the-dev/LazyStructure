@@ -13,7 +13,7 @@ if($permissions->canEditPage($pageId))
     updateMenu("main_menu", $_POST['tabsMenu']);
     if(isset($_POST['sideMenu']))
     {
-        $db->query("deletePageMenu.sql", $user->id);
+        $db->query("deletePageMenu.sql", $pageId);
         updateMenu("page_menu", $_POST['sideMenu'], null, null, $pageId);
     }
     Reporting::setSuccess("Page saved.");
