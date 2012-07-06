@@ -18,7 +18,7 @@ http://code.google.com/p/kfm/
 
 See the included example files for usage.
 
-Version: 3.3.0
+Version: 3.3.3
 
 Overview:
 LazyStructure provides a jumping-off point for a new PHP project.  Built-in MySQL usage is with regard to login and page editing.  This is seen in index.php.  For pages not using MySQL for page loads, see alpha.php and beta.php.
