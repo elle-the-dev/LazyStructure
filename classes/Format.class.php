@@ -87,5 +87,29 @@ class Format
     {
         return strtoupper(Filter::stripNonAlphanumeric($postal_code));
     }
+
+    /**
+     * toUrlString
+     *
+     * Converts a string to a URL slug
+     *
+     * @param string $str the string to convert
+     * @return string formatted for a url
+     */
+    public static function toUrlString($str)
+    {
+        $str = strtolower($str);
+        $len = strlen($str);
+        $newStr = "";
+        for($i=0;$i<$len;$i++)
+        {
+            $ord = ord($str[$i]);
+            if(($ord >= 97 && $ord <= 132) || ($ord >= 48 && $ord <= 57))
+                $newStr .= $str[$i];
+            else if($ord == 32 || $ord == 47 || $ord == 95) //space or fwd-slash or underscore
+                $newStr .= '-';
+        }
+        return $newStr;
+    }
 }
 ?>
