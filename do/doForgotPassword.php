@@ -6,7 +6,7 @@ $email = $_POST['email'];
 $db = new Model("do/doForgotPassword");
 if($row = $db->queryRow("select.sql", array('email' => $email)))
 {
-    if(time() - $row['resetTime'] > 14400)
+    if(time() - $row['reset_time'] > 14400)
     {
         Mailer::sendResetPassword($row['username'], $email);
         Reporting::setSuccess("An email has been sent to your email address containing a link to reset your password.");

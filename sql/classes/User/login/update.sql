@@ -1,1 +1,1 @@
-UPDATE users SET loginToken = ? WHERE id = ?
+UPDATE users SET login_token = ? WHERE id = ?
