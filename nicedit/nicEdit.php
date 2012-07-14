@@ -1311,6 +1311,8 @@ var nicImageOptions = {
 var nicImageButton = nicEditorAdvancedButton.extend({	
 	addPane : function() {
         this.im = $(this.ne.selectedInstance.selElm()).parent().find('img').get(0);
+        if(typeof this.im == "undefined")
+            this.im = "";
 		this.addForm({
 			'' : {type : 'title', txt : 'Add/Edit Image'},
 			'src' : {type : 'text', txt : 'URL', 'value' : 'http://', style : {width: '150px'}},
