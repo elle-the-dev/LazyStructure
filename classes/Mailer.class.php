@@ -13,6 +13,7 @@ class Mailer
         $to = $rows[0]['email'];
         $from = "noreply@".DOMAIN;
         $subject = "Your new password";
+
         $message = <<<TEMPLATE
             Your new password is: {$newpassword}
 

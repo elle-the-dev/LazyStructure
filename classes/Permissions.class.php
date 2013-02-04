@@ -126,68 +126,6 @@ class Permissions
         return $this->isAuthorizedPage($pageId) && $this->isAuthorizedAction(CONTENT_EDIT);
     }
 
-    public function hasChmodUserRead($chmod)
-    {
-        $bin = "".$this->octbin($chmod{1});
-        return $bin{0} === '1';
-    }
-
-   public function hasChmodUserWrite($chmod)
-    {
-        $bin = "".$this->octbin($chmod{1});
-        return $bin{1} === '1';
-    }
-
-    public function hasChmodUserExecute($chmod)
-    {
-        $bin = "".$this->octbin($chmod{1});
-        return $bin{2} === '1';
-    }
-
-    public function hasChmodGroupRead($chmod)
-    {
-        $bin = "".$this->octbin($chmod{2});
-        return $bin{0} === '1';
-    }
-
-   public function hasChmodGroupWrite($chmod)
-    {
-        $bin = "".$this->octbin($chmod{2});
-        return $bin{1} === '1';
-    }
-
-    public function hasChmodGroupExecute($chmod)
-    {
-        $bin = "".$this->octbin($chmod{2});
-        return $bin{2} === '1';
-    }
-
-    public function hasChmodOtherRead($chmod)
-    {
-        $bin = "".$this->octbin($chmod{3});
-        return $bin{0} === '1';
-    }
-
-    public function hasChmodOtherWrite($chmod)
-    {
-        $bin = "".$this->octbin($chmod{3});
-        return $bin{1} === '1';
-    }
-
-    public function hasChmodOtherExecute($chmod)
-    {
-        $bin = "".$this->octbin($chmod{3});
-        return $bin{2} === '1';
-    }
-
-
-
-    public function octbin($oct)
-    {
-        return sprintf("%03d", decbin(octdec($oct)));
-    }
-
-
     /**
      * Retrieve and return action permissions
      *

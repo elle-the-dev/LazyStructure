@@ -34,7 +34,6 @@ if(file_exists(FILE_PATH."templates/index/".Format::toUrlString($page['title']).
 if(file_exists(FILE_PATH."controllers/".Format::toUrlString($page['title']).".php"))
     include(FILE_PATH."controllers/".Format::toUrlString($page['title']).".php");
 
-
 if($db->authenticate($out->body->content->xsrfToken))
 {
     // userContent will start nicEditor
