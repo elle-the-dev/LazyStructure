@@ -1,10 +1,10 @@
 <?php
-$kfm_db_type = 'sqlitepdo';
+$kfm_db_type = 'mysql';
 $kfm_db_prefix   = 'kfm_';
 $kfm_db_host     = 'localhost';
-$kfm_db_name     = 'kfm';
-$kfm_db_username = 'username';
-$kfm_db_password = 'password';
+$kfm_db_name     = 'lazystructure';
+$kfm_db_username = 'lazystructure';
+$kfm_db_password = 'lazystructure';
 $kfm_db_port     = '';
 $use_kfm_security=false;
 $kfm_userfiles_address = '/home/zurahn/Documents/PHP/LazyStructure/upload';

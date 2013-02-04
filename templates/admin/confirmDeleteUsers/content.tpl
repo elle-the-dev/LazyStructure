@@ -1,5 +1,5 @@
 <p>
-Are you sure you want to these users?
+Are you sure you want to delete these users?
 </p>
 <p>
 <?php $this->list->render(); ?>

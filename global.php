@@ -3,7 +3,7 @@
     Error reporting set to show notices, warnings and errors
     Set to E_NONE to disable
 */
-error_reporting(E_ALL);
+error_reporting(E_ALL^E_NOTICE);
 
 /*
     Sets php.ini settings to temporarily display errors

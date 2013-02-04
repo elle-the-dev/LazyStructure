@@ -20,7 +20,10 @@ class Globals
         define('PATH', '/LazyStructure/');
 
         // system root to the site directory
-        define('FILE_PATH', dirname(dirname(__FILE__)).'/'); //'/home/zurahn/Documents/PHP/LazyStructure/');
+        define('FILE_PATH', dirname(dirname(__FILE__)).'/');
+
+        // site domain
+        define('DOMAIN', 'lazystructure.com');
         
         // relative root to SQL files
         define('SQL_PATH', 'sql/');

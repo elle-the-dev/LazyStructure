@@ -1,5 +1,5 @@
 <p>
-Are you sure you want to these pages?
+Are you sure you want to delete these pages?
 </p>
 <p>
 <?php $this->list->render(); ?>

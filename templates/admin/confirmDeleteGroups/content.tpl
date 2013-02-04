@@ -1,5 +1,5 @@
 <p>
-Are you sure you want to these groups?
+Are you sure you want to delete these groups?
 </p>
 <p>
 <?php $this->list->render(); ?>

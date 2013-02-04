@@ -25,6 +25,15 @@ if(!empty($sidebarItems))
         $out->addSidebarItem($item['title'], $item['link']);
     }
 }
+if(file_exists(FILE_PATH."css/".Format::toUrlString($page['title']).".css"))
+    $out->addStyle("css/".Format::toUrlString($page['title']).".css");
+
+if(file_exists(FILE_PATH."templates/index/".Format::toUrlString($page['title']).".tpl"))
+    $out->addTemplate(Format::toUrlString($page['title']).".tpl");
+
+if(file_exists(FILE_PATH."controllers/".Format::toUrlString($page['title']).".php"))
+    include(FILE_PATH."controllers/".Format::toUrlString($page['title']).".php");
+
 
 if($db->authenticate($out->body->content->xsrfToken))
 {
